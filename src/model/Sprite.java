@@ -2,19 +2,20 @@ package model;
 
 import java.awt.*;
 
-/**
- * @author - johnny850807@gmail.com (Waterball)
- */
+//楊鈞安、陳咏誼
+
 public abstract class Sprite {
     protected World world;
     protected Point location = new Point();
-    protected Direction face = Direction.RIGHT;
 
     public abstract void update();
 
     public abstract void render(Graphics g);
 
     public abstract void onDamaged(Rectangle damageArea, int damage);
+
+    //陳咏誼加的，讓PetCollisionHandler可以用
+    public abstract void collideWith(Sprite sprite);
 
     public World getWorld() {
         return world;
@@ -46,24 +47,14 @@ public abstract class Sprite {
 
     public abstract Dimension getBodySize();
 
-    public Direction getFace() {
-        return face;
-    }
-
-    public void setFace(Direction face) {
-        this.face = face;
-    }
 
     public Rectangle getBody() {
         return getArea(getBodyOffset(), getBodySize());
     }
 
     public Rectangle getArea(Dimension offset, Dimension size) {
-        if (face == Direction.LEFT) {
-            Rectangle range = getRange();
-            return new Rectangle(new Point(location.x + range.width - offset.width - size.width,
-                    offset.height + location.y), size);
-        }
+        //TODO: 還沒看懂，要請楊鈞安確認
+
         return new Rectangle(new Point(offset.width + location.x,
                 offset.height + location.y), size);
     }

@@ -2,7 +2,6 @@ package views;
 
 import controller.Game;
 import controller.GameLoop;
-import model.Direction;
 import model.Sprite;
 import model.World;
 
@@ -12,14 +11,17 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
 
-/**
- * @author - johnny850807@gmail.com (Waterball)
- */
+// 陳咏誼
+//TODO: background是不是應該放在這裡，在Canvas.paintComponent裡更新(g.setColor())
+
 public class GameView extends JFrame {
-    public static final int HEIGHT = 500;
-    public static final int WIDTH = 500;
+    public static final int HEIGHT = 1000;
+    public static final int WIDTH = 1000;
+    
+    //保留以後可以多個玩家遊玩的延伸性
     public static final int P1 = 1;
     public static final int P2 = 2;
+    
     private final Canvas canvas = new Canvas();
     private final Game game;
 
@@ -41,68 +43,19 @@ public class GameView extends JFrame {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
-                    case KeyEvent.VK_W:
-                        game.moveKnight(P1, Direction.UP);
+                    case KeyEvent.VK_KP_UP:
+                        game.jumpPet(P1, Direction.UP);
                         break;
-                    case KeyEvent.VK_S:
-                        game.moveKnight(P1, Direction.DOWN);
-                        break;
-                    case KeyEvent.VK_A:
-                        game.moveKnight(P1, Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_D:
-                        game.moveKnight(P1, Direction.RIGHT);
-                        break;
-                    case KeyEvent.VK_E:
-                        game.attack(P1);
-                        break;
-                    case KeyEvent.VK_I:
-                        game.moveKnight(P2, Direction.UP);
-                        break;
-                    case KeyEvent.VK_K:
-                        game.moveKnight(P2, Direction.DOWN);
-                        break;
-                    case KeyEvent.VK_J:
-                        game.moveKnight(P2, Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_L:
-                        game.moveKnight(P2, Direction.RIGHT);
-                        break;
-                    case KeyEvent.VK_U:
-                        game.attack(P2);
+                    case KeyEvent.VK_KP_DOWN:
+                        game.slidePet(P1, Direction.DOWN);
                         break;
                 }
             }
 
+            /*
             @Override
-            public void keyReleased(KeyEvent keyEvent) {
-                switch (keyEvent.getKeyCode()) {
-                    case KeyEvent.VK_W:
-                        game.stopKnight(P1, Direction.UP);
-                        break;
-                    case KeyEvent.VK_S:
-                        game.stopKnight(P1, Direction.DOWN);
-                        break;
-                    case KeyEvent.VK_A:
-                        game.stopKnight(P1, Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_D:
-                        game.stopKnight(P1, Direction.RIGHT);
-                        break;
-                    case KeyEvent.VK_I:
-                        game.stopKnight(P2, Direction.UP);
-                        break;
-                    case KeyEvent.VK_K:
-                        game.stopKnight(P2, Direction.DOWN);
-                        break;
-                    case KeyEvent.VK_J:
-                        game.stopKnight(P2, Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_L:
-                        game.stopKnight(P2, Direction.RIGHT);
-                        break;
-                }
-            }
+            public void keyPressed(KeyEvent keyEvent)
+            */
         });
     }
 

@@ -1,6 +1,6 @@
 package model;
 
-import knight.HealthPointBar;
+import pet.HealthPointBar;
 import media.AudioPlayer;
 
 import java.awt.*;

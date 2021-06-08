@@ -2,9 +2,9 @@ package controller;
 
 import model.World;
 
-/**
- * @author - johnny850807@gmail.com (Waterball)
- */
+// 陳咏誼
+//TODO: 如果要做暫停功能，還需要新增resume()
+
 public abstract class GameLoop {
     private boolean running;
     private View view;

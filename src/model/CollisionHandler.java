@@ -2,9 +2,8 @@ package model;
 
 import java.awt.*;
 
-/**
- * @author - johnny850807@gmail.com (Waterball)
- */
+//陳咏誼
+
 public interface CollisionHandler {
-    void handle(Point originalLocation, Sprite from, Sprite to);
+    void handle(Sprite from, Sprite to);
 }

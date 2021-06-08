@@ -1,8 +1,10 @@
-package knight;
+package pet;
 
 import model.Sprite;
 
 import java.awt.*;
+
+// 應該會需要，下面有TODO
 
 /**
  * @author - johnny850807@gmail.com (Waterball)
@@ -29,6 +31,7 @@ public class HealthPointBar extends Sprite {
     }
 
     @Override
+    //TODO: 位置不一定要在owner的上面
     public void render(Graphics g) {
         Rectangle range = getRange();
         int width = (int) (hp * owner.getRange().getWidth() / maxHp);

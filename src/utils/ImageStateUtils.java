@@ -1,7 +1,7 @@
 package utils;
 
-import fsm.ImageRenderer;
-import fsm.ImageState;
+import state.ImageRenderer;
+import state.ImageState;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

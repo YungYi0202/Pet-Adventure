@@ -1,37 +1,38 @@
 package controller;
 
-import knight.Knight;
-import model.Direction;
+import pet.Pet;
+
 import model.World;
 
-/**
- * @author - johnny850807@gmail.com (Waterball)
- */
+//陳咏誼
+
 public class Game extends GameLoop {
-    private final Knight p1;
-    private final Knight p2;
+    private final Pet p1;
+    //TODO: 保留加入p2的延伸性
+
     private final World world;
 
-    public Game(World world, Knight p1, Knight p2) {
+    public Game(World world, Pet p1) {
         this.p1 = p1;
-        this.p2 = p2;
         this.world = world;
     }
 
-    public void moveKnight(int playerNumber, Direction direction) {
-        getPlayer(playerNumber).move(direction);
+    //在 GameView.java 的 addKeyListener{}裡需要用到，這邊只會寫鍵盤可以操控的Pet行為
+
+    public void jumpPet(int playerNumber){
+        getPlayer(playerNumber).jump();
     }
 
-    public void stopKnight(int playerNumber, Direction direction) {
-        getPlayer(playerNumber).stop(direction);
+    public void slidePet(int playerNumber){
+        getPlayer(playerNumber).slide();
     }
 
-    public void attack(int playerNumber) {
-        getPlayer(playerNumber).attack();
-    }
+    //TODO: 使用道具 
+    //public void useProp(int playerNumber){}
 
-    public Knight getPlayer(int playerNumber) {
-        return playerNumber == 1 ? p1 : p2;
+    public Pet getPlayer(int playerNumber) {
+        return p1;
+        //return playerNumber == 1 ? p1 : p2;
     }
 
     @Override
