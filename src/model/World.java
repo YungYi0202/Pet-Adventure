@@ -13,13 +13,13 @@ import views.GameView;
 //陳咏誼
 
 public class World {
-    private final List<Sprite> sprites = new CopyOnWriteArrayList<>();
+    private final List<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
     private final CollisionHandler collisionHandler;
     
     //以下是陳咏誼加的，可改
     private Stage stage;
     private int cur_abs_x = GameView.WIDTH;
-    private List<Pet> players;
+    private List<Pet> players = new CopyOnWriteArrayList<Pet>();;
 
 
     public World(CollisionHandler collisionHandler, Stage stage ,Sprite... sprites) {

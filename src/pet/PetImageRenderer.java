@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * @author - johnny850807@gmail.com (Waterball)
  */
-public class Pet_Imager_enderer implements ImageRenderer {
+public class PetImageRenderer implements ImageRenderer {
     protected Pet pet;
 
     public Pet_Image_renderer(Pet pet) {

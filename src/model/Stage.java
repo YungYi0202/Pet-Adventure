@@ -52,7 +52,7 @@ public abstract class Stage {
             //把x的絕對位置轉換為相對位置
             s.setLocation(new Point( GameView.WIDTH - (cur_abs_x - p.getX()) , p.getY() ));
             
-            returnList.add(s);
+            newSprites.add(s);
             index++;
         }
         return newSprites;

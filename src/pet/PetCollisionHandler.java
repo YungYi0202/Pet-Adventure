@@ -12,6 +12,9 @@ public class PetCollisionHandler implements CollisionHandler {
     public void handle(Sprite from, Sprite to) {
         if (from instanceof Pet) {
             //TODO: can use collide with
+            from.collideWith(to);
+            to.collideWith(from);
+
         }
     }
 }
