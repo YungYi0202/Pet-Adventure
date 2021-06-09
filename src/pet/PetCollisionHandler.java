@@ -11,7 +11,7 @@ public class PetCollisionHandler implements CollisionHandler {
     @Override
     public void handle(Sprite from, Sprite to) {
         if (from instanceof Pet) {
-            //TODO:
+            //TODO: can use collide with
         }
     }
 }

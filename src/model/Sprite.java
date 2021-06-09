@@ -12,7 +12,7 @@ public abstract class Sprite {
 
     public abstract void render(Graphics g);
 
-    public abstract void onDamaged(Rectangle damageArea, int damage);
+    //public abstract void onDamaged(Rectangle damageArea, int damage);
 
     //陳咏誼加的，讓PetCollisionHandler可以用
     public abstract void collideWith(Sprite sprite);

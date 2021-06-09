@@ -4,10 +4,8 @@ import model.Sprite;
 
 import java.awt.*;
 
-// 應該會需要，下面有TODO
-
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * @author - Andy young 6/9 17:19
  */
 public class HealthPointBar extends Sprite {
     private final int maxHp;
@@ -26,12 +24,16 @@ public class HealthPointBar extends Sprite {
         this.hp = hp;
     }
 
+    public void onDamaged(Rectangle damageArea, int damage) {
+        this.hp = Math.max(hp - damage, 0);
+    }
+
     @Override
     public void update() {
     }
 
     @Override
-    //TODO: 位置不一定要在owner的上面
+    //TODO: 位置不一定要在owner的上面 (討論看是要在最上面嗎)
     public void render(Graphics g) {
         Rectangle range = getRange();
         int width = (int) (hp * owner.getRange().getWidth() / maxHp);
@@ -40,14 +42,10 @@ public class HealthPointBar extends Sprite {
         g.setColor(Color.GREEN);
         g.fillRect(range.x, range.y, width, range.height);
     }
+    
 
     @Override
-    public void onDamaged(Rectangle damageArea, int damage) {
-        this.hp = Math.max(hp - damage, 0);
-    }
-
-    @Override
-    public Rectangle getRange() {
+    public Rectangle getRange() { /// Todo 位置可能要改 
         return new Rectangle(owner.getX(), owner.getY() - 15, (int) owner.getRange().getWidth(), 10);
     }
 
