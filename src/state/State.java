@@ -1,8 +1,7 @@
 package state;
+import 
 
-import java.awt.*;
-
-// 彭光湞
-public interface State {
-    
+public abstract class State {
+    public abstract State getNext(Sprite s);
+    public abstract State getCollide();
 }
