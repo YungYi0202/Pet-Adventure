@@ -1,6 +1,6 @@
 package utils;
 
-import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 
 public class ImageStateUtils {
 	
-	public BufferedImage getImage(String path) {
-		BufferedImage img = null;
+	public Image getImage(String path) {
+		Image img = null;
 		try {
 			img = ImageIO.read(getClass().getResource(path));
 		} catch (IOException e) {

@@ -12,9 +12,10 @@ import util.ImageStateUtils;
 /**
  * @author - Leyna
  */
+ 
 public 
 public class ImageFly extends ImageState{
-    public ImageState(){
+    public ImageFly(){
         totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
