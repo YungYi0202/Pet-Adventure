@@ -1,3 +1,5 @@
+package state;
+
 public class UnstoppableRun extends State {
     private int remainTime;
     UnstoppableRun(int n) {

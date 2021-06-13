@@ -1,3 +1,5 @@
+package state;
+
 public class UnstoppableFly extends State {
     private int remainTime;
     UnstoppableFly(int n) {

@@ -1,5 +1,5 @@
 package state;
-import 
+import model.Sprite;
 
 public abstract class State {
     public abstract State getNext(Sprite s);
