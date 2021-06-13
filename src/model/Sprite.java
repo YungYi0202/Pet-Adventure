@@ -7,6 +7,7 @@ import java.awt.*;
 public abstract class Sprite {
     protected World world;
     protected Point location = new Point();
+    protected int y_velocity;
 
     public abstract void update();
 
@@ -23,6 +24,10 @@ public abstract class Sprite {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    public double getVy() { // 彭希望的部分  //
+	    return this.y_velocity;
     }
 
     public Point getLocation() {
@@ -51,12 +56,17 @@ public abstract class Sprite {
     public Rectangle getBody() {
         return getArea(getBodyOffset(), getBodySize());
     }
+    
+    public int getbody_right(Dimension offset, Dimension bodysize){
 
-    public Rectangle getArea(Dimension offset, Dimension size) {
+        return offset.width + location.x + bodysize.width
+    }
+
+    public Rectangle getArea(Dimension offset, Dimension bodysize) {
         //TODO: 還沒看懂，要請楊鈞安確認
 
-        return new Rectangle(new Point(offset.width + location.x,
-                offset.height + location.y), size);
+        return new Rectangle(new Point(offset.width + location.x,  
+                offset.height + location.y), bodysize);
     }
 
     public boolean isAlive() {

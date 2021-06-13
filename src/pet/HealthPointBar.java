@@ -1,7 +1,5 @@
 package pet;
-
 import model.Sprite;
-
 import java.awt.*;
 
 /**
@@ -33,7 +31,7 @@ public class HealthPointBar extends Sprite {
     }
 
     @Override
-    //TODO: 位置不一定要在owner的上面 (討論看是要在最上面嗎)
+    //TODO: 位置不一定要在owner的上面 (討論看是要在最上面嗎) 
     public void render(Graphics g) {
         Rectangle range = getRange();
         int width = (int) (hp * owner.getRange().getWidth() / maxHp);

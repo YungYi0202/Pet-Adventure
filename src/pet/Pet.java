@@ -17,7 +17,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class Pet extends HealthPointSprite {
     //public static final int Pet_HP = 500;
     private int Pet_HP;
-    private int jump_velocity;
+    private int jump_velocity;// 
     private Spriteshape shape;
     public static int now_velocity;
 
@@ -25,11 +25,15 @@ public class Pet extends HealthPointSprite {
         this.location_X = location_X;
         this.location_Y = location_Y;
         this.Pet_HP = Pet_HP;
-
+        /* shape = (size , body_offset, body_size) 
+        ** size = 圖片的大小
+        ** body_offset = 身體的左上角
+        ** body_size = 身體的長寬範圍
+        */
         shape = new Spriteshape(new Dimension(146, 176),
                 new Dimension(33, 38), new Dimension(66, 105)); /// shape can be revise
         ImageRenderer imageRenderer = new Pet_Image_renderer(this);
-        //State fly = 
+        //State fly = new Fly()...
         //State slide = 
         /*State idle = new WaitingPerFrame(4,
                 new Idle(imageStatesFromFolder("assets/idle", imageRenderer)));
@@ -47,16 +51,18 @@ public class Pet extends HealthPointSprite {
 
     // healthPointbar 已經寫好了(onDamage)
     // while velocity == -jump_velocity , trigger RUN
-    
-    public int getVy(){  //?
+
+    /*public int getVy(){  //?
         return now_velocity
-    }
+    }*/
 
     @Override
     public void render(Graphics g) {  
         super.render(g); // healthbar render 
     }
-
+    @Override
+    public void collideWith(){} 
+    // collide with
     @Override
     public Point getLocation() {
         return location;
