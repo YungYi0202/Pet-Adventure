@@ -40,6 +40,7 @@ public class Pet extends HealthPointSprite {
         controler = new Pet_state_control(this.nowstate);
     }
  
+ 
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
     }

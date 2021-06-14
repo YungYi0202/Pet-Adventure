@@ -42,10 +42,6 @@ public class World {
     public void getJumpFactor(){return this.stage.getJumpFactor();}
 
     public void update() {
-<<<<<<< HEAD
-        //TODO: 把沒入螢幕範圍的sprite拿掉
-=======
->>>>>>> 68d83dfee110a15e432c2b7d02a2c6fd785aaf61
         for (Sprite sprite : sprites) {
             sprite.update();
             //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）

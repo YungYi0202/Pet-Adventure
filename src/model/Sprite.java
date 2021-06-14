@@ -10,11 +10,7 @@ import model.SpriteShape;
 public abstract class Sprite {
     protected World world;
     protected Point location = new Point();
-<<<<<<< HEAD
-    protected int y_velocity;
-=======
     protected Spriteshape shape = new Spriteshape(new Dimension(), new Dimension(), new Dimension() ); 
->>>>>>> 68d83dfee110a15e432c2b7d02a2c6fd785aaf61
 
     public abstract void update();
 
@@ -110,14 +106,9 @@ public abstract class Sprite {
 
     public Rectangle getArea(Dimension offset, Dimension bodysize) {
         //TODO: 還沒看懂，要請楊鈞安確認
-<<<<<<< HEAD
 
         return new Rectangle(new Point(offset.width + location.x,  
                 offset.height + location.y), bodysize);
-=======
-        return new Rectangle(new Point(offset.width + location.x,
-                offset.height + location.y), size);
->>>>>>> 68d83dfee110a15e432c2b7d02a2c6fd785aaf61
     }
 
     public boolean isAlive() {
