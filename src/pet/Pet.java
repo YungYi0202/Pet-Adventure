@@ -50,6 +50,9 @@ public class Pet extends HealthPointSprite {
     public int getScore(){
         return this.score;
     }
+    public void addScore(int amount){
+        this.score += amount;
+    }
     public int getHp(){
         return this.Pet_HP;
     }
