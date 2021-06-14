@@ -21,7 +21,7 @@ public class Pet extends HealthPointSprite {
     private int jump_velocity;//  velocity get from stage
     private Spriteshape shape;
     private State nowstate;
-    private int speed = 10; // x方向, normal = 10
+    private int speed; // x方向, normal = 10
     private int nowVy;
     private final Pet_state_control controler;
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
@@ -40,20 +40,20 @@ public class Pet extends HealthPointSprite {
         controler = new Pet_state_control(this.nowstate);
     }
  
- 
+
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
     }
-    public int setScore(int score){
+    public void setScore(int score){
         this.score = score;
     }
     public int getScore(){
         return this.score;
     }
-    public int gethp(){
+    public int getHp(){
         return this.Pet_HP;
     }
-    public void sethp(int amount){ //傳入要增減的血量
+    public void costHp(int amount){ //傳入要增減的血量
         this.hp -= amount;
     }
     public void setState(State a){
@@ -61,6 +61,9 @@ public class Pet extends HealthPointSprite {
     }
     public int getSpeed(){  //x方向 
         return this.speed;
+    }
+    public void setSpeed(int speed){
+        this.speed = speed;
     }
 
 
