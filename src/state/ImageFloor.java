@@ -14,8 +14,8 @@ import util.ImageStateUtils;
  */
  
 public 
-public class ImageFly extends ImageState{
-    public ImageFly(){
+public class ImageFloor extends ImageState{
+    public ImageFloor(){
         totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
