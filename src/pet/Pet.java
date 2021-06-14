@@ -5,7 +5,7 @@ import state.State;
 import state.AnimState;
 import model.HealthPointSprite;
 import model.SpriteShape; 
-
+import model.World;
 import java.awt.*;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -15,61 +15,67 @@ import java.util.concurrent.CopyOnWriteArraySet;
 //楊鈞安
 
 public class Pet extends HealthPointSprite {
-    //public static final int Pet_HP = 500;
+    private int score = 0;
+    private int damage = 100;
     private int Pet_HP;
-    private int jump_velocity;// 
+    private int jump_velocity;//  velocity get from stage
     private Spriteshape shape;
-    public static int now_velocity;
-
-    public Pet(int location_X,int location_Y, int Pet_HP){
-        this.location_X = location_X;
-        this.location_Y = location_Y;
-        this.Pet_HP = Pet_HP;
+    private State nowstate;
+    private int speed = 10; // x方向, normal = 10
+    private int nowVy;
+    private final Pet_state_control controler;
+    public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
         /* shape = (size , body_offset, body_size) 
         ** size = 圖片的大小
         ** body_offset = 身體的左上角
         ** body_size = 身體的長寬範圍
         */
+        this.Pet_HP = Pet_HP;
+        this.jump_velocity = jump_velocity;
         shape = new Spriteshape(new Dimension(146, 176),
                 new Dimension(33, 38), new Dimension(66, 105)); /// shape can be revise
-        ImageRenderer imageRenderer = new Pet_Image_renderer(this);
-        //State fly = new Fly()...
-        //State slide = 
-        /*State idle = new WaitingPerFrame(4,
-                new Idle(imageStatesFromFolder("assets/idle", imageRenderer)));
-        State walking = new WaitingPerFrame(2,
-                new Walking(this, imageStatesFromFolder("assets/walking", imageRenderer)));
-        State attacking = new WaitingPerFrame(3,
-                new Attacking(this, fsm, imageStatesFromFolder("assets/attack", imageRenderer)));
-
-        fsm.setInitialState(idle);
-        fsm.addTransition(from(idle).when(WALK).to(walking));
-        fsm.addTransition(from(walking).when(STOP).to(idle));
-        fsm.addTransition(from(idle).when(ATTACK).to(attacking));
-        fsm.addTransition(from(walking).when(ATTACK).to(attacking)); */
+        //ImageState fly_image = new ImageFly();
+        State running = new Run();
+        this.nowstate = running; 
+        controler = new Pet_state_control(this.nowstate);
+    }
+ 
+    public int getVy(){  
+        return this.nowVy;  // Vy 我會在state_control 中修改
+    }
+    public int setScore(int score){
+        this.score = score;
+    }
+    public int getScore(){
+        return this.score;
+    }
+    public int gethp(){
+        return this.Pet_HP;
+    }
+    public void sethp(int amount){ //傳入要增減的血量
+        this.hp -= amount;
+    }
+    public void setState(State a){
+        this.nowstate = a;
+    }
+    public int getSpeed(){  //x方向 
+        return this.speed;
     }
 
-    // healthPointbar 已經寫好了(onDamage)
-    // while velocity == -jump_velocity , trigger RUN
 
-    /*public int getVy(){  //?
-        return now_velocity
-    }*/
 
+    @Override  // update 先不用看還沒寫完
+    public void update(){ 
+        //this.nowstate = controler.update(this.nowstate);
+        this.speed = controler.update(this.nowstate);
+    }
     @Override
     public void render(Graphics g) {  
         super.render(g); // healthbar render 
     }
     @Override
-    public void collideWith(){} 
-    // collide with
-    @Override
-    public Point getLocation() {
-        return location;
-    }
-    @Override
     public Rectangle getRange() {
-        return new Rectangle(location, shape.size);
+        return new Rectangle(this.getLocation(), shape.size);
     }
     @Override
     public Dimension getBodyOffset() {

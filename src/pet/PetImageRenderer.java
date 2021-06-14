@@ -5,7 +5,7 @@ import state.ImageRenderer;
 import java.awt.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * @author - andyyoung
  */
 public class PetImageRenderer implements ImageRenderer {
     protected Pet pet;

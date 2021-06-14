@@ -22,7 +22,10 @@ public class HealthPointBar extends Sprite {
         this.hp = hp;
     }
 
-    public void onDamaged(Rectangle damageArea, int damage) {
+    /*public void onDamaged(Rectangle damageArea, int damage) {
+        this.hp = Math.max(hp - damage, 0);
+    }*/
+    public void onDamaged(int damage) {
         this.hp = Math.max(hp - damage, 0);
     }
 

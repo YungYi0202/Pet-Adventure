@@ -57,9 +57,25 @@ public abstract class Sprite {
         return getArea(getBodyOffset(), getBodySize());
     }
     
-    public int getbody_right(Dimension offset, Dimension bodysize){
-
-        return offset.width + location.x + bodysize.width
+    public int getbody_right(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return bodyoffset.width + location.x + bodysize.width;
+    }
+    public int getbody_bottom(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return location.y + bodyoffset.height + bodysize.height;
+    }
+    public int getbody_head(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return location.y + bodyoffset.height;
+    }
+    public int getbody_left(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return location.x + bodyoffset.width;
     }
 
     public Rectangle getArea(Dimension offset, Dimension bodysize) {

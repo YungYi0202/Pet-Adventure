@@ -6,7 +6,7 @@ import media.AudioPlayer;
 import java.awt.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * @author - andyyoung
  */
 public abstract class HealthPointSprite extends Sprite {
     public static final String AUDIO_DIE = "Die";
@@ -19,8 +19,8 @@ public abstract class HealthPointSprite extends Sprite {
     }
 
     @Override
-    public void onDamaged(Rectangle damageArea, int damage) {
-        hpBar.onDamaged(damageArea, damage);
+    public void onDamaged(int damage) {
+        hpBar.onDamaged(damage);
         if (hpBar.isDead()) {
             world.removeSprite(this);  ///// remove sprite 的實作
             AudioPlayer.playSounds(AUDIO_DIE);

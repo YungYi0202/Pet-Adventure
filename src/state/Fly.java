@@ -7,6 +7,6 @@ public class Fly extends State {
 	return this;
     }
     public State getCollide() {
-	return new UnstoppableFly();
+	    return new UnstoppableFly();
     }
 }

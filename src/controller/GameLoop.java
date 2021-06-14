@@ -42,7 +42,7 @@ public abstract class GameLoop {
     }
 
 
-    public interface View {
+    public interface View {  // 此view 是否還沒寫成？ question by andyyoung
 
         void render(World world);
     }

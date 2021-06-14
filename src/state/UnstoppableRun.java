@@ -8,7 +8,7 @@ public class UnstoppableRun extends State {
     UnstoppableRun() {
 	remainTime = 10;
     }
-    public State getNext(Sprite s) {
+    public State getNext(Pet s) {
 	if (--remainTime <= 0 && s.getVy() == 0)
 	    return new Run();
 	if (remainTime <= 0)

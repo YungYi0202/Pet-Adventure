@@ -42,7 +42,7 @@ public class World {
     public void getJumpFactor(){return this.stage.getJumpFactor();}
 
     public void update() {
-        //TODO: 把沒入螢幕範圍的sprite拿掉
+        //TODO: 把沒入螢幕範圍的sprite拿掉
         for (Sprite sprite : sprites) {
             sprite.update();
         }
@@ -51,7 +51,7 @@ public class World {
         //不確定有沒有錯
         for(Pet from: players){
             Rectangle body = from.getBody();
-            for (Sprite to : sprites) {
+            for (Sprite to : sprites) { 
                 if (to != from && body.intersects(to.getBody())) {
                     collisionHandler.handle(from, to);
                 }
