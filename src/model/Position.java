@@ -17,4 +17,8 @@ public class Position {
     public Sprite getSprite(){
         return sprite;
     }
+    //加上offset,實際上圖片看起來的X
+    public int getImageX(){
+        return (int)(abs_posi.getX() + sprite.getBodyOffset().width);
+    }
 }

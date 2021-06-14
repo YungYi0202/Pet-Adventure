@@ -15,7 +15,7 @@ import views.GameView;
 
 
 //陳咏誼
-//TODO: Sort By x
+//TODO: Sort By (x + offset.width)=imageX
 
 public abstract class Stage {
     private Image background; //目前的作法background是在GameView裡畫的，作法待更新
@@ -45,7 +45,7 @@ public abstract class Stage {
 
     List<Sprite> getNewSprites(int cur_abs_x){
         List<Sprite> newSprites = new CopyOnWriteArrayList<Sprite>();
-        while(index < positionList.size() && positionList.get(index).getX() < cur_abs_x){
+        while(index < positionList.size() && positionList.get(index).getImageX() < cur_abs_x){
             Position p = positionList.get(index);
             Sprite s = p.getSprite();
             

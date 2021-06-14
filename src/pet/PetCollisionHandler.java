@@ -14,7 +14,6 @@ public class PetCollisionHandler implements CollisionHandler {
             //TODO: can use collide with
             from.collideWith(to);
             to.collideWith(from);
-
         }
     }
 }

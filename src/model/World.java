@@ -42,9 +42,12 @@ public class World {
     public void getJumpFactor(){return this.stage.getJumpFactor();}
 
     public void update() {
-        //TODO: 把沒入螢幕範圍的sprite拿掉
         for (Sprite sprite : sprites) {
             sprite.update();
+            //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
+            if(sprite.isOutOfWindow() || sprite.canBeRemoved()){
+                removeSprite(sprite);
+            }
         }
 
         //Collision Detection
