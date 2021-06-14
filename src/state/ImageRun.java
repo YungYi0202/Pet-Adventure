@@ -22,6 +22,7 @@ public class ImageRun extends ImageState{
         for(int i = 0; i < 5; ++i){
             path = path + i + ".png";
             frames.add(new ImageStateUtils().getImage(path), i);
+            path = path - i - ".png";
         }
     }
 }
