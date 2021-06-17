@@ -15,14 +15,14 @@ import java.util.concurrent.CopyOnWriteArraySet;
 //楊鈞安
 
 public class Pet extends HealthPointSprite {
+    //private int time_tick = 0;
     private int score = 0;
     private int damage = 100;
     private int Pet_HP;
-    private int jump_velocity;//  velocity get from stage
-    private Spriteshape shape;
+    private int jump_velocity;
     private State nowstate;
     private int speed; // x方向, normal = 10
-    private int nowVy;
+    private int nowVy = 0;
     private final Pet_state_control controler;
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
         /* shape = (size , body_offset, body_size) 
@@ -32,15 +32,14 @@ public class Pet extends HealthPointSprite {
         */
         this.Pet_HP = Pet_HP;
         this.jump_velocity = jump_velocity;
-        shape = new Spriteshape(new Dimension(146, 176),
-                new Dimension(33, 38), new Dimension(66, 105)); /// shape can be revise
-        //ImageState fly_image = new ImageFly();
+        this.shape = setShape(new Dimension(146, 176),
+                new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         State running = new Run();
         this.nowstate = running; 
         controler = new Pet_state_control(this.nowstate);
     }
  
-
+    /// 取用任何 pet 資訊的地方
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
     }
@@ -59,19 +58,35 @@ public class Pet extends HealthPointSprite {
     public void setState(State a){
         this.nowstate = a;
     }
-    public int getSpeed(){  //x方向 
-        return this.speed;
+    public State getState(){
+        return this.nowstate;
     }
     public void setSpeed(int speed){
         this.speed = speed;
     }
-
-
-
-    @Override  // update 先不用看還沒寫完
+    public int getSpeed(){  //x方向 
+        return this.speed;
+    }
+    ////////////////
+    /// 
+    public void jump(){
+        this.nowVy = jump_velocity;
+    }
+    public void Vy_update(){
+        if((this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableFly) && this.nowVy >= 0){
+            if(this.nowVy > 9.8){
+                this.nowVy -= 9.8;
+            }
+            else{
+                this.nowVy = 0;
+            }
+        }
+    }
+    @Override 
     public void update(){ 
-        //this.nowstate = controler.update(this.nowstate);
-        this.speed = controler.update(this.nowstate);
+        Vy_update();
+        this.nowstate = controler.update(this);
+        this.speed = controler.update_speed(this.speed);
     }
     @Override
     public void render(Graphics g) {  

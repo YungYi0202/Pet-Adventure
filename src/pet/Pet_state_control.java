@@ -1,27 +1,21 @@
-/////    大改中先別看
+///楊鈞安 6/16
 public class Pet_state_control(){
-    public static tick = 0;
+    private int lower_speed = 50;
     private State state;
-    private ImageState fly_image = new ImageFly();
-    public enum Event {
-        RUN, Jump, Stop, UnstoppableFly, UnstoppableRun
-    }
     public Pet_state_control(State nowstate){
         this.state = nowstate;
     }
-    public void tigger(){
-        fly_image.start();
-        this.state.getNext(s);
+    public State update(Pet s){  //also update speed
+        this.state = this.state.getNext(s); // 傳入 pet s
+        return this.state;
     }
-    public void update( boolean colliding,int velocity){
-
-        if(colliding){
-            this.state.getCollide();
+    public int update_speed(int speed){
+        if(this.state instanceof UnstoppableRun || this.state instanceof UnstoppableFly){
+            return this.lower_speed;
         }
         else{
-            this.state.getNext(s); // 傳入 pet s
+            return speed;
         }
-        
     }
 
 }

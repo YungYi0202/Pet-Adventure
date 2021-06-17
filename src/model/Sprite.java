@@ -83,6 +83,7 @@ public abstract class Sprite {
         return getArea(getBodyOffset(), getBodySize());
     }
     
+    // 楊鈞安 2021/06/13 目前不需要用到
     public int getbody_right(){
         bodyoffset = getBodyOffset();
         bodysize = getBodySize();
