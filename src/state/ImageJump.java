@@ -12,14 +12,16 @@ import util.ImageStateUtils;
 /**
  * @author - Leyna
  */
- 
-public 
-public class ImageFly extends ImageState{
-    public ImageFly(){
+
+public class ImageJump extends ImageState{
+    public ImageJump(){
         totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         // add frames
-        // frames.add(new ImageStateUtils().getImage("../images/Cactus-1.png"), 1);
+        for(int i = 6; i < 12; ++i){
+            String path = "..../assert/puppy/jump/puppy_" + i + ".png";
+            frames.add(new ImageStateUtils().getImage(path), i);
+        }
     }
 }

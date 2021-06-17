@@ -13,12 +13,12 @@ import util.ImageStateUtils;
  * @author - Leyna
  */
 
-public class ImageFloor extends ImageState{
-    public ImageFloor(){
+public class ImageCandy extends ImageState{
+    public ImageCandy(){
         totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        String path = "..../assert/floor.png";
+        String path = "..../assert/candy.png";
         frames.add(new ImageStateUtils().getImage(path), i);
     }
 }

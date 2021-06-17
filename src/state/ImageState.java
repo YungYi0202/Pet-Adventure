@@ -2,6 +2,9 @@ package state;
 
 import java.awt.*;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.Dimension;
 
 /**
  * @author - Leyna
@@ -14,7 +17,7 @@ public abstract class ImageState{
 	private long totalDuration; // length of entire animation state
 	private long defaultAnimLength;
 
-	public ImageState addFrame(Image image, long duration) {
+	public ImageState addFrame(BufferedImage image, long duration) {
 		totalDuration += duration;
 		frames.add(new ImageFrame(image, totalDuration));
 		return this;
@@ -56,7 +59,7 @@ public abstract class ImageState{
             return null;
         }
         else {
-            return getFrame(currFrameIndex).image;
+            return (Image)getFrame(currFrameIndex).image;
         }
     }
 
@@ -65,22 +68,13 @@ public abstract class ImageState{
     }
 
     private class ImageFrame {
-    	Image image;
+    	BufferedImage image;
         long endTime; // the totalDuration up to the end of this frame is the endTime for this frame
-        Size offset;
-        Size bodysize;
-        public ImageFrame(Image image, long endTime, int offWd, int offHt, int bodyWd, int bodyHt) {
+        Dimension offset;
+        Dimension bodysize;
+        public ImageFrame(BufferedImage image, long endTime) {
             this.image = image;
             this.endTime = endTime;
-            this.offset.height = offHt;
-            this.offset.width = offWd;
-            this.bodysize.height = bodyHt;
-            this.bodysize.width = bodyWd;
         }
-    }
-
-    class Size{
-        int height;
-        int width;
     }
 }
