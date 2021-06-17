@@ -25,15 +25,15 @@ public abstract class ImageState{
 		currFrameIndex = 0;
 	}
 	
-	// // get the height of the current animation state in pixels.
-	// public int getHeight() {
-	// 	return getFrame(currFrameIndex).image.getHeight();
-	// }
+	// get the height of the current animation state in pixels.
+	public int getHeight() {
+		return getFrame(currFrameIndex).image.getHeight();
+	}
 	
-	// // get the width of the current animation state in pixels.
-	// public int getWidth() {
-	// 	return getFrame(currFrameIndex).image.getWidth();
-	// }
+	// get the width of the current animation state in pixels.
+	public int getWidth() {
+		return getFrame(currFrameIndex).image.getWidth();
+	}
 	
 	// Updates the animation state by a give amount of time.
 	// The frames are updated accordingly to the internal timer of this animation state.
@@ -67,11 +67,20 @@ public abstract class ImageState{
     private class ImageFrame {
     	Image image;
         long endTime; // the totalDuration up to the end of this frame is the endTime for this frame
- 
-        public ImageFrame(Image image, long endTime) {
+        Size offset;
+        Size bodysize;
+        public ImageFrame(Image image, long endTime, int offWd, int offHt, int bodyWd, int bodyHt) {
             this.image = image;
             this.endTime = endTime;
+            this.offset.height = offHt;
+            this.offset.width = offWd;
+            this.bodysize.height = bodyHt;
+            this.bodysize.width = bodyWd;
         }
     }
 
+    class Size{
+        int height;
+        int width;
+    }
 }
