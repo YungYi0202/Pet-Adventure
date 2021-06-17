@@ -11,7 +11,7 @@ public class UnstoppableJump extends State implements Unstoppable {
     public int getRemainTime() {
 	return remainTime;
     }
-    public State getNext(Sprite s) {
+    public State getNext(Pet s) {
 	if (--remainTime <= 0)
 	    return new Jump();
 	if (s.getVy() == 0)

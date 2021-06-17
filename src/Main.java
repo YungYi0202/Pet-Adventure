@@ -25,7 +25,7 @@ public class Main {
         addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
 
         // initialization procedure
-        Pet p1 = new Pet();
+        Pet p1 = new Pet(500,20);
         //TODO: 之後要加入改變關卡的menu？
         Stage stage = new StageEasy1();
         World world = new World(new PetCollisionHandler(), stage, p1);  // model

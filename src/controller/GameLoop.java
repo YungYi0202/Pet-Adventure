@@ -42,8 +42,7 @@ public abstract class GameLoop {
     }
 
 
-    public interface View {
-
+    public interface View {  
         void render(World world);
     }
 }

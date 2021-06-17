@@ -32,6 +32,10 @@ public abstract class Sprite {
         this.world = world;
     }
 
+    public double getVy() { // 彭希望的部分  //
+	    return this.y_velocity;
+    }
+
     public Point getLocation() {
         return location;
     }
@@ -78,11 +82,34 @@ public abstract class Sprite {
     public Rectangle getBody() {
         return getArea(getBodyOffset(), getBodySize());
     }
+    
+    // 楊鈞安 2021/06/13 目前不需要用到
+    public int getbody_right(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return bodyoffset.width + location.x + bodysize.width;
+    }
+    public int getbody_bottom(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return location.y + bodyoffset.height + bodysize.height;
+    }
+    public int getbody_head(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return location.y + bodyoffset.height;
+    }
+    public int getbody_left(){
+        bodyoffset = getBodyOffset();
+        bodysize = getBodySize();
+        return location.x + bodyoffset.width;
+    }
 
-    public Rectangle getArea(Dimension offset, Dimension size) {
+    public Rectangle getArea(Dimension offset, Dimension bodysize) {
         //TODO: 還沒看懂，要請楊鈞安確認
-        return new Rectangle(new Point(offset.width + location.x,
-                offset.height + location.y), size);
+
+        return new Rectangle(new Point(offset.width + location.x,  
+                offset.height + location.y), bodysize);
     }
 
     public boolean isAlive() {

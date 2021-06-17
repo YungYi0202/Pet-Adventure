@@ -9,11 +9,9 @@ import java.awt.*;
 
 public class PetCollisionHandler implements CollisionHandler {
     @Override
-    public void handle(Sprite from, Sprite to) {
+    public void handle(Sprite from, Sprite to) { // 目前只處理Pet撞障礙物的情況
         if (from instanceof Pet) {
-            //TODO: can use collide with
             from.collideWith(to);
-            to.collideWith(from);
         }
     }
 }

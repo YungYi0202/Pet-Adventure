@@ -28,6 +28,8 @@ public class World {
         this.stage = stage;
         setPlayers(sprites);
         addSprites(stage.getNewSprites(cur_abs_x));
+        // 1P掌握視窗速度
+        this.players.get(0).setSpeed(this.stage.getSpeed());
     }
 
     public void setPlayers(Sprite... sprites){
@@ -38,7 +40,7 @@ public class World {
         }
     }
 
-    public void getSpeed(){return this.stage.getSpeed();}
+    public void getSpeed(){return this.players.get(0).getSpeed();}
     public void getJumpFactor(){return this.stage.getJumpFactor();}
 
     public void update() {
@@ -54,7 +56,7 @@ public class World {
         //不確定有沒有錯
         for(Pet from: players){
             Rectangle body = from.getBody();
-            for (Sprite to : sprites) {
+            for (Sprite to : sprites) { 
                 if (to != from && body.intersects(to.getBody())) {
                     collisionHandler.handle(from, to);
                 }

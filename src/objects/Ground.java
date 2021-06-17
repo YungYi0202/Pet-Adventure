@@ -2,6 +2,8 @@ package objects;
 import model.Sprite;
 import state.*;
 import awt.*;
+
+// author = ?
 public class Ground extends Sprite {
     private int width;
     boolean isRemoved = false;
@@ -19,15 +21,15 @@ public class Ground extends Sprite {
     }
     @Override
     public void update() {
-	this.location.move(-this.getWorld.getSpeed(), 0);
+	    this.location.move(-this.getWorld.getSpeed(), 0);
     }
     @Override
     public Dimension getBodyOffset() {
-	return new Dimension(0, 0);
+	    return new Dimension(0, 0);
     }
     @Override
     public Dimension getBodySize() {
-	return new Dimension(width, 20);                // 20?
+	    return new Dimension(width, 20);                // 20?
     }
     public void render(Graphics g) {
 	if (isRemoved == false) {
