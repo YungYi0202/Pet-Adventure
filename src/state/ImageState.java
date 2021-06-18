@@ -13,11 +13,11 @@ import utils.ImageStateUtils;
  */
 
 public abstract class ImageState{
-	private ArrayList<ImageFrame> frames;
-	private int currFrameIndex; // index of current frame
-	private long animTime; // current time in animation state
-	private long totalDuration; // length of entire animation state
-	private long defaultAnimLength;
+	ArrayList<ImageFrame> frames;
+	int currFrameIndex; // index of current frame
+	long animTime; // current time in animation state
+	long totalDuration; // length of entire animation state
+	long defaultAnimLength;
 
 	public ImageState addFrame(BufferedImage image, long duration) {
 		totalDuration += duration;
@@ -56,7 +56,7 @@ public abstract class ImageState{
         }
     }
     
-    public Image getImage() {
+    Image getImage() {
         if (frames.size() == 0) {
             return null;
         }
@@ -65,11 +65,11 @@ public abstract class ImageState{
         }
     }
 
-    private ImageFrame getFrame(int i) {
+    ImageFrame getFrame(int i) {
         return frames.get(i);
     }
 
-    private class ImageFrame {
+    class ImageFrame {
     	BufferedImage image;
         long endTime; // the totalDuration up to the end of this frame is the endTime for this frame
         Dimension offset;

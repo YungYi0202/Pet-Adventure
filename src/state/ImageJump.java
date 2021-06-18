@@ -21,7 +21,7 @@ public class ImageJump extends ImageState{
         // add frames
         for(int i = 6; i < 12; ++i){
             String path = "../../assets/puppy/jump/puppy_" + i + ".png";
-            frames.add(new ImageStateUtils().getImage(path), i);
+            frames.add(new ImageFrame(ImageStateUtils().getImage(path), i));
         }
     }
 }
