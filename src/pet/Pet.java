@@ -43,6 +43,9 @@ public class Pet extends HealthPointSprite {
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
     }
+    public void setVy(int num){
+        this.nowVy = num;
+    }
     public void setScore(int score){
         this.score = score;
     }
@@ -100,7 +103,9 @@ public class Pet extends HealthPointSprite {
         //}
     }
     @Override
-    public void collideWith(this){}
+    public void collideWith(Sprite sprite){
+        return;
+    }
     @Override
     public Rectangle getRange() {
         return new Rectangle(this.getLocation(), shape.size);

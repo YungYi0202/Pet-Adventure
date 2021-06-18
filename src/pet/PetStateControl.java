@@ -1,6 +1,7 @@
 ///楊鈞安 6/16
 package pet;
 import state.State;
+import state.*;
 
 public class PetStateControl{
     private int lower_speed = 50;
@@ -14,7 +15,7 @@ public class PetStateControl{
         return this.state;
     }
     public int update_speed(int speed){
-        if(this.state instanceof UnstoppableRun || this.state instanceof UnstoppableJump){
+        if(this.state instanceof Unstoppable){
             return this.lower_speed;
         }
         else if(this.state instanceof Stop){
