@@ -2,6 +2,7 @@ package pet;
 import state.*;
 import state.ImageRenderer;
 import state.State;
+import model.Sprite;
 import model.HealthPointSprite;
 import model.SpriteShape; 
 import model.World;

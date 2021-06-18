@@ -43,7 +43,10 @@ public class HealthPointBar extends Sprite {
         g.fillRect(range.x, range.y, width, range.height);
     }
     
-
+    @Override
+    public void collideWith(Sprite sprite){
+        return;
+    }
     @Override
     public Rectangle getRange() { /// Todo 位置可能要改 
         return new Rectangle(owner.getX(), owner.getY() - 15, (int) owner.getRange().getWidth(), 10);
