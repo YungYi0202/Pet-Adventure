@@ -1,5 +1,5 @@
 package state;
-
+import pet.Pet;
 public class Jump extends State {
     public Jump() {
 	this.is = new ImageJump();

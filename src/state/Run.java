@@ -1,5 +1,5 @@
 package state;
-
+import pet.Pet;
 public class Run extends State {
     public Run() {
 	this.is = new ImageRun();

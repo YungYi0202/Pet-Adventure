@@ -1,5 +1,5 @@
 package state;
-
+import pet.Pet;
 public class UnstoppableRun extends State implements Unstoppable {
     private int remainTime;
     public UnstoppableRun(int n) {
