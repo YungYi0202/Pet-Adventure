@@ -29,7 +29,7 @@ public class Candy extends Prop{
         if(sprite instanceof Pet){
             //this.isRemoved = true;
             ((Pet)sprite).addScore(this.score);
-            world.remove(this);
+            world.removeSprite(this);
         }
     }
 
