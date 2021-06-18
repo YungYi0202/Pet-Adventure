@@ -1,19 +1,20 @@
 package objects;
 
 import model.Prop;
+import state.ImageStateUtils;
 
 public class Candy extends Prop{
     //TODO: 等陳奕瑄給圖
-    private Image image = null;
+    private BufferedImage image;
     private boolean isRemoved = false;
     private int score = 30;
     public Candy(){
         //TODO: 等陳奕瑄圖出來之後要設定
         //不知道要不要用new Dimension
-        image = new ImageStateUtils().getImage("../../assert/candy.png");
-        //get height
-        //image.getHeight();
-        setShape(Dimension(), Dimension(), Dimension());
+        this.image = new ImageStateUtils().getImage("../../assets/candy/candy.png");
+        int width = image.getWidth();
+        int height = image.getHeight();
+        setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));
     }
     
     public boolean canBeRemoved(){return this.isRemoved;}

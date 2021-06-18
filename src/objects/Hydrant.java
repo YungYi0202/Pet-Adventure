@@ -3,6 +3,7 @@ package objects;
 import model.Prop;
 //TODO: 確認彭光湞有寫對應的State
 import state.Stop;
+import state.ImageStateUtils;
 
 public class Hydrant extends Prop{
     //TODO: 等陳奕瑄給圖
@@ -11,7 +12,10 @@ public class Hydrant extends Prop{
     public Hydrant(){
         //TODO: 等陳奕瑄圖出來之後要設定
         //不知道要不要用new Dimension
-        setShape(Dimension(), Dimension(), Dimension());
+        this.image = new ImageStateUtils().getImage("../../assets/hydrant/hydrant.png");
+        int width = image.getWidth();
+        int height = image.getHeight();
+        setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));
     }
     
     public boolean canBeRemoved(){return false;}
