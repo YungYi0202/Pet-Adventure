@@ -1,7 +1,7 @@
 package objects;
 
 import model.Prop;
-import state.ImageStateUtils;
+import utils.ImageStateUtils;
 
 public class Candy extends Prop{
     //TODO: 等陳奕瑄給圖
