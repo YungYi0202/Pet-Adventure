@@ -19,7 +19,7 @@ public class ImageRun extends ImageState{
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         for(int i = 1; i <= 5; ++i){
-            String path = "../../assert/puppy/run/puppy_" + i + ".png";
+            String path = "../../assets/puppy/run/puppy_" + i + ".png";
             frames.add(new ImageStateUtils().getImage(path), i);
         }
     }
