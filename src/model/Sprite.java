@@ -21,7 +21,7 @@ public abstract class Sprite {
     //陳咏誼加的，讓PetCollisionHandler可以用
     public abstract void collideWith(Sprite sprite);
     //有些被吃掉的道具可以直接被清除，這樣程式效率比較好，World會負責檢查並清除
-    public abstract boolean canBeRemoved();
+    //public abstract boolean canBeRemoved();
 
     public World getWorld() {
         return world;
