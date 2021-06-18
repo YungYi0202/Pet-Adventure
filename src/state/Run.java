@@ -10,6 +10,6 @@ public class Run extends State {
 	return this;
     }
     public State getCollide() {
-	return new UnstoppableRun();
+	return this;
     }
 }

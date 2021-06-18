@@ -10,6 +10,6 @@ public class Jump extends State {
 	return this;
     }
     public State getCollide() {
-	return new UnstoppableJump();
+	return this;
     }
 }
