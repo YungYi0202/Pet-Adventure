@@ -1,7 +1,7 @@
 package state;
 import pet.Pet;
 public class Stop extends State implements Unstoppable {
-    private remainTime;
+    private int remainTime;
     public Stop(int n) {
 	remainTime = n;
     }
@@ -11,7 +11,7 @@ public class Stop extends State implements Unstoppable {
     public int getRemainTime() {
 	return remainTime;
     }
-    public State getNext(Sprite s) {
+    public State getNext(Pet s) {
 	if (--remainTime <= 0)
 	    return new Run();
 	
