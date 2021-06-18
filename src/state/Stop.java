@@ -1,3 +1,5 @@
+package state;
+
 public class Stop extends State implements Unstoppable {
     private remainTime;
     public Stop(int n) {

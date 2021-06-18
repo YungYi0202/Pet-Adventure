@@ -2,10 +2,10 @@ package state;
 
 public class UnstoppableRun extends State implements Unstoppable {
     private int remainTime;
-    UnstoppableRun(int n) {
+    public UnstoppableRun(int n) {
 	remainTime = n;
     }
-    UnstoppableRun() {
+    public UnstoppableRun() {
 	remainTime = 10;
     }
     public int getRemainTime() {

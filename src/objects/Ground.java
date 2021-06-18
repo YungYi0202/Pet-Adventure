@@ -4,7 +4,7 @@ import state.*;
 import java.awt.*;
 import utils.ImageStateUtils;
 import java.awt.image.BufferedImage;
-
+import pet.Pet;
 // author = qpoiPeng
 public class Ground extends Sprite {
     private BufferedImage image;
@@ -15,11 +15,14 @@ public class Ground extends Sprite {
     }
     @Override
     public void collideWith(Sprite s) {
-	if (s.getState() instanceof Unstoppable)
-	    s.setState(new UnstoppableRun());
+	Pet p = null;
+	if (s instanceof Pet)
+	    p = (Pet) s;
+	if (p.getState() instanceof Unstoppable)
+	    p.setState(new UnstoppableRun());
 	else
-	    s.setState(new Run());
-	s.setVy(0);
+	    p.setState(new Run());
+	p.setVy(0);
     }
     @Override
     public void update() {
