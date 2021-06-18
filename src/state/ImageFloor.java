@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import util.ImageStateUtils;
+import utils.ImageStateUtils;
 
 /**
  * @author - Leyna
@@ -18,7 +18,7 @@ public class ImageFloor extends ImageState{
         totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        String path = "..../assert/floor.png";
+        String path = "../../assert/floor.png";
         frames.add(new ImageStateUtils().getImage(path), i);
     }
 }

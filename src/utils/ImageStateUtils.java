@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 
 public class ImageStateUtils {
 	
-	public Image getImage(String path) {
-		Image img = null;
+	public BufferedImage getImage(String path) {
+		BufferedImage img = null;
 		try {
 			img = ImageIO.read(getClass().getResource(path));
 		} catch (IOException e) {

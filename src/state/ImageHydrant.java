@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import util.ImageStateUtils;
+import utils.ImageStateUtils;
 
 /**
  * @author - Leyna
@@ -18,7 +18,7 @@ public class ImageHydrant extends ImageState{
         totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        String path = "..../assert/hydrant.png";
+        String path = "../../assert/hydrant.png";
         frames.add(new ImageStateUtils().getImage(path), i);
     }
 }
