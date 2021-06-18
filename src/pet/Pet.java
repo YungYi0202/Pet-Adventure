@@ -1,5 +1,5 @@
 package pet;
-
+import state.*;
 import state.ImageRenderer;
 import state.State;
 import model.HealthPointSprite;
@@ -24,13 +24,13 @@ public class Pet extends HealthPointSprite {
     private int nowVy = 0;
     private final PetStateControl controller;
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
+        super(Pet_HP); // 創建 Healthpointbar
         /* shape = (size , body_offset, body_size) 
         ** size = 圖片的大小
         ** body_offset = 身體的左上角
         ** body_size = 身體的長寬範圍
         */
         this.Pet_HP = Pet_HP;
-        super(this.Pet_HP); // 創建 Healthpointbar
         this.jump_velocity = jump_velocity;
         setShape(new Dimension(146, 176),
                 new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
@@ -56,7 +56,7 @@ public class Pet extends HealthPointSprite {
         return this.Pet_HP;
     }
     public void costHp(int amount){ //傳入要增減的血量
-        this.hp -= amount;
+        this.Pet_HP -= amount;
         onDamaged(amount);
     }
     public void setState(State a){
@@ -71,7 +71,7 @@ public class Pet extends HealthPointSprite {
     public int getSpeed(){  //x方向 
         return this.speed;
     }
-    
+
     public void jump(){
         this.nowVy = jump_velocity;
     }
@@ -94,11 +94,13 @@ public class Pet extends HealthPointSprite {
     @Override
     public void render(Graphics g) {  
         super.render(g); // healthbar render 
-        if (isRemoved == false) {
-            Rectangle range = this.getRange();
-            g.drawImage(nowstate.getImage(), range.x, range.y, range.width, range.height, null);
-        }
+        //if (isRemoved == false) {
+        Rectangle range = this.getRange();
+        g.drawImage(nowstate.getImage(), range.x, range.y, range.width, range.height, null);
+        //}
     }
+    @Override
+    public void collideWith(this){}
     @Override
     public Rectangle getRange() {
         return new Rectangle(this.getLocation(), shape.size);

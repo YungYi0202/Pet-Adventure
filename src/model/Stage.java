@@ -34,7 +34,7 @@ public abstract class Stage {
     public int getSpeed(){return this.speed;}
    
     //呼叫時要直接new 一個 sprite
-    void addSprite(int x, int y, Sprite sprite){
+    public void addSprite(int x, int y, Sprite sprite){
         positionList.add( new Position(x, y, sprite) );
     }
 
