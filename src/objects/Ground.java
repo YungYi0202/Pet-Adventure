@@ -34,7 +34,7 @@ public class Ground extends Sprite {
     public void render(Graphics g) {
 	if (isRemoved == false) {
 	    Rectangle range = this.getRange();
-	    g.drawImage(this.image, range.x, range.y, range.width, range,height, null);
+	    g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
 	}
     }
 }
