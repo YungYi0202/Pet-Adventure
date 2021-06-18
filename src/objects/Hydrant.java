@@ -3,7 +3,8 @@ package objects;
 import model.Prop;
 //TODO: 確認彭光湞有寫對應的State
 import state.Stop;
-import state.ImageStateUtils;
+import utils.ImageStateUtils;
+import state.Unstoppable;
 
 public class Hydrant extends Prop{
     //TODO: 等陳奕瑄給圖
@@ -18,7 +19,6 @@ public class Hydrant extends Prop{
         setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));
     }
     
-    public boolean canBeRemoved(){return false;}
     
     public void render(Graphics g){
         Rectangle range = this.getRange()
@@ -26,8 +26,9 @@ public class Hydrant extends Prop{
     }
 
     public void collideWith(Sprite sprite){
-        if(sprite instanceof Pet){
+        if(sprite instanceof Pet ){
             Pet pet = (Pet)sprite;
+            if( pet.getState() instanceof Unstoppable) return;
             pet.costHp(hpDamage);
             //TODO: 確認彭光湞有寫對應的State
             pet.setState(new Stop());

@@ -44,10 +44,10 @@ public class GameView extends JFrame {
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_KP_UP:
-                        game.jumpPet(P1, Direction.UP);
+                        game.jumpPet(P1);
                         break;
                     case KeyEvent.VK_KP_DOWN:
-                        game.slidePet(P1, Direction.DOWN);
+                        game.slidePet(P1);
                         break;
                 }
             }

@@ -20,7 +20,7 @@ public class ImageRun extends ImageState{
         frames = new ArrayList<ImageFrame>();
         for(int i = 1; i <= 5; ++i){
             String path = "../../assets/puppy/run/puppy_" + i + ".png";
-            frames.add(new ImageStateUtils().getImage(path), i);
+            frames.add(new ImageFrame(new ImageStateUtils().getImage(path), i));
         }
     }
 }

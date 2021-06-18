@@ -22,7 +22,6 @@ public abstract class Stage {
     private List<Position> positionList = new CopyOnWriteArrayList<Position>();
     private int index = 0;
     private int speed = 20;
-    private int jumpFactor = 20; //TODO: 找到最適合的jumpFactor，20是亂設的default
 
     public void setBackground(Image background){
         this.background = background;
@@ -30,14 +29,10 @@ public abstract class Stage {
     public void setSpeed(int speed){
         this.speed = speed;
     }
-    public void setJumpFactor(int jumpFactor){
-        this.jumpFactor = jumpFactor;
-    }
+    
     public Image getBackground(){return this.background;}
     public int getSpeed(){return this.speed;}
-    public int getJumpFactor(){return this.jumpFactor;}
-
-
+   
     //呼叫時要直接new 一個 sprite
     void addSprite(int x, int y, Sprite sprite){
         positionList.add( new Position(x, y, sprite) );

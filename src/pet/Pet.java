@@ -71,9 +71,13 @@ public class Pet extends HealthPointSprite {
     public int getSpeed(){  //x方向 
         return this.speed;
     }
+<<<<<<< HEAD
     //public boolean canBeRemoved(){return false;}
     ////////////////
     /// 
+=======
+    
+>>>>>>> fc7472714a40feb32b1ce462f630dec287262bf7
     public void jump(){
         this.nowVy = jump_velocity;
     }
