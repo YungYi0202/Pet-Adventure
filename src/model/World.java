@@ -48,7 +48,7 @@ public class World {
         for (Sprite sprite : sprites) {
             sprite.update();
             //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
-            if(sprite.isOutOfWindow() || sprite.canBeRemoved()){
+            if(sprite.isOutOfWindow()){
                 removeSprite(sprite);
             }
         }

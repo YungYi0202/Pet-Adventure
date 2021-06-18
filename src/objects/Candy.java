@@ -6,7 +6,6 @@ import state.ImageStateUtils;
 public class Candy extends Prop{
     //TODO: 等陳奕瑄給圖
     private BufferedImage image;
-    private boolean isRemoved = false;
     private int score = 30;
     public Candy(){
         //TODO: 等陳奕瑄圖出來之後要設定
@@ -17,7 +16,7 @@ public class Candy extends Prop{
         setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));
     }
     
-    public boolean canBeRemoved(){return this.isRemoved;}
+
 
     public void render(Graphics g){
         //只有(isRemoved == false) 才會呼叫到這個函式
@@ -28,8 +27,9 @@ public class Candy extends Prop{
 
     public void collideWith(Sprite sprite){
         if(sprite instanceof Pet){
-            this.isRemoved = true;
+            //this.isRemoved = true;
             ((Pet)sprite).addScore(this.score);
+            world.remove(this);
         }
     }
 
