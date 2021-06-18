@@ -2,14 +2,17 @@ package objects;
 import model.Sprite;
 import state.*;
 import awt.*;
-
-// author = ?
+import utils.ImageStateUtils;
+// author = qpoiPeng
 public class Ground extends Sprite {
     private int width;
+    private BufferedImage image;
     boolean isRemoved = false;
     public Ground(int x, int y, int width) {
 	this.location = new Point(x, y);
 	this.width = width;
+	this.image = new ImageStateUtils().getImage("../../assets/floor/floor.png");
+	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
     }
     @Override
     public void collideWith(Sprite s) {
