@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import pet.Pet;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;

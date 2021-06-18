@@ -1,10 +1,12 @@
 ///楊鈞安 6/16
 package pet;
-public class Pet_state_control(){
+import state.State;
+
+public class PetStateControl{
     private int lower_speed = 50;
     private int stopping_speed = 0;
     private State state;
-    public Pet_state_control(State nowstate){
+    public PetStateControl(State nowstate){
         this.state = nowstate;
     }
     public State update(Pet s){  

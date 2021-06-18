@@ -24,7 +24,7 @@ public class Game extends GameLoop {
     }
 
     public void slidePet(int playerNumber){
-        getPlayer(playerNumber).slide();
+        // getPlayer(playerNumber).slide();
     }
 
     //TODO: 使用道具 

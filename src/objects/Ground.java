@@ -1,8 +1,10 @@
 package objects;
 import model.Sprite;
 import state.*;
-import awt.*;
+import java.awt.*;
 import utils.ImageStateUtils;
+import java.awt.image.BufferedImage;
+
 // author = qpoiPeng
 public class Ground extends Sprite {
     private BufferedImage image;

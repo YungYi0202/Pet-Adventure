@@ -2,13 +2,13 @@ package pet;
 
 import state.ImageRenderer;
 import state.State;
-import state.AnimState;
 import model.HealthPointSprite;
 import model.SpriteShape; 
 import model.World;
 import java.awt.*;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+
 //還有其他要import的記得import
 
 //楊鈞安
@@ -22,7 +22,7 @@ public class Pet extends HealthPointSprite {
     private State nowstate;
     private int speed; // x方向, normal = 100
     private int nowVy = 0;
-    private final Pet_state_control controler;
+    private final PetStateControl controller;
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
         /* shape = (size , body_offset, body_size) 
         ** size = 圖片的大小
@@ -36,9 +36,9 @@ public class Pet extends HealthPointSprite {
                 new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         State running = new Run();
         this.nowstate = running; 
-        controler = new Pet_state_control(this.nowstate);
+        controller = new PetStateControl(this.nowstate);
     }
- 
+    
     /// 取用任何 pet 資訊的地方
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
@@ -71,6 +71,7 @@ public class Pet extends HealthPointSprite {
     public int getSpeed(){  //x方向 
         return this.speed;
     }
+    public boolean canBeRemoved(){return false;}
     ////////////////
     /// 
     public void jump(){
@@ -89,8 +90,8 @@ public class Pet extends HealthPointSprite {
     @Override 
     public void update(){ 
         Vy_update();
-        this.nowstate = controler.update(this);
-        this.speed = controler.update_speed(this.speed);
+        this.nowstate = controller.update(this);
+        this.speed = controller.update_speed(this.speed);
     }
     @Override
     public void render(Graphics g) {  

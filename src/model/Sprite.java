@@ -10,7 +10,7 @@ import model.SpriteShape;
 public abstract class Sprite {
     protected World world;
     protected Point location = new Point();
-    protected Spriteshape shape = new Spriteshape(new Dimension(), new Dimension(), new Dimension() ); 
+    protected SpriteShape shape = new SpriteShape(new Dimension(), new Dimension(), new Dimension() ); 
 
     public abstract void update();
 
@@ -32,10 +32,7 @@ public abstract class Sprite {
         this.world = world;
     }
 
-    public double getVy() { // 彭希望的部分  //
-	    return this.y_velocity;
-    }
-
+    
     public Point getLocation() {
         return location;
     }
@@ -60,7 +57,7 @@ public abstract class Sprite {
         this.shape.setBodySize(bodySize);
     }
 
-    public Spriteshape getShape(){return this.shape;}
+    public SpriteShape getShape(){return this.shape;}
 
     public Rectangle getRange() {
         return new Rectangle(this.location, this.shape.size);
@@ -84,26 +81,26 @@ public abstract class Sprite {
     }
     
     // 楊鈞安 2021/06/13 目前不需要用到
-    public int getbody_right(){
-        bodyoffset = getBodyOffset();
-        bodysize = getBodySize();
-        return bodyoffset.width + location.x + bodysize.width;
-    }
-    public int getbody_bottom(){
-        bodyoffset = getBodyOffset();
-        bodysize = getBodySize();
-        return location.y + bodyoffset.height + bodysize.height;
-    }
-    public int getbody_head(){
-        bodyoffset = getBodyOffset();
-        bodysize = getBodySize();
-        return location.y + bodyoffset.height;
-    }
-    public int getbody_left(){
-        bodyoffset = getBodyOffset();
-        bodysize = getBodySize();
-        return location.x + bodyoffset.width;
-    }
+    // public int getbody_right(){
+    //     bodyoffset = getBodyOffset();
+    //     bodysize = getBodySize();
+    //     return bodyoffset.width + location.x + bodysize.width;
+    // }
+    // public int getbody_bottom(){
+    //     bodyoffset = getBodyOffset();
+    //     bodysize = getBodySize();
+    //     return location.y + bodyoffset.height + bodysize.height;
+    // }
+    // public int getbody_head(){
+    //     bodyoffset = getBodyOffset();
+    //     bodysize = getBodySize();
+    //     return location.y + bodyoffset.height;
+    // }
+    // public int getbody_left(){
+    //     bodyoffset = getBodyOffset();
+    //     bodysize = getBodySize();
+    //     return location.x + bodyoffset.width;
+    // }
 
     public Rectangle getArea(Dimension offset, Dimension bodysize) {
         //TODO: 還沒看懂，要請楊鈞安確認

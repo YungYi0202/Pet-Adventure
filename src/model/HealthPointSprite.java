@@ -22,7 +22,7 @@ public abstract class HealthPointSprite extends Sprite {
     public void onDamaged(int damage) {
         hpBar.onDamaged(damage);
         if (hpBar.isDead()) {
-            world.removeSprite(this);  ///// remove 本身 的實作
+            //world.removeSprite(this);  ///// remove 本身 的實作
             AudioPlayer.playSounds(AUDIO_DIE);
         }
     }

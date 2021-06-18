@@ -1,4 +1,5 @@
 package model;
+import java.awt.Point;
 
 //陳咏誼
 public class Position {
