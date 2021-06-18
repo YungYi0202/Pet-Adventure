@@ -3,7 +3,7 @@ import model.Sprite;
 import java.awt.*;
 
 /**
- * @author - Andy young 6/9 17:19
+ * @author - Andy young 
  */
 public class HealthPointBar extends Sprite {
     private final int maxHp;

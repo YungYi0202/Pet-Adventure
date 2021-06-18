@@ -9,7 +9,6 @@ import model.World;
 import java.awt.*;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
-
 //還有其他要import的記得import
 
 //楊鈞安
@@ -33,7 +32,7 @@ public class Pet extends HealthPointSprite {
         this.Pet_HP = Pet_HP;
         super(this.Pet_HP); // 創建 Healthpointbar
         this.jump_velocity = jump_velocity;
-        this.shape = setShape(new Dimension(146, 176),
+        setShape(new Dimension(146, 176),
                 new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         State running = new Run();
         this.nowstate = running; 
@@ -96,6 +95,8 @@ public class Pet extends HealthPointSprite {
     @Override
     public void render(Graphics g) {  
         super.render(g); // healthbar render 
+        Rectangle range = this.getRange();
+        g.drawImage(nowstate.getImage(), range.x, range.y, range.width, range.height, null);
     }
     @Override
     public Rectangle getRange() {
