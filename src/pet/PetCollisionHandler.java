@@ -5,7 +5,7 @@ import model.Sprite;
 
 import java.awt.*;
 
-//楊鈞安
+//楊鈞安 //目前沒用到
 
 public class PetCollisionHandler implements CollisionHandler {
     @Override

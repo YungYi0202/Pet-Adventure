@@ -34,13 +34,12 @@ public class HealthPointBar extends Sprite {
     }
 
     @Override
-    //TODO: 位置不一定要在owner的上面 (討論看是要在最上面嗎) 
     public void render(Graphics g) {
         Rectangle range = getRange();
         int width = (int) (hp * owner.getRange().getWidth() / maxHp);
         g.setColor(Color.RED);
         g.fillRect(range.x, range.y, (int) owner.getRange().getWidth(), range.height);
-        g.setColor(Color.GREEN);
+        g.setColor(Color.GREEN); // 血是green
         g.fillRect(range.x, range.y, width, range.height);
     }
     

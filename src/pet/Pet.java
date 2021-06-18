@@ -21,7 +21,7 @@ public class Pet extends HealthPointSprite {
     private int Pet_HP;
     private int jump_velocity;
     private State nowstate;
-    private int speed; // x方向, normal = 10
+    private int speed; // x方向, normal = 100
     private int nowVy = 0;
     private final Pet_state_control controler;
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
@@ -31,6 +31,7 @@ public class Pet extends HealthPointSprite {
         ** body_size = 身體的長寬範圍
         */
         this.Pet_HP = Pet_HP;
+        super(this.Pet_HP); // 創建 Healthpointbar
         this.jump_velocity = jump_velocity;
         this.shape = setShape(new Dimension(146, 176),
                 new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
@@ -57,6 +58,7 @@ public class Pet extends HealthPointSprite {
     }
     public void costHp(int amount){ //傳入要增減的血量
         this.hp -= amount;
+        onDamaged(amount);
     }
     public void setState(State a){
         this.nowstate = a;
@@ -76,7 +78,7 @@ public class Pet extends HealthPointSprite {
         this.nowVy = jump_velocity;
     }
     public void Vy_update(){
-        if((this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableFly) && this.nowVy >= 0){
+        if((this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump) && this.nowVy >= 0){
             if(this.nowVy > 9.8){
                 this.nowVy -= 9.8;
             }

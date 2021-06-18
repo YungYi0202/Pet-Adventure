@@ -18,11 +18,11 @@ public abstract class HealthPointSprite extends Sprite {
         hpBar.setOwner(this);
     }
 
-    @Override
+    //@Override
     public void onDamaged(int damage) {
         hpBar.onDamaged(damage);
         if (hpBar.isDead()) {
-            world.removeSprite(this);  ///// remove sprite 的實作
+            world.removeSprite(this);  ///// remove 本身 的實作
             AudioPlayer.playSounds(AUDIO_DIE);
         }
     }
