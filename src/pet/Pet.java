@@ -47,6 +47,10 @@ public class Pet extends HealthPointSprite {
     }
     
     /// 取用任何 pet 資訊的地方
+    public int getnormalVy(){
+        return this.jump_velocity;
+    }
+    ////
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
     }
@@ -87,13 +91,17 @@ public class Pet extends HealthPointSprite {
         this.nowVy = -jump_velocity;
     }
     public void Vy_update(){
-        if((this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump) && this.nowVy >= 0){
+        //System.out.println(this.nowstate);
+        
+        if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
+            System.out.println("I got Jumping");
             this.nowVy += 2;
         }
     }
     @Override 
     public void update(){ 
         Vy_update();
+        System.out.println(this.nowVy);
         this.increaseLocationY(this.nowVy);
         this.nowstate = controller.update(this);
         this.nowSpeed = controller.update_speed(this.normalSpeed);

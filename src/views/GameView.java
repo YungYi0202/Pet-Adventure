@@ -47,13 +47,15 @@ public class GameView extends JFrame {
                 if(game.stateIsGAME()){
                     //System.out.printf("keyPressed: stateIsGAME\n");
                     switch (keyEvent.getKeyCode()) {
-                    case KeyEvent.VK_KP_UP:
+                    case KeyEvent.VK_UP:
+                        System.out.println("jumping");
                         game.jumpPet(P1);
                         break;
-                    case KeyEvent.VK_KP_DOWN:
+                    case KeyEvent.VK_DOWN:
                         game.slidePet(P1);
                         break;
                     case KeyEvent.VK_S:
+                        System.out.println("stopping");
                         game.stop();
                         break;
                     }
@@ -62,7 +64,7 @@ public class GameView extends JFrame {
                     //System.out.printf("keyPressed: not stateIsMENU\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
-                        System.out.println("here");
+                        System.out.println("resuming");
                         game.resume();
                         break;
                     }
