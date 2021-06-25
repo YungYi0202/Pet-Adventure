@@ -22,11 +22,13 @@ public abstract class GameLoop {
     private void gameLoop() {
         while(true){
             while (running) {
+                //System.out.printf("gameLoop: running\n");
                 World world = getWorld();
                 world.update();
                 view.render(world);
                 delay(15);
             }
+            //System.out.printf("gameLoop: not running\n");
         }
     }
 

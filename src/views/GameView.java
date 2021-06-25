@@ -43,6 +43,7 @@ public class GameView extends JFrame {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 if(game.getRunning()){
+                    System.out.printf("keyPressed: running\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_KP_UP:
                         game.jumpPet(P1);
@@ -55,6 +56,7 @@ public class GameView extends JFrame {
                         break;
                     }
                 }else{
+                    System.out.printf("keyPressed: not running\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.resume();
