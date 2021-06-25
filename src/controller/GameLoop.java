@@ -9,36 +9,57 @@ public abstract class GameLoop {
     //TODO: 之後要把這個true拿掉
     private boolean running = true;
     private View view;
-    //public Thread gameThread;
+    public Thread gameThread;
 
     public void setView(View view) {
         this.view = view;
     }
 
     public void start() {
-        new Thread(this::gameLoop).start();
+        gameThread = new Thread(this::gameLoop);
+        gameThread.start();
     }
 
     private void gameLoop() {
-        while(true){
-            // 
-            while (running) {
-                World world = getWorld();
-                world.update();
-                view.render(world);
-                delay(15);
-            }
+        //while(true){
+            //System.out.println("hi");
+            //delay(15);
+        while (running) {
+            World world = getWorld();
+            world.update();
+            view.render(world);
+            delay(15);
         }
+        //}
     }
 
     protected abstract World getWorld();
 
     public void stop() {
-        running = false;
+        //
+
+        synchronized(gameThread){
+            try {
+                running = false;
+                System.out.println(running);
+                gameThread.wait();
+                running = true;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        //System.out.println(running);
+        
     }
 
     public void resume() {
-        running = true;
+        System.out.println("fuck");
+        synchronized(this){
+            //running = true;
+            notify();
+        }
+        
     }
 
     private void delay(long ms) {
