@@ -21,6 +21,7 @@ public abstract class GameLoop {
 
     private void gameLoop() {
         while(true){
+            // 
             while (running) {
                 World world = getWorld();
                 world.update();
