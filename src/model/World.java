@@ -14,7 +14,7 @@ import views.GameView;
 //陳咏誼
 
 public class World {
-    private final List<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();
+    private final List<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();//exclusive of players
     private final CollisionHandler collisionHandler;
     
     //以下是陳咏誼加的，可改
@@ -28,15 +28,15 @@ public class World {
         for(Sprite player: players){
             player.setLocation(new Point( 100, stage.getFirstFloorY() - player.getBodySize().height ));
         }
-        addSprites(players);
+        //addSprites(players);
         setPlayers(players);
         addSprites(stage.getNewSprites(cur_abs_x));
         // 1P掌握視窗速度
         this.players.get(0).setSpeed(this.stage.getSpeed());
     }
 
-    public void setPlayers(Sprite... sprites){
-        for(Sprite sprite: sprites){
+    public void setPlayers(Sprite... spritesP){
+        for(Sprite sprite: spritesP){
             if( sprite instanceof Pet){
                 players.add( (Pet)sprite );
             }
@@ -52,6 +52,9 @@ public class World {
             if(sprite.isOutOfWindow()){
                 removeSprite(sprite);
             }
+        }
+        for(Pet player: players){
+            player.update();
         }
 
         //Collision Detection
@@ -104,6 +107,9 @@ public class World {
     public void render(Graphics g) {
         for (Sprite sprite : sprites) {
             sprite.render(g);
+        }
+        for (Pet player: players){
+            player.render(g);
         }
     }
 }
