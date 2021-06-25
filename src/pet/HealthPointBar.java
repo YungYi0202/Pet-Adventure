@@ -35,7 +35,6 @@ public class HealthPointBar extends Sprite {
 
     @Override
     public void render(Graphics g) {
-        System.out.println("healthbar render");
         Rectangle range = getRange();
         int width = (int) (hp * owner.getRange().getWidth() / maxHp);
         g.setColor(Color.RED);
