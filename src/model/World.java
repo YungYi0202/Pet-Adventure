@@ -26,7 +26,7 @@ public class World {
         this.collisionHandler = collisionHandler;
         this.stage = stage;
         for(Sprite player: players){
-            player.setLocation(new Point( 100, stage.getFirstFloorY() - player.getBodySize().height ));
+            player.setLocation(new Point( (int)(GameView.WIDTH * 0.1), stage.getFirstFloorY() - player.getBodySize().height ));
         }
         //addSprites(players);
         setPlayers(players);

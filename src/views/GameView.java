@@ -4,6 +4,7 @@ import controller.Game;
 import controller.GameLoop;
 import model.Sprite;
 import model.World;
+import menu.Menu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ import java.util.Collection;
 //TODO: background是不是應該放在這裡，在Canvas.paintComponent裡更新(g.setColor())
 
 public class GameView extends JFrame {
-    public static final int HEIGHT = 1000;
+    public static final int HEIGHT = 800;
     public static final int WIDTH = 1000;
     
     //保留以後可以多個玩家遊玩的延伸性
@@ -42,8 +43,8 @@ public class GameView extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
-                if(game.getRunning()){
-                    System.out.printf("keyPressed: running\n");
+                if(game.stateIsGAME()){
+                    //System.out.printf("keyPressed: stateIsGAME\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_KP_UP:
                         game.jumpPet(P1);
@@ -55,8 +56,9 @@ public class GameView extends JFrame {
                         game.stop();
                         break;
                     }
-                }else{
-                    System.out.printf("keyPressed: not running\n");
+                }
+                else if(game.stateIsMENU()){
+                    //System.out.printf("keyPressed: not stateIsMENU\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.resume();
@@ -75,11 +77,22 @@ public class GameView extends JFrame {
 
     public static class Canvas extends JPanel implements GameLoop.View {
         private World world;
+        private Menu menu;
+        private enum STATE {MENU, GAME};
+        private STATE state;
 
         @Override
         public void render(World world) {
             this.world = world;
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.
+            state = STATE.GAME;
+        }
+
+        @Override
+        public void render(Menu menu) {
+            this.menu = menu;
+            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.
+            state = STATE.MENU;
         }
 
         @Override
@@ -88,8 +101,13 @@ public class GameView extends JFrame {
             // Now, let's paint
             g.setColor(Color.WHITE); // paint background with all white
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
-
-            world.render(g); // ask the world to paint itself and paint the sprites on the canvas
+            
+            if(state == STATE.GAME){
+                world.render(g); // ask the world to paint itself and paint the sprites on the canvas
+            }
+            else if(state == STATE.MENU){
+                menu.render(g);
+            }
         }
     }
 }

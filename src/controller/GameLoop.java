@@ -1,6 +1,7 @@
 package controller;
 
 import model.World;
+import menu.Menu;
 
 // 陳咏誼
 //TODO: 如果要做暫停功能，還需要新增resume()
@@ -8,10 +9,13 @@ import model.World;
 public abstract class GameLoop {
     //Test game: running = menuHasRendered = true
     //Test menu: running = menuHasRendered = false
-    private boolean running = false;
+    //private boolean running = true;
     private View view;
+    
     public Thread gameThread;
     private boolean menuHasRendered = false;
+    private enum STATE {MENU, GAME};
+    private STATE state = STATE.MENU;
 
     public void setView(View view) {
         this.view = view;
@@ -25,43 +29,51 @@ public abstract class GameLoop {
 
     private void gameLoop() {
         while(true){ 
-            //menu
-            if(menuHasRendered == false){  //busy wait
-
+            // menu
+            if(state == STATE.MENU && menuHasRendered == false){  //busy wait
+                view.render(this.getMenu());
+                menuHasRendered = true;
             }
-            while (running) {
+            while (state == STATE.GAME) {
                 menuHasRendered = false; //busy wait
                 World world = getWorld();
                 world.update();
                 view.render(world);
                 delay(15);
             }
-            //System.out.printf("out of running loop\n");
+            // System.out.printf("out of running loop\n");
             delay(15);
         }
+        
     }
 
     protected abstract World getWorld();
+    protected abstract Menu getMenu();
 
     public void stop() {
-        /*synchronized(gameThread){
-            try{    
-                gameThread.wait();
-                running = false;
-            }
-            catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-        }*/
-        running = false;
+        // synchronized(gameThread){
+            // try{    
+            //     gameThread.wait();
+            //     System.out.printf("gameThread.wait\n");
+            // }
+            // catch(InterruptedException e) {
+            //     e.printStackTrace();
+            // }finally{
+            //     state = STATE.MENU;
+            //     System.out.printf("running = false\n");
+            // }
+        // }
+        state = STATE.MENU;
     }
 
     public void resume() {
-        /*synchronized(gameThread){
-            running = true;
-            gameThread.notify();
-        }*/
-        running = true;
+        // synchronized(gameThread){
+        //     state = STATE.GAME;
+        //     System.out.printf("running = true\n");
+        //     gameThread.notify();
+        //     System.out.printf("gameThread.notify\n");
+        // }
+        state = STATE.GAME;
     }
 
     private void delay(long ms) {
@@ -75,7 +87,9 @@ public abstract class GameLoop {
 
     public interface View {  
         void render(World world);
+        void render(Menu menu);
     }
 
-    public boolean getRunning(){return running;}
+    public boolean stateIsGAME(){return state==STATE.GAME;}
+    public boolean stateIsMENU(){return state==STATE.MENU;}
 }
