@@ -21,6 +21,7 @@ public abstract class GameLoop {
 
     private void gameLoop() {
         while(true){
+            // 
             while (running) {
                 //System.out.printf("gameLoop: running\n");
                 World world = getWorld();
