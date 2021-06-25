@@ -28,7 +28,8 @@ public class Ground extends Sprite {
     }
     @Override
     public void update() {
-	this.location.move(-this.getWorld().getSpeed(), 0);
+        System.out.println("ground update");
+	    this.location.move(-this.getWorld().getSpeed(), 0);
     }
     @Override
     public Dimension getBodyOffset() {
@@ -39,7 +40,7 @@ public class Ground extends Sprite {
 	return new Dimension(image.getWidth(), image.getHeight());                // 20?
     }
     public void render(Graphics g) {
-
+        System.out.println("do ground render");
 	if (isRemoved == false) {
 	    Rectangle range = this.getRange();
 	    g.drawImage(this.image, range.x, range.y, range.width, range.height, null);

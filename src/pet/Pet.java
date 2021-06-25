@@ -38,9 +38,9 @@ public class Pet extends HealthPointSprite {
         this.jump_velocity = jump_velocity;
         State running = new Run();
         this.nowstate = running;
-        this.image = this.nowstate.getImage(); 
+        //this.image = this.nowstate.getImage(); 
         System.out.println("here");
-        setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
+        //setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
         //setShape(new Dimension(146, 176),
                 //new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         controller = new PetStateControl(this.nowstate);
@@ -97,15 +97,17 @@ public class Pet extends HealthPointSprite {
     }
     @Override 
     public void update(){ 
+        System.out.println("pet update");
         Vy_update();
         this.nowstate = controller.update(this);
         this.speed = controller.update_speed(this.speed);
     }
     @Override
     public void render(Graphics g) {  
-        System.out.println("do render");
+        //System.out.println("do pet render");
         super.render(g); // healthbar render 
         //if (isRemoved == false) {
+        System.out.println("do pet render");
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
