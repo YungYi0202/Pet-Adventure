@@ -5,6 +5,7 @@ public class Jump extends State {
 	this.is = new ImageJump();
     }
     public State getNext(Pet s) {
+	is.update();
 	if (s.getVy() == 0)
 	    return new Run();
 	return this;

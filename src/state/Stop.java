@@ -12,6 +12,7 @@ public class Stop extends State implements Unstoppable {
 	return remainTime;
     }
     public State getNext(Pet s) {
+	is.update();
 	if (--remainTime <= 0)
 	    return new Run();
 	

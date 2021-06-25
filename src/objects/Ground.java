@@ -23,7 +23,8 @@ public class Ground extends Sprite {
 	    p.setState(new UnstoppableRun());
 	else
 	    p.setState(new Run());
-	p.setVy(0);
+	if (p.getVy() > 0)
+	    p.setVy(0);
     }
     @Override
     public void update() {
