@@ -9,7 +9,9 @@ import model.World;
 import java.awt.*;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
-
+import utils.ImageStateUtils;
+import java.awt.image.BufferedImage;
+import java.lang.*;
 //還有其他要import的記得import
 
 //楊鈞安
@@ -24,6 +26,7 @@ public class Pet extends HealthPointSprite {
     private int speed; // x方向, normal = 100
     private int nowVy = 0;
     private final PetStateControl controller;
+    private BufferedImage image;
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
         /* shape = (size , body_offset, body_size) 
@@ -33,10 +36,13 @@ public class Pet extends HealthPointSprite {
         */
         this.Pet_HP = Pet_HP;
         this.jump_velocity = jump_velocity;
-        setShape(new Dimension(146, 176),
-                new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         State running = new Run();
-        this.nowstate = running; 
+        this.nowstate = running;
+        this.image = this.nowstate.getImage(); 
+        System.out.println("here");
+        setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
+        //setShape(new Dimension(146, 176),
+                //new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         controller = new PetStateControl(this.nowstate);
     }
     
@@ -97,10 +103,13 @@ public class Pet extends HealthPointSprite {
     }
     @Override
     public void render(Graphics g) {  
+        System.out.println("do render");
         super.render(g); // healthbar render 
         //if (isRemoved == false) {
         Rectangle range = this.getRange();
-        g.drawImage(nowstate.getImage(), range.x, range.y, range.width, range.height, null);
+        this.image = this.nowstate.getImage();
+        setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
+        g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
         //}
     }
     @Override

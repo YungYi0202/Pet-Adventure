@@ -5,12 +5,12 @@ import java.awt.*;
 import utils.ImageStateUtils;
 import java.awt.image.BufferedImage;
 import pet.Pet;
-
+import java.lang.*;
 // author = qpoiPeng
 public class Ground extends Sprite {
     private BufferedImage image;
     boolean isRemoved = false;
-    public Ground() {
+    public Ground(){
 	//this.image = new ImageStateUtils().getImage("../../assets/floor/floor.png");
 	this.image = new ImageStateUtils().getImage("assets/floor/floor.png");
 	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
@@ -39,6 +39,7 @@ public class Ground extends Sprite {
 	return new Dimension(image.getWidth(), image.getHeight());                // 20?
     }
     public void render(Graphics g) {
+
 	if (isRemoved == false) {
 	    Rectangle range = this.getRange();
 	    g.drawImage(this.image, range.x, range.y, range.width, range.height, null);

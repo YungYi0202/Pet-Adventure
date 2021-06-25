@@ -56,12 +56,12 @@ public abstract class ImageState{
         }
     }
     
-    Image getImage() {
+    BufferedImage getImage() {
         if (frames.size() == 0) {
             return null;
         }
         else {
-            return (Image)getFrame(currFrameIndex).image;
+            return getFrame(currFrameIndex).image;
         }
     }
 
