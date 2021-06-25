@@ -96,7 +96,6 @@ public class Pet extends HealthPointSprite {
     }
     @Override 
     public void update(){ 
-        System.out.println("pet update");
         Vy_update();
         this.nowstate = controller.update(this);
         this.speed = controller.update_speed(this.speed);
@@ -105,7 +104,6 @@ public class Pet extends HealthPointSprite {
     public void render(Graphics g) {  
         super.render(g); // healthbar render 
         //if (isRemoved == false) {
-        System.out.println("do pet render");
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
