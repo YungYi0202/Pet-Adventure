@@ -9,7 +9,6 @@ import java.lang.*;
 // author = qpoiPeng
 public class Ground extends Sprite {
     private BufferedImage image;
-    boolean isRemoved = false;
     public Ground(){
 	//this.image = new ImageStateUtils().getImage("../../assets/floor/floor.png");
 	this.image = new ImageStateUtils().getImage("assets/floor/floor.png");
@@ -28,11 +27,6 @@ public class Ground extends Sprite {
     }
     @Override
     public void update() {
-	    // this.location.move(-this.getWorld().getSpeed(), 0);
-        
-        //Point loc = this.getLocation();
-        //loc.x -= this.getWorld().getSpeed();
-        //this.setLocation(loc);
         this.decreaseLocationX(this.getWorld().getSpeed());
     }
     @Override
@@ -44,9 +38,7 @@ public class Ground extends Sprite {
 	return new Dimension(image.getWidth(), image.getHeight());                // 20?
     }
     public void render(Graphics g) {
-    if (isRemoved == false) {
         Rectangle range = this.getRange();
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
-    }
     }
 }

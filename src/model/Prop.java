@@ -22,9 +22,7 @@ public abstract class Prop extends Sprite {
 
     public void update(){
         //道具的x都要減少speed
-        Point loc = this.getLocation();
-        loc.x -= this.getWorld().getSpeed();
-        this.setLocation(loc);
+        this.decreaseLocationX(this.getWorld().getSpeed());
     }
 
 }
