@@ -6,7 +6,7 @@ public class Stop extends State implements Unstoppable {
 	remainTime = n;
     }
     public Stop() {
-	remainTime = 10;    //??
+	remainTime = 40;    //??
     }
     public int getRemainTime() {
 	return remainTime;
@@ -14,7 +14,7 @@ public class Stop extends State implements Unstoppable {
     public State getNext(Pet s) {
 	is.update();
 	if (--remainTime <= 0)
-	    return new Run();
+	    return new UnstoppableRun();
 	
 	// s.setVx(0);     not sure. 可能是什麼 getWorld() 再 set 之類的?
 	return this;

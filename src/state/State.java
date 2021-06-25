@@ -2,6 +2,7 @@ package state;
 import pet.Pet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
 public abstract class State {
     public abstract State getNext(Pet s);
     public abstract State getCollide();
@@ -10,4 +11,3 @@ public abstract class State {
 	return is.getImage();
     }
 }
-

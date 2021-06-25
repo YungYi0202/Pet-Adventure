@@ -6,7 +6,7 @@ public class UnstoppableRun extends State implements Unstoppable {
 	remainTime = n;
     }
     public UnstoppableRun() {
-	remainTime = 10;
+	remainTime = 100;
     }
     public int getRemainTime() {
 	return remainTime;

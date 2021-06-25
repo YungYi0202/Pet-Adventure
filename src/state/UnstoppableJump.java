@@ -6,7 +6,7 @@ public class UnstoppableJump extends State implements Unstoppable {
 	remainTime = n;
     }
     public UnstoppableJump() {
-	remainTime = 10;
+	remainTime = 100;
     }
     public int getRemainTime() {
 	return remainTime;
