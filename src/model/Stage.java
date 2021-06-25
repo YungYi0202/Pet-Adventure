@@ -50,8 +50,12 @@ public abstract class Stage {
             newSprites.add(s);
             index++;
         }
+        // if(newSprites.size() > 0){
+        //     System.out.printf("getNewSprites: sprites list size = %d\n", newSprites.size());
+        // }
+
         return newSprites;
     }
 
-    public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.8); }
+    public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.5); }
 }

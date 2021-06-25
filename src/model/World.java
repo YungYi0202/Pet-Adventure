@@ -31,6 +31,7 @@ public class World {
         //addSprites(players);
         setPlayers(players);
         addSprites(stage.getNewSprites(cur_abs_x));
+        //System.out.printf("World: sprites list size = %d\n", sprites.size());
         // 1P掌握視窗速度
         this.players.get(0).setSpeed(this.stage.getSpeed());
     }
@@ -46,6 +47,7 @@ public class World {
     public int getSpeed(){return this.players.get(0).getSpeed();}
 
     public void update() {
+        cur_abs_x += this.getSpeed();
         for (Sprite sprite : sprites) {
             sprite.update();
             //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
