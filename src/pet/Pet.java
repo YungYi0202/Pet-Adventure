@@ -89,7 +89,9 @@ public class Pet extends HealthPointSprite {
     }
 
     public void jump(){
-        this.nowVy = -jump_velocity;
+        if(this.nowVy == 0){
+            this.nowVy = -jump_velocity;
+        }
     }
     public void Vy_update(){
         if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
