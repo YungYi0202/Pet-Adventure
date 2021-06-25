@@ -4,7 +4,7 @@ import state.State;
 import state.*;
 
 public class PetStateControl{
-    private int lower_speed = 5; // 用前面的速度
+    //private int lower_speed = 5; // 用前面的速度
     private int stopping_speed = 0;
     private State state;
     public PetStateControl(State nowstate){
@@ -16,7 +16,7 @@ public class PetStateControl{
     }
     public int update_speed(int speed){
         if(this.state instanceof Unstoppable){
-            return this.lower_speed;
+            return 5;
         }
         else if(this.state instanceof Stop){
             return this.stopping_speed;

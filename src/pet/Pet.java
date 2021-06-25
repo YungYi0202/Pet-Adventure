@@ -23,7 +23,8 @@ public class Pet extends HealthPointSprite {
     private int Pet_HP;
     private int jump_velocity;
     private State nowstate;
-    private int speed; // x方向, normal = 100
+    private int normalSpeed; // x方向, normal = 100
+    private int nowSpeed;
     private int nowVy = 0;
     private final PetStateControl controller;
     private BufferedImage image;
@@ -75,10 +76,11 @@ public class Pet extends HealthPointSprite {
         return this.nowstate;
     }
     public void setSpeed(int speed){
-        this.speed = speed;
+        this.normalSpeed = speed;
+        this.nowSpeed = speed;
     }
     public int getSpeed(){  //x方向 
-        return this.speed;
+        return this.nowSpeed;
     }
 
     public void jump(){
@@ -92,11 +94,9 @@ public class Pet extends HealthPointSprite {
     @Override 
     public void update(){ 
         Vy_update();
-        //System.out.println(this.nowVy);
         this.increaseLocationY(this.nowVy);
-        //setLocation(new Point( (int)(GameView.WIDTH * 0.1), stage.getFirstFloorY() - player.getBodySize().height ));
         this.nowstate = controller.update(this);
-        this.speed = controller.update_speed(this.speed);
+        this.nowSpeed = controller.update_speed(this.normalSpeed);
     }
     @Override
     public void render(Graphics g) {  
