@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
+import java.lang.*;
 
 // 陳咏誼
 //TODO: background是不是應該放在這裡，在Canvas.paintComponent裡更新(g.setColor())
@@ -61,6 +62,7 @@ public class GameView extends JFrame {
                     //System.out.printf("keyPressed: not stateIsMENU\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
+                        System.out.println("here");
                         game.resume();
                         break;
                     }

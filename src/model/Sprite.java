@@ -43,7 +43,13 @@ public abstract class Sprite {
 
     public void decreaseLocationX(int x){
         //System.out.printf("Before: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
-        this.location.move(this.location.x - x, 0);
+        this.location.move(this.location.x - x, this.location.y);
+        //System.out.printf("After: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
+    }
+    /// 楊鈞安 adding 
+    public void increaseLocationY(int y){
+        //System.out.printf("Before: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
+        this.location.move(this.location.x, this.location.y + y);
         //System.out.printf("After: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
     }
 

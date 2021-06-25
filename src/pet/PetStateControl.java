@@ -4,7 +4,7 @@ import state.State;
 import state.*;
 
 public class PetStateControl{
-    private int lower_speed = 50;
+    private int lower_speed = 5; // 用前面的速度
     private int stopping_speed = 0;
     private State state;
     public PetStateControl(State nowstate){

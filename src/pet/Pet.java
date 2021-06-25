@@ -82,21 +82,19 @@ public class Pet extends HealthPointSprite {
     }
 
     public void jump(){
-        this.nowVy = jump_velocity;
+        this.nowVy = -jump_velocity;
     }
     public void Vy_update(){
         if((this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump) && this.nowVy >= 0){
-            if(this.nowVy > 9.8){
-                this.nowVy -= 9.8;
-            }
-            else{
-                this.nowVy = 0;
-            }
+            this.nowVy += 2;
         }
     }
     @Override 
     public void update(){ 
         Vy_update();
+        //System.out.println(this.nowVy);
+        this.increaseLocationY(this.nowVy);
+        //setLocation(new Point( (int)(GameView.WIDTH * 0.1), stage.getFirstFloorY() - player.getBodySize().height ));
         this.nowstate = controller.update(this);
         this.speed = controller.update_speed(this.speed);
     }
