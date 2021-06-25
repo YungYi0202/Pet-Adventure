@@ -6,8 +6,8 @@ public class Jump extends State {
     }
     public State getNext(Pet s) {
 	is.update();
-	if (s.getVy() == 0)
-	    return new Run();
+	//if (s.getVy() == 0) // 楊鈞安改掉了
+	    //return new Run();
 	return this;
     }
     public State getCollide() {

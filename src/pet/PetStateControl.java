@@ -10,13 +10,14 @@ public class PetStateControl{
     public PetStateControl(State nowstate){
         this.state = nowstate;
     }
-    public State update(Pet s){  
+    public State update(Pet s,State nowstate){  
+        this.state = nowstate;
         this.state = this.state.getNext(s); // 傳入 pet s
         return this.state;
     }
     public int update_speed(int speed){
         if(this.state instanceof Unstoppable){
-            return 5;
+            return speed/5;
         }
         else if(this.state instanceof Stop){
             return this.stopping_speed;

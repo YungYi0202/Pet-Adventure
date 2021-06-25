@@ -6,8 +6,9 @@ public class Run extends State {
     }
     public State getNext(Pet s) {
 	is.update();
-	if (s.getVy() != 0)
+	if (s.getVy() != 0){
 	    return new Jump();
+    }
 	return this;
     }
     public State getCollide() {
