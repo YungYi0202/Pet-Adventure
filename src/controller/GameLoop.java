@@ -6,8 +6,10 @@ import model.World;
 //TODO: 如果要做暫停功能，還需要新增resume()
 
 public abstract class GameLoop {
-    private boolean running;
+    //TODO: 之後要把這個true拿掉
+    private boolean running = true;
     private View view;
+    //public Thread gameThread;
 
     public void setView(View view) {
         this.view = view;
@@ -18,12 +20,13 @@ public abstract class GameLoop {
     }
 
     private void gameLoop() {
-        running = true;
-        while (running) {
-            World world = getWorld();
-            world.update();
-            view.render(world);
-            delay(15);
+        while(true){
+            while (running) {
+                World world = getWorld();
+                world.update();
+                view.render(world);
+                delay(15);
+            }
         }
     }
 
@@ -31,6 +34,10 @@ public abstract class GameLoop {
 
     public void stop() {
         running = false;
+    }
+
+    public void resume() {
+        running = true;
     }
 
     private void delay(long ms) {
@@ -45,4 +52,6 @@ public abstract class GameLoop {
     public interface View {  
         void render(World world);
     }
+
+    public boolean getRunning(){return running;}
 }

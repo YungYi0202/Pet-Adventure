@@ -42,14 +42,26 @@ public class GameView extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
-                switch (keyEvent.getKeyCode()) {
+                if(game.getRunning()){
+                    switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_KP_UP:
                         game.jumpPet(P1);
                         break;
                     case KeyEvent.VK_KP_DOWN:
                         game.slidePet(P1);
                         break;
+                    case KeyEvent.VK_S:
+                        game.stop();
+                        break;
+                    }
+                }else{
+                    switch (keyEvent.getKeyCode()) {
+                    case KeyEvent.VK_S:
+                        game.resume();
+                        break;
+                    }
                 }
+                
             }
 
             /*
