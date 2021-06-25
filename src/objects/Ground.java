@@ -12,6 +12,7 @@ public class Ground extends Sprite {
     public Ground(){
 	//this.image = new ImageStateUtils().getImage("../../assets/floor/floor.png");
 	this.image = new ImageStateUtils().getImage("assets/floor/floor.png");
+    this.image = new ImageStateUtils().resize(this.image, image.getWidth() / 2, image.getHeight() / 2);
 	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
     }
     @Override
