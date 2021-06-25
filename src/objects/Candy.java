@@ -10,7 +10,8 @@ public class Candy extends Prop{
     public Candy(){
         //TODO: 等陳奕瑄圖出來之後要設定
         //不知道要不要用new Dimension
-        this.image = new ImageStateUtils().getImage("../../assets/candy/candy.png");
+        //this.image = new ImageStateUtils().getImage("../../assets/candy/candy.png");
+        this.image = new ImageStateUtils().getImage("assets/candy/candy.png");
         int width = image.getWidth();
         int height = image.getHeight();
         setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));

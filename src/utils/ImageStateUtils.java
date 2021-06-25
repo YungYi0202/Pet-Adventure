@@ -15,7 +15,8 @@ public class ImageStateUtils {
 	public BufferedImage getImage(String path) {
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(getClass().getResource(path));
+			//img = ImageIO.read(getClass().getResource(path));
+			img = ImageIO.read(new File(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

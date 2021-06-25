@@ -11,7 +11,8 @@ public class Ground extends Sprite {
     private BufferedImage image;
     boolean isRemoved = false;
     public Ground() {
-	this.image = new ImageStateUtils().getImage("../../assets/floor/floor.png");
+	//this.image = new ImageStateUtils().getImage("../../assets/floor/floor.png");
+	this.image = new ImageStateUtils().getImage("assets/floor/floor.png");
 	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
     }
     @Override
