@@ -53,5 +53,5 @@ public abstract class Stage {
         return newSprites;
     }
 
-    public int getFirstFloorY(){return GameView.HEIGHT * 0.8; }
+    public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.8); }
 }

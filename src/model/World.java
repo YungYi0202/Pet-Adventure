@@ -20,8 +20,7 @@ public class World {
     //以下是陳咏誼加的，可改
     private Stage stage;
     private int cur_abs_x = GameView.WIDTH;
-    private List<Pet> players = new CopyOnWriteArrayList<Pet>();;
-    private 
+    private List<Pet> players = new CopyOnWriteArrayList<Pet>();
 
     public World(CollisionHandler collisionHandler, Stage stage ,Sprite... players) {
         this.collisionHandler = collisionHandler;
