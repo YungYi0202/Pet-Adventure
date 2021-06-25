@@ -3,7 +3,7 @@ package controller;
 import pet.Pet;
 
 import model.World;
-
+import menu.Menu;
 //陳咏誼
 
 public class Game extends GameLoop {
@@ -11,10 +11,13 @@ public class Game extends GameLoop {
     //TODO: 保留加入p2的延伸性
 
     private final World world;
+    private final Menu menu;
+
 
     public Game(World world, Pet p1) {
         this.p1 = p1;
         this.world = world;
+        this.menu = new Menu();
     }
 
     //在 GameView.java 的 addKeyListener{}裡需要用到，這邊只會寫鍵盤可以操控的Pet行為
@@ -38,5 +41,9 @@ public class Game extends GameLoop {
     @Override
     protected World getWorld() {
         return world;
+    }
+    @Override
+    protected Menu getMenu() {
+        return menu;
     }
 }

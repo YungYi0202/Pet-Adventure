@@ -1,15 +1,25 @@
 package controller;
 
 import model.World;
+import menu.Menu;
 
 // 陳咏誼
 //TODO: 如果要做暫停功能，還需要新增resume()
 
 public abstract class GameLoop {
-    //TODO: 之後要把這個true拿掉
-    private boolean running = true;
+    //Test game: running = menuHasRendered = true
+    //Test menu: running = menuHasRendered = false
+    //private boolean running = true;
     private View view;
+<<<<<<< HEAD
     public Thread gameThread;
+=======
+    
+    public Thread gameThread;
+    private boolean menuHasRendered = false;
+    private enum STATE {MENU, GAME};
+    private STATE state = STATE.MENU;
+>>>>>>> e6d5977ceac5451df9cbe85157c425d05a86870f
 
     public void setView(View view) {
         this.view = view;
@@ -18,6 +28,7 @@ public abstract class GameLoop {
     public void start() {
         gameThread = new Thread(this::gameLoop);
         gameThread.start();
+<<<<<<< HEAD
     }
 
     private void gameLoop() {
@@ -31,11 +42,36 @@ public abstract class GameLoop {
             delay(15);
         }
         //}
+=======
+        //new Thread(this::gameLoop).start();
+    }
+
+    private void gameLoop() {
+        while(true){ 
+            // menu
+            if(state == STATE.MENU && menuHasRendered == false){  //busy wait
+                view.render(this.getMenu());
+                menuHasRendered = true;
+            }
+            while (state == STATE.GAME) {
+                menuHasRendered = false; //busy wait
+                World world = getWorld();
+                world.update();
+                view.render(world);
+                delay(15);
+            }
+            // System.out.printf("out of running loop\n");
+            delay(15);
+        }
+        
+>>>>>>> e6d5977ceac5451df9cbe85157c425d05a86870f
     }
 
     protected abstract World getWorld();
+    protected abstract Menu getMenu();
 
     public void stop() {
+<<<<<<< HEAD
         //
 
         synchronized(gameThread){
@@ -60,6 +96,31 @@ public abstract class GameLoop {
             notify();
         }
         
+=======
+        // synchronized(gameThread){
+            // try{    
+            //     gameThread.wait();
+            //     System.out.printf("gameThread.wait\n");
+            // }
+            // catch(InterruptedException e) {
+            //     e.printStackTrace();
+            // }finally{
+            //     state = STATE.MENU;
+            //     System.out.printf("running = false\n");
+            // }
+        // }
+        state = STATE.MENU;
+    }
+
+    public void resume() {
+        // synchronized(gameThread){
+        //     state = STATE.GAME;
+        //     System.out.printf("running = true\n");
+        //     gameThread.notify();
+        //     System.out.printf("gameThread.notify\n");
+        // }
+        state = STATE.GAME;
+>>>>>>> e6d5977ceac5451df9cbe85157c425d05a86870f
     }
 
     private void delay(long ms) {
@@ -73,7 +134,9 @@ public abstract class GameLoop {
 
     public interface View {  
         void render(World world);
+        void render(Menu menu);
     }
 
-    public boolean getRunning(){return running;}
+    public boolean stateIsGAME(){return state==STATE.GAME;}
+    public boolean stateIsMENU(){return state==STATE.MENU;}
 }
