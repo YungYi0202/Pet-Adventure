@@ -1,7 +1,6 @@
 package objects;
 
 import model.Prop;
-//TODO: 確認彭光湞有寫對應的State
 import state.Stop;
 import utils.ImageStateUtils;
 import state.Unstoppable;
@@ -11,9 +10,6 @@ public class Hydrant extends Prop{
     private Image image = null;
     private int hpDamage = 50;
     public Hydrant(){
-        //TODO: 等陳奕瑄圖出來之後要設定
-        //不知道要不要用new Dimension
-        //this.image = new ImageStateUtils().getImage("../../assets/hydrant/hydrant.png");
         this.image = new ImageStateUtils().getImage("assets/hydrant/hydrant.png");
         int width = image.getWidth();
         int height = image.getHeight();

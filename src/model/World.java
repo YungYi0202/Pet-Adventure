@@ -21,13 +21,16 @@ public class World {
     private Stage stage;
     private int cur_abs_x = GameView.WIDTH;
     private List<Pet> players = new CopyOnWriteArrayList<Pet>();;
+    private 
 
-
-    public World(CollisionHandler collisionHandler, Stage stage ,Sprite... sprites) {
+    public World(CollisionHandler collisionHandler, Stage stage ,Sprite... players) {
         this.collisionHandler = collisionHandler;
-        addSprites(sprites);
         this.stage = stage;
-        setPlayers(sprites);
+        for(Sprite player: players){
+            player.setLocation(new Point( 100, stage.getFirstFloorY() - player.getBodySize().height ));
+        }
+        addSprites(players);
+        setPlayers(players);
         addSprites(stage.getNewSprites(cur_abs_x));
         // 1P掌握視窗速度
         this.players.get(0).setSpeed(this.stage.getSpeed());
