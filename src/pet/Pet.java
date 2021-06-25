@@ -103,7 +103,7 @@ public class Pet extends HealthPointSprite {
     }
     @Override
     public void render(Graphics g) {  
-        System.out.println("do render");
+        //System.out.println("do render");
         super.render(g); // healthbar render 
         //if (isRemoved == false) {
         Rectangle range = this.getRange();
