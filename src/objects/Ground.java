@@ -26,11 +26,7 @@ public class Ground extends Sprite {
 	    p.setState(new Run());
     //else if(p.getState() instanceof Run)
         //p.decreaseLocationY(p.getVy());
-    System.out.println(p.getVy());
-    System.out.println("handle");
 	if (p.getVy() > 0) // 楊鈞安改了這，getnormalVy 是一開始跳上去的速度的反方向，因為你原本寫 0
-        
-        //System.out.println(p.getLocation().y);
         p.setVy(0);
     }
     @Override

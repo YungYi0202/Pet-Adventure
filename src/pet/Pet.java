@@ -102,14 +102,14 @@ public class Pet extends HealthPointSprite {
         }
     }
     public void Vy_update(){ // gravity
-        //if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
+        if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
             this.nowVy += this.gravity;
             
-        //}
+        }
     }
     @Override 
     public void update(){ 
-        //Vy_update();
+        Vy_update();
         this.nowstate = controller.update(this,this.nowstate);
         System.out.println(this.nowstate); 
         this.increaseLocationY(this.nowVy);
