@@ -57,6 +57,7 @@ public class GameView extends JFrame {
                         game.slidePet(P1);
                         break;
                     case KeyEvent.VK_S:
+                        System.out.println("pause");
                         game.pause();
                         break;
                     }
@@ -98,11 +99,12 @@ public class GameView extends JFrame {
         private STATE state;
         private boolean menuHasRendered = false;
         private boolean pauseMenuHasRendered = false;
-
         public Canvas(Game game){
-            this.menu = new Menu(game, this);
             this.pauseMenu = new PauseMenu(game, this);
+            this.menu = new Menu(game, this);
+            //this.pauseMenu = new PauseMenu(game, this);
             menu.loadToPanel(); 
+            pauseMenu.loadToPanel();
         }
 
         @Override
@@ -135,6 +137,7 @@ public class GameView extends JFrame {
             if(state == STATE.GAME){    
                 menuHasRendered = false; 
                 pauseMenuHasRendered = false;
+                //menu.removeFromPanel();
                 this.removeAll();
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
@@ -145,6 +148,7 @@ public class GameView extends JFrame {
                 menu.loadToPanel();
                 menuHasRendered = true; 
             }else if(state == STATE.PAUSE && pauseMenuHasRendered == false){
+                System.out.println("in heereree");
                 menuHasRendered = false; 
                 this.removeAll();
                 pauseMenu.loadToPanel();

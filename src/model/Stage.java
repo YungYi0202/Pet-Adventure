@@ -20,7 +20,8 @@ import views.GameView;
 //TODO: Sort By (x + offset.width)=imageX
 
 public abstract class Stage {
-    private Image background; //目前的作法background是在GameView裡畫的，作法待更新
+    //leyna changed to public
+    public Image background; //目前的作法background是在GameView裡畫的，作法待更新
     private List<Position> positionList = new CopyOnWriteArrayList<Position>();
     private int index = 0;
     private int speed = 20;

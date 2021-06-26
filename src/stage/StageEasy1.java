@@ -4,6 +4,9 @@ import model.Stage;
 import model.Position;
 import model.Sprite;
 import objects.Ground;
+//Leyna
+import utils.ImageStateUtils;
+import java.awt.image.BufferedImage;
 
 /**
  * @author - Yung-Yi Chen
@@ -15,6 +18,8 @@ public class StageEasy1 extends Stage{
         for(int i = 0 ; i < 50; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
         }
-        
+        // Leyna
+        this.background = new ImageStateUtils().getImage("assets/background/background.png");
+
     }
 }

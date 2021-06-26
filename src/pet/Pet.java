@@ -28,7 +28,7 @@ public class Pet extends HealthPointSprite {
     private int normalSpeed; // x方向, normal = 100
     private int nowSpeed;
     private int nowVy = 0;
-    private int gravity = 2;
+    private int gravity = 5;
     private final PetStateControl controller;
     private BufferedImage image;
     public ArrayList<String> propList = new ArrayList<String>();
@@ -97,19 +97,23 @@ public class Pet extends HealthPointSprite {
 
     public void jump(){
         if(this.nowstate instanceof Run){
+            //System.out.println("call jump");
             this.nowVy = -jump_velocity;
         }
     }
     public void Vy_update(){ // gravity
-        if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
-            this.nowVy += this.gravity;
-        }
+        //if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
+        this.nowVy += this.gravity;
+            
+        //}
     }
     @Override 
     public void update(){ 
         Vy_update();
         this.nowstate = controller.update(this,this.nowstate);
+        System.out.println(this.nowstate); 
         this.increaseLocationY(this.nowVy);
+        //System.out.println(this.nowVy);
         this.nowSpeed = controller.update_speed(this.normalSpeed);
     }
 
