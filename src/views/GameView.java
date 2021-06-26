@@ -19,7 +19,6 @@ import java.lang.*;
 public class GameView extends JFrame {
     public static final int HEIGHT = 800;
     public static final int WIDTH = 1000;
-    
     //保留以後可以多個玩家遊玩的延伸性
     public static final int P1 = 1;
     public static final int P2 = 2;
@@ -45,6 +44,7 @@ public class GameView extends JFrame {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 if(game.stateIsGAME()){
+                    
                     //System.out.printf("keyPressed: stateIsGAME\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_UP:
@@ -81,7 +81,12 @@ public class GameView extends JFrame {
         private Menu menu;
         private enum STATE {MENU, GAME};
         private STATE state;
-
+        public JButton play;
+        public Canvas(){
+            this.play = new JButton("> PLAY < ");
+            this.play.setFocusable(false);
+            this.add(this.play);
+        }
         @Override
         public void render(World world) {
             this.world = world;
@@ -100,14 +105,18 @@ public class GameView extends JFrame {
         protected void paintComponent(Graphics g /*paintbrush*/) {
             super.paintComponent(g);
             // Now, let's paint
+            System.out.println("here");
             g.setColor(Color.WHITE); // paint background with all white
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
             if(state == STATE.GAME){
+                //this.remove(this.play);
+                this.removeAll();
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
             else if(state == STATE.MENU){
-                menu.render(g);
+                //menu.render(g);
+                this.add(play);
             }
         }
     }

@@ -12,6 +12,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import utils.ImageStateUtils;
 import java.awt.image.BufferedImage;
 import java.lang.*;
+import java.util.*;
 //還有其他要import的記得import
 
 //楊鈞安
@@ -29,6 +30,7 @@ public class Pet extends HealthPointSprite {
     private int gravity = 2;
     private final PetStateControl controller;
     private BufferedImage image;
+    public ArrayList<String> propList = new ArrayList<String>();
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
         /* shape = (size , body_offset, body_size) 
@@ -42,8 +44,6 @@ public class Pet extends HealthPointSprite {
         this.nowstate = running;
         this.image = this.nowstate.getImage(); 
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
-        //setShape(new Dimension(146, 176),
-                //new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         controller = new PetStateControl(this.nowstate);
     }
     
@@ -51,7 +51,6 @@ public class Pet extends HealthPointSprite {
     public int getnormalVy(){
         return this.jump_velocity;
     }
-    ////
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
     }
@@ -87,6 +86,7 @@ public class Pet extends HealthPointSprite {
     public int getSpeed(){  //x方向 
         return this.nowSpeed;
     }
+    /////
 
     public void jump(){
         if(this.nowstate instanceof Run){
@@ -110,7 +110,7 @@ public class Pet extends HealthPointSprite {
     @Override
     public void render(Graphics g){
 
-        super.render(g); // healthbar render 
+        super.render(g); // healthbar and props render 
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
