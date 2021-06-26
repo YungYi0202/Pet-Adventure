@@ -67,9 +67,12 @@ public class Menu{
         this.selectedPet = s;
     }
 
-    public void gameResume(){
-        this.game.resume();
+    public void gameNewStart(){
+        this.game.newStart();
     }
+
+    public String getSelectedLevel(){return selectedLevel;}
+    public String getSelectedPet(){return selectedPet;}
 
     // public void render(Graphics g){
     //     Font fnt0 = new Font("ariel", Font.BOLD, 50);
@@ -88,7 +91,7 @@ class PlayButtonListener implements  ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         System.out.printf( "playButton is clicked\n" );
-        menu.gameResume();
+        menu.gameNewStart();
     }
 }
 

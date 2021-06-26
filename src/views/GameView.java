@@ -48,7 +48,7 @@ public class GameView extends JFrame {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 if(game.stateIsGAME()){
-                    //System.out.printf("keyPressed: stateIsGAME\n");
+                    System.out.printf("keyPressed: stateIsGAME\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_UP:
                         game.jumpPet(P1);
@@ -57,15 +57,15 @@ public class GameView extends JFrame {
                         game.slidePet(P1);
                         break;
                     case KeyEvent.VK_S:
-                        game.stop();
+                        game.exit();
                         break;
                     }
                 }
                 else if(game.stateIsMENU()){
-                    //System.out.printf("keyPressed: not stateIsMENU\n");
+                    System.out.printf("keyPressed: not stateIsMENU\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
-                        game.resume();
+                        game.newStart();
                         break;
                     }
                 }
@@ -78,6 +78,8 @@ public class GameView extends JFrame {
             */
         });
     }
+
+    // public Menu getMenu(){return this.canvas.getMenu();}
 
     public static class Canvas extends JPanel implements GameLoop.View {
         private World world;
@@ -123,6 +125,8 @@ public class GameView extends JFrame {
                 menuHasRendered = true; 
             }
         }
+
+        public Menu getMenu(){return this.menu;}
 
     }
 }
