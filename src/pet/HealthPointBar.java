@@ -6,6 +6,7 @@ import java.lang.*;
 /**
  * @author - Andy young 
  */
+ //
 public class HealthPointBar extends Sprite {
     private final int maxHp;
     private Sprite owner;
@@ -52,7 +53,7 @@ public class HealthPointBar extends Sprite {
     @Override
     public Rectangle getRange() { /// Todo 位置可能要改 
         //return new Rectangle(owner.getX(), owner.getY() - 15, (int) owner.getRange().getWidth(), 10);
-        return new Rectangle(GameView.WIDTH/5 , GameView.HEIGHT/10, GameView.WIDTH/5*2, 10);
+        return new Rectangle(GameView.WIDTH/9 , GameView.HEIGHT/12, GameView.WIDTH/5*2, 20);
     } 
 
     @Override

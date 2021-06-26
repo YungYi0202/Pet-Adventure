@@ -21,7 +21,6 @@ import java.lang.*;
 public class GameView extends JFrame {
     public static final int HEIGHT = 800;
     public static final int WIDTH = 1000;
-    
     //保留以後可以多個玩家遊玩的延伸性
     public static final int P1 = 1;
     public static final int P2 = 2;

@@ -12,6 +12,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import utils.ImageStateUtils;
 import java.awt.image.BufferedImage;
 import java.lang.*;
+import java.util.*;
+import views.GameView;
 //還有其他要import的記得import
 
 //楊鈞安
@@ -29,6 +31,8 @@ public class Pet extends HealthPointSprite {
     private int gravity = 2;
     private final PetStateControl controller;
     private BufferedImage image;
+    public ArrayList<String> propList = new ArrayList<String>();
+    private int bag_volume = 2;
     public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
         /* shape = (size , body_offset, body_size) 
@@ -42,16 +46,18 @@ public class Pet extends HealthPointSprite {
         this.nowstate = running;
         this.image = this.nowstate.getImage(); 
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
-        //setShape(new Dimension(146, 176),
-                //new Dimension(33, 38), new Dimension(66, 105) ); /// shape can be revise
         controller = new PetStateControl(this.nowstate);
     }
     
-    /// 取用任何 pet 資訊的地方
+    /// 取用任何 pet 資訊的地方 (給別人用的)
+    public void addProps(String prop){
+        if(propList.size() < this.bag_volume){
+            propList.add(prop);
+        }
+    }
     public int getnormalVy(){
         return this.jump_velocity;
     }
-    ////
     public int getVy(){  
         return this.nowVy;  // Vy 我會在state_control 中修改
     }
@@ -87,6 +93,7 @@ public class Pet extends HealthPointSprite {
     public int getSpeed(){  //x方向 
         return this.nowSpeed;
     }
+    /////
 
     public void jump(){
         if(this.nowstate instanceof Run){
@@ -103,14 +110,20 @@ public class Pet extends HealthPointSprite {
         Vy_update();
         this.nowstate = controller.update(this,this.nowstate);
         this.increaseLocationY(this.nowVy);
-        System.out.println(this.nowstate);
         this.nowSpeed = controller.update_speed(this.normalSpeed);
     }
 
     @Override
     public void render(Graphics g){
 
-        super.render(g); // healthbar render 
+        super.render(g); // healthbar render
+        ///// score render
+        Font fnt0 = new Font("ariel", Font.BOLD, 20);
+        g.setFont(fnt0);
+        g.setColor(Color.black); 
+        String show_score = "score: " + String.valueOf(this.score);
+        g.drawString(show_score, (GameView.WIDTH/10*8), GameView.HEIGHT/12);
+        /////
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
