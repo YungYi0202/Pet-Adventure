@@ -3,8 +3,9 @@ package controller;
 import model.World;
 import menu.Menu;
 
-// 陳咏誼
-//TODO: 如果要做暫停功能，還需要新增resume()
+/**
+ * @author - Yung-Yi Chen
+ */
 
 public abstract class GameLoop {
     //Test game: running = menuHasRendered = true
@@ -30,25 +31,39 @@ public abstract class GameLoop {
     private void gameLoop() {
         while(true){ 
             // menu
-            if(state == STATE.MENU && menuHasRendered == false){  //busy wait
-                view.render(this.getMenu());
-                menuHasRendered = true;
+            switch(state){
+                case MENU:
+                    if(menuHasRendered == false){
+                        view.renderMenu();
+                        menuHasRendered = true;
+                    }
+                    break;
+                case GAME:
+                    menuHasRendered = false; //busy wait
+                    World world = getWorld();
+                    world.update();
+                    view.render(world);
+                    break;
             }
-            while (state == STATE.GAME) {
-                menuHasRendered = false; //busy wait
-                World world = getWorld();
-                world.update();
-                view.render(world);
-                delay(15);
-            }
-            // System.out.printf("out of running loop\n");
+
+            // if(state == STATE.MENU && menuHasRendered == false){  //busy wait
+            //     view.render(this.getMenu());
+            //     menuHasRendered = true;
+            // }
+            // while (state == STATE.GAME) {
+            //     menuHasRendered = false; //busy wait
+            //     World world = getWorld();
+            //     world.update();
+            //     view.render(world);
+            //     delay(15);
+            // }
+            
             delay(15);
         }
         
     }
 
     protected abstract World getWorld();
-    protected abstract Menu getMenu();
 
     public void stop() {
         // synchronized(gameThread){
@@ -87,7 +102,7 @@ public abstract class GameLoop {
 
     public interface View {  
         void render(World world);
-        void render(Menu menu);
+        void renderMenu();
     }
 
     public boolean stateIsGAME(){return state==STATE.GAME;}

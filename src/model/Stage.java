@@ -14,7 +14,9 @@ import static java.util.stream.Collectors.toSet;
 import views.GameView;
 
 
-//陳咏誼
+/**
+ * @author - Yung-Yi Chen
+ */
 //TODO: Sort By (x + offset.width)=imageX
 
 public abstract class Stage {

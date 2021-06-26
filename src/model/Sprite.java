@@ -2,7 +2,9 @@ package model;
 
 import java.awt.*;
 
-//楊鈞安、陳咏誼
+/**
+ * @author - Yung-Yi Chen, Andy Young
+ */
 
 import model.SpriteShape; 
 //import views.GameView;
