@@ -30,9 +30,10 @@ public class PauseMenu{
         resumeButton.addActionListener(new ResumeButtonListener(this));
     }
     public void loadToPanel(){
+
         panel.add(exitButton);
         panel.add(resumeButton);
-        //System.out.printf("loadToPanel\n");
+        System.out.printf("loadToPanel\n");
     }
     public void removeFromPanel(){
         panel.remove(exitButton);

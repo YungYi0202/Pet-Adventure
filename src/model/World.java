@@ -71,7 +71,6 @@ public class World {
                 }
             }
         }
-        
 
         // 加入新Sprites
         addSprites(stage.getNewSprites(cur_abs_x));

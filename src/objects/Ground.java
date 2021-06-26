@@ -21,9 +21,11 @@ public class Ground extends Sprite {
 	    p = (Pet) s;
 	if (p.getState() instanceof Unstoppable)
 	    p.setState(new UnstoppableRun());
-	else
+    else if(p.getState() instanceof Jump && p.getVy() > 0)
 	    p.setState(new Run());
-	if (p.getVy() != 0) // 楊鈞安改了這，getnormalVy 是一開始跳上去的速度的反方向，因為你原本寫 0
+    else if(p.getState() instanceof Run)
+        p.decreaseLocationY(p.getVy());
+	if (p.getVy() > 0) // 楊鈞安改了這，getnormalVy 是一開始跳上去的速度的反方向，因為你原本寫 0
         p.setVy(0);
     }
     @Override
