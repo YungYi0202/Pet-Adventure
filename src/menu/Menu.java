@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import views.GameView;
 import javax.swing.*;
+//import javax.swing.JOptionPane;
 
 /**
  * @author - Yung-Yi Chen
@@ -13,6 +14,8 @@ import javax.swing.*;
 
 public class Menu{
     private final Game game;
+    private final JPanel panel;
+
 
     private String[] petChoices = { "Dog","Cat"};
     private JComboBox<String> petMenu = new JComboBox<String>(petChoices);
@@ -26,9 +29,11 @@ public class Menu{
     private int defaultLevelIndex = 0;
     private String selectedLevel = levelChoices[defaultLevelIndex];
     
+    // private JPanel loadingWindow = new JPanel();
     
-    public Menu(Game game){
+    public Menu(Game game, JPanel panel){
         this.game = game;
+        this.panel = panel;
 
         petMenu.setSelectedIndex(defaultPetIndex);
         petMenu.setVisible(true);
@@ -36,7 +41,7 @@ public class Menu{
         petMenu.setFocusable(false);
 
         playButton.setFocusable(false);
-        playButton.setUI(new StyledButtonUI());
+        //playButton.setUI(new StyledButtonUI());
         playButton.addActionListener(new PlayButtonListener(this));
 
         levelMenu.setSelectedIndex(defaultLevelIndex);
@@ -44,18 +49,20 @@ public class Menu{
         levelMenu.addActionListener(new LevelMenuListener(this));
         levelMenu.setFocusable(false);
 
+        // loadingWindow.add(new JLabel("Loading..."));
+        // loadingWindow.setVisible(true);
+        // loadingWindow.setFocusable(false);
     }
-    public void loadToPanel(JPanel panel){
+    public void loadToPanel(){
         panel.add(petMenu);
         panel.add(playButton);
         panel.add(levelMenu);
-        
         //System.out.printf("loadToPanel\n");
     }
-    public void removeFromPanel(JPanel panel){
-        panel.removeAll();
-        
-
+    public void removeFromPanel(){
+        panel.remove(petMenu);
+        panel.remove(playButton);
+        panel.remove(levelMenu);
     }
     public void setSelectedLevel(String s){
         System.out.printf("setSelectedLevel: %s\n", s);
@@ -68,19 +75,29 @@ public class Menu{
     }
 
     public void gameNewStart(){
+        //panel.add(loadingWindow);
         this.game.newStart();
     }
 
     public String getSelectedLevel(){return selectedLevel;}
     public String getSelectedPet(){return selectedPet;}
-
-    // public void render(Graphics g){
-    //     Font fnt0 = new Font("ariel", Font.BOLD, 50);
-    //     g.setFont(fnt0);
-    //     g.setColor(Color.black);
-    //     //g.drawString("Menu Page", (GameView.WIDTH/2) - GameView.WIDTH/10, GameView.HEIGHT/2);
-    //     g.drawString("Press S to Start/Pause", (GameView.WIDTH/2) - GameView.WIDTH/4, GameView.HEIGHT/2);
+    
+    // public static void loadingPopup(){
+    //     JLabel messageLabel = new JLabel("<html><body><p style='width: 300px;'>"+"Loading"+"</p></body></html>");
+    //     Timer timer = new Timer(5000, 
+    //         new ActionListener()
+    //         {   
+    //             @Override
+    //             public void actionPerformed(ActionEvent event)
+    //             {
+    //                 SwingUtilities.getWindowAncestor(messageLabel).dispose();
+    //             }
+    //         });
+    //     timer.setRepeats(false);
+    //     timer.start();
+    //     JOptionPane.showMessageDialog(null, messageLabel);
     // }
+    
 }
 
 class PlayButtonListener implements  ActionListener{

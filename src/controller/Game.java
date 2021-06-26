@@ -23,6 +23,7 @@ public class Game extends GameLoop {
     // }
 
     public void newStart(){
+        //Menu.loadingPopup();
         Menu menu = this.getMenu();
         Stage stage = StageManager.getStage( menu.getSelectedLevel() );
         //TODO:設定寵物是狗還是貓

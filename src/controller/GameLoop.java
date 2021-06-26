@@ -15,6 +15,7 @@ public abstract class GameLoop {
     
     public Thread gameThread;
     private boolean menuHasRendered = false;
+    private boolean pauseMenuHasRendered = false;
     private enum STATE {MENU, GAME, PAUSE};
     private STATE state = STATE.MENU;
 
@@ -40,10 +41,18 @@ public abstract class GameLoop {
                     break;
                 case GAME:
                     menuHasRendered = false; //busy wait
+                    pauseMenuHasRendered = false;
                     World world = getWorld();
                     world.update();
                     view.render(world);
                     break;
+                case PAUSE:
+                    if(pauseMenuHasRendered == false){
+                        view.renderPauseMenu();
+                        pauseMenuHasRendered = true;
+                    }
+                    break;
+
             }
 
             // if(state == STATE.MENU && menuHasRendered == false){  //busy wait
@@ -78,9 +87,9 @@ public abstract class GameLoop {
             //     System.out.printf("running = false\n");
             // }
         // }
-        state = STATE.MENU;
+        //state = STATE.MENU;
         //TODO: 
-        //state = STATE.PAUSE
+        state = STATE.PAUSE;
     }
 
     public void exit(){
@@ -115,8 +124,10 @@ public abstract class GameLoop {
         Menu getMenu();
         void render(World world);
         void renderMenu();
+        void renderPauseMenu();
     }
 
     public boolean stateIsGAME(){return state==STATE.GAME;}
     public boolean stateIsMENU(){return state==STATE.MENU;}
+    public boolean stateIsPAUSE(){return state==STATE.PAUSE;}
 }

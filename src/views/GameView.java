@@ -5,6 +5,7 @@ import controller.GameLoop;
 import model.Sprite;
 import model.World;
 import menu.Menu;
+import menu.PauseMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,15 +57,26 @@ public class GameView extends JFrame {
                         game.slidePet(P1);
                         break;
                     case KeyEvent.VK_S:
-                        game.exit();
+                        game.pause();
                         break;
                     }
                 }
                 else if(game.stateIsMENU()){
-                    System.out.printf("keyPressed: not stateIsMENU\n");
+                    System.out.printf("keyPressed: stateIsMENU\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.newStart();
+                        break;
+                    }
+                }
+                else if(game.stateIsPAUSE()){
+                    System.out.printf("keyPressed: stateIsPAUSE\n");
+                    switch (keyEvent.getKeyCode()) {
+                    case KeyEvent.VK_E:
+                        game.exit();
+                        break;
+                    case KeyEvent.VK_S:
+                        game.resume();
                         break;
                     }
                 }
@@ -78,18 +90,19 @@ public class GameView extends JFrame {
         });
     }
 
-    // public Menu getMenu(){return this.canvas.getMenu();}
-
     public static class Canvas extends JPanel implements GameLoop.View {
         private World world;
         private Menu menu;
-        private enum STATE {MENU, GAME};
+        private PauseMenu pauseMenu;
+        private enum STATE {MENU, GAME, PAUSE};
         private STATE state;
         private boolean menuHasRendered = false;
+        private boolean pauseMenuHasRendered = false;
 
         public Canvas(Game game){
-            this.menu = new Menu(game);
-            menu.loadToPanel(this); 
+            this.menu = new Menu(game, this);
+            this.pauseMenu = new PauseMenu(game, this);
+            menu.loadToPanel(); 
         }
 
         @Override
@@ -105,6 +118,12 @@ public class GameView extends JFrame {
             state = STATE.MENU;
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
+        @Override
+        public void renderPauseMenu() {
+            //System.out.printf("renderMenu\n");
+            state = STATE.PAUSE;
+            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
+        }   
 
         @Override
         protected void paintComponent(Graphics g /*paintbrush*/) {
@@ -113,15 +132,23 @@ public class GameView extends JFrame {
             g.setColor(Color.WHITE); // paint background with all white
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
-            if(state == STATE.GAME){
+            if(state == STATE.GAME){    
                 menuHasRendered = false; 
-                menu.removeFromPanel(this); 
+                pauseMenuHasRendered = false;
+                this.removeAll();
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
             else if(state == STATE.MENU && menuHasRendered == false){
                 //System.out.printf("paintComponent: STATE.MENU\n");
-                menu.loadToPanel(this);
+                pauseMenuHasRendered = false;
+                this.removeAll();
+                menu.loadToPanel();
                 menuHasRendered = true; 
+            }else if(state == STATE.PAUSE && pauseMenuHasRendered == false){
+                menuHasRendered = false; 
+                this.removeAll();
+                pauseMenu.loadToPanel();
+                pauseMenuHasRendered = true;
             }
         }
 
