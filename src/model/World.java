@@ -11,7 +11,9 @@ import static java.util.stream.Collectors.toSet;
 
 import views.GameView;
 
-//陳咏誼
+/**
+ * @author - Yung-Yi Chen
+ */
 
 public class World {
     private final List<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();//exclusive of players

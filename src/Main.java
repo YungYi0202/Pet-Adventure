@@ -13,7 +13,9 @@ import static media.AudioPlayer.addAudioByFilePath;
 
 import stage.StageEasy1;
 
-//陳咏誼
+/**
+ * @author - Yung-Yi Chen
+ */
  
 public class Main {
     public static void main(String[] args) {

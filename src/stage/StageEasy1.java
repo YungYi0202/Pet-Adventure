@@ -5,7 +5,9 @@ import model.Position;
 import model.Sprite;
 import objects.Ground;
 
-//陳咏誼
+/**
+ * @author - Yung-Yi Chen
+ */
 public class StageEasy1 extends Stage{
     public StageEasy1(){
         setSpeed(5);

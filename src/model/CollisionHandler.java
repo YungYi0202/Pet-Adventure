@@ -2,7 +2,9 @@ package model;
 
 import java.awt.*;
 
-//陳咏誼
+/**
+ * @author - Yung-Yi Chen
+ */
 
 public interface CollisionHandler {
     void handle(Sprite from, Sprite to);

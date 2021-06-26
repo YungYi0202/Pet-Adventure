@@ -13,7 +13,9 @@ import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.lang.*;
 
-// 陳咏誼
+/**
+ * @author - Yung-Yi Chen
+ */
 //TODO: background是不是應該放在這裡，在Canvas.paintComponent裡更新(g.setColor())
 
 public class GameView extends JFrame {
@@ -24,11 +26,12 @@ public class GameView extends JFrame {
     public static final int P1 = 1;
     public static final int P2 = 2;
     
-    private final Canvas canvas = new Canvas();
+    private final Canvas canvas;
     private final Game game;
 
     public GameView(Game game) throws HeadlessException {
         this.game = game;
+        this.canvas = new Canvas(game);
         game.setView(canvas);
     }
 
@@ -37,7 +40,7 @@ public class GameView extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setContentPane(canvas);
         setSize(WIDTH, HEIGHT);
-        setContentPane(canvas);
+        //setContentPane(canvas);
         setVisible(true);
 
         // Keyboard listener
@@ -81,20 +84,26 @@ public class GameView extends JFrame {
         private Menu menu;
         private enum STATE {MENU, GAME};
         private STATE state;
+        private boolean menuHasRendered = false;
+
+        public Canvas(Game game){
+            this.menu = new Menu(game);
+            menu.loadToPanel(this); 
+        }
 
         @Override
         public void render(World world) {
             this.world = world;
-            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.
             state = STATE.GAME;
+            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.
         }
 
         @Override
-        public void render(Menu menu) {
-            this.menu = menu;
-            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.
+        public void renderMenu() {
+            //System.out.printf("renderMenu\n");
             state = STATE.MENU;
-        }
+            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
+        }   
 
         @Override
         protected void paintComponent(Graphics g /*paintbrush*/) {
@@ -104,11 +113,16 @@ public class GameView extends JFrame {
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
             if(state == STATE.GAME){
+                menuHasRendered = false; 
+                menu.removeFromPanel(this); 
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
-            else if(state == STATE.MENU){
-                menu.render(g);
+            else if(state == STATE.MENU && menuHasRendered == false){
+                //System.out.printf("paintComponent: STATE.MENU\n");
+                menu.loadToPanel(this);
+                menuHasRendered = true; 
             }
         }
+
     }
 }
