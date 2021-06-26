@@ -10,8 +10,7 @@ import java.lang.*;
 public class Ground extends Sprite {
     private BufferedImage image;
     public Ground(){
-	//this.image = new ImageStateUtils().getImage("../../assets/floor/floor.png");
-	this.image = new ImageStateUtils().getImage("assets/ground/ground.png");
+	this.image = new ImageStateUtils().getImage("assets/ground/ground_1.png");
 	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
     }
     @Override
