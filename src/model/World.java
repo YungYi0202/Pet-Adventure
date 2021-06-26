@@ -28,7 +28,7 @@ public class World {
         this.collisionHandler = collisionHandler;
         this.stage = stage;
         for(Sprite player: players){
-            player.setLocation(new Point( (int)(GameView.WIDTH * 0.1), stage.getFirstFloorY() - player.getBodySize().height ));
+            player.setLocation(new Point( (int)(GameView.WIDTH * 0.1), stage.getFirstFloorY() - player.getBodySize().height+30 ));
         }
         //addSprites(players);
         setPlayers(players);
@@ -59,7 +59,7 @@ public class World {
         }
         
         for(Pet player: players){
-            player.update();
+            player.Vy_update();
         }
         //Collision Detection
         //不確定有沒有錯
@@ -71,6 +71,10 @@ public class World {
                 }
             }
         }
+        for(Pet player: players){
+            player.update();
+        }
+        
         
 
         // 加入新Sprites
