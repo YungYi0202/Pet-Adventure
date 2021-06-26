@@ -55,10 +55,10 @@ public class World {
                 removeSprite(sprite);
             }
         }
+        
         for(Pet player: players){
             player.update();
         }
-
         //Collision Detection
         //不確定有沒有錯
         for(Pet from: players){
@@ -69,6 +69,7 @@ public class World {
                 }
             }
         }
+        
 
         // 加入新Sprites
         addSprites(stage.getNewSprites(cur_abs_x));

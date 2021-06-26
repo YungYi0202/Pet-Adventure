@@ -8,6 +8,7 @@ public class Jump extends State {
 	is.update();
 	//if (s.getVy() == 0) // 楊鈞安改掉了
 	    //return new Run();
+    //System.out.printf("speed : %d\n",s.getVy());
 	return this;
     }
     public State getCollide() {

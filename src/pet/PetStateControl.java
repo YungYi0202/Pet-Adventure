@@ -11,8 +11,8 @@ public class PetStateControl{
         this.state = nowstate;
     }
     public State update(Pet s,State nowstate){  
-        this.state = nowstate;
-        this.state = this.state.getNext(s); // 傳入 pet s
+        //this.state = nowstate;
+        this.state = nowstate.getNext(s); // 傳入 pet s
         return this.state;
     }
     public int update_speed(int speed){

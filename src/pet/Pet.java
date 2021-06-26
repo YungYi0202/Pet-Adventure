@@ -89,11 +89,11 @@ public class Pet extends HealthPointSprite {
     }
 
     public void jump(){
-        if(this.nowVy == 0){
+        if(this.nowstate instanceof Run){
             this.nowVy = -jump_velocity;
         }
     }
-    public void Vy_update(){
+    public void Vy_update(){ // gravity
         if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
             this.nowVy += this.gravity;
         }
@@ -101,19 +101,29 @@ public class Pet extends HealthPointSprite {
     @Override 
     public void update(){ 
         Vy_update();
-        this.increaseLocationY(this.nowVy);
         this.nowstate = controller.update(this,this.nowstate);
+        this.increaseLocationY(this.nowVy);
+        System.out.println(this.nowstate);
         this.nowSpeed = controller.update_speed(this.normalSpeed);
     }
+
     @Override
-    public void render(Graphics g) {  
+    public void render(Graphics g){
+
         super.render(g); // healthbar render 
-        //if (isRemoved == false) {
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
-        //}
+
+
+    }
+    private void delay(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public void collideWith(Sprite sprite){

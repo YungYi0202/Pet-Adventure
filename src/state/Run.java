@@ -6,6 +6,7 @@ public class Run extends State {
     }
     public State getNext(Pet s) {
 	is.update();
+    //System.out.printf("position : %d\n",s.getLocation().y);
 	if (s.getVy() != 0){
 	    return new Jump();
     }
