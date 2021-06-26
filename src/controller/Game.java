@@ -27,7 +27,7 @@ public class Game extends GameLoop {
         Menu menu = this.getMenu();
         Stage stage = StageManager.getStage( menu.getSelectedLevel() );
         //TODO:設定寵物是狗還是貓
-        Pet pet1 = new Pet(500,50);
+        Pet pet1 = new Pet(500,60);
         this.p1 = pet1;
         this.world = new World(new PetCollisionHandler(), stage, pet1);
         resume();
