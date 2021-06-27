@@ -1,13 +1,18 @@
 package objects;
 
-import model.Prop;
 import state.Stop;
-import utils.ImageStateUtils;
 import state.Unstoppable;
+import model.Prop;
+import utils.ImageStateUtils;
+import java.awt.*;
+import java.lang.*;
+import model.Sprite;
+import java.awt.image.BufferedImage;
+import pet.Pet;
 
 public class Hydrant extends Prop{
     //TODO: 等陳奕瑄給圖
-    private Image image = null;
+    private BufferedImage image = null;
     private int hpDamage = 50;
     public Hydrant(){
         this.image = new ImageStateUtils().getImage("assets/hydrant/hydrant.png");
@@ -18,7 +23,7 @@ public class Hydrant extends Prop{
     
     
     public void render(Graphics g){
-        Rectangle range = this.getRange()
+        Rectangle range = this.getRange();
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
     }
 

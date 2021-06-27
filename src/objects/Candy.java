@@ -2,7 +2,12 @@ package objects;
 
 import model.Prop;
 import utils.ImageStateUtils;
-
+import java.awt.*;
+import java.lang.*;
+import model.Sprite;
+import java.awt.image.BufferedImage;
+import pet.Pet;
+ 
 public class Candy extends Prop{
     //TODO: 等陳奕瑄給圖
     private BufferedImage image;
@@ -21,7 +26,7 @@ public class Candy extends Prop{
 
     public void render(Graphics g){
         //只有(isRemoved == false) 才會呼叫到這個函式
-        Rectangle range = this.getRange()
+        Rectangle range = this.getRange();
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
         
     }
