@@ -24,7 +24,7 @@ public class StageEasy1 extends Stage{
             addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
         }
         // Leyna
-        this.background = new ImageStateUtils().getImage("assets/background/background.png");
+        setBackground( new ImageStateUtils().getImage("assets/background/background.png") );
 
     }
 }
