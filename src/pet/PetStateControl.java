@@ -2,6 +2,7 @@
 package pet;
 import state.State;
 import state.*;
+import java.lang.*;
 
 public class PetStateControl{
     //private int lower_speed = 5; // 用前面的速度
@@ -16,11 +17,12 @@ public class PetStateControl{
         return this.state;
     }
     public int update_speed(int speed){
-        if(this.state instanceof Unstoppable){
-            return speed/5;
-        }
-        else if(this.state instanceof Stop){
+
+        if(this.state instanceof Stop){
             return this.stopping_speed;
+        }
+        else if(this.state instanceof Unstoppable){
+            return speed/3;
         }
         else{
             return speed;

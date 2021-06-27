@@ -34,6 +34,7 @@ public class Pet extends HealthPointSprite {
     private BufferedImage image;
     public ArrayList<String> propList = new ArrayList<String>();
     private int bag_volume = 2;
+    private int speedRemainTime;
     public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
         this.petName = petName;
@@ -90,10 +91,15 @@ public class Pet extends HealthPointSprite {
     public int getSpeed(){  //x方向 
         return this.nowSpeed;
     }
+    public void setSpeedAndRemainTime(int speed, int remainTime){
+        this.normalSpeed = speed;
+        this.nowSpeed = speed;
+        this.speedRemainTime = remainTime;
+    }
     /////
 
     public void jump(){ // deal with stop 
-        if(this.nowstate instanceof Run){
+        if(this.nowstate instanceof Run || this.nowstate instanceof UnstoppableRun){
             //System.out.println("call jump");
             this.nowVy = -jump_velocity;
         }

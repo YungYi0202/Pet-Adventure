@@ -1,16 +1,16 @@
 package state;
 import pet.Pet;
-public class UnstoppableRun extends State implements Unstoppable {
+public class UnstoppableSlide extends State implements Unstoppable {
     //private int remainTime;
 	private String petName;
-    public UnstoppableRun(int n,String petName) {
+    public UnstoppableSlide(int n,String petName) {
 	this.petName = petName;
-	this.is = new ImageRun(this.petName);
+	this.is = new ImageSlide(this.petName); //?
 	remainTime = n;
     }
-    public UnstoppableRun(String petName) {
+    public UnstoppableSlide(String petName) {
 	this.petName = petName;	
-	this.is = new ImageRun(this.petName);
+	this.is = new ImageSlide(this.petName); //?
 	remainTime = 300;
     }
     public int getRemainTime() {
