@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import views.GameView;
 import javax.swing.*;
+//import javax.swing.plaf.multi.MultiComboBoxUI;
 //import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +23,7 @@ public class Menu{
     private int defaultPetIndex = 0;
     private String selectedPet = petChoices[defaultPetIndex];
 
-    private JButton playButton = new JButton("Play");
+    private JButton playButton = new JButton("Start (S)");
     
     private String[] levelChoices = { "Easy","Medium", "Hard" };
     private JComboBox<String> levelMenu = new JComboBox<String>(levelChoices);
@@ -39,15 +40,27 @@ public class Menu{
         petMenu.setVisible(true);
         petMenu.addActionListener(new PetMenuListener(this));
         petMenu.setFocusable(false);
+        //petMenu.setSize(new Dimension(150,100));
+        System.out.printf("%d, %d\n", petMenu.getPreferredSize().width, petMenu.getPreferredSize().height);
+        //petMenu.setPreferredSize(new Dimension(150, 100));
+        
+        petMenu.setBounds(150,400,150,100); 
+        //petMenu.setFont(new Font("Utopia", Font.BOLD, 40));
 
         playButton.setFocusable(false);
-        //playButton.setUI(new StyledButtonUI());
+        playButton.setUI(new StyledButtonUI(255,182,25));
         playButton.addActionListener(new PlayButtonListener(this));
+        //playButton.setPreferredSize(new Dimension(200, 100));
+        playButton.setBounds(400, 400, 200, 100);
+        playButton.setFont(new Font("Utopia", Font.BOLD, 40));
 
         levelMenu.setSelectedIndex(defaultLevelIndex);
         levelMenu.setVisible(true);
         levelMenu.addActionListener(new LevelMenuListener(this));
         levelMenu.setFocusable(false);
+        levelMenu.setBounds(700, 400, 150, 100);
+        //levelMenu.setPreferredSize(new Dimension(200, 100));
+        //levelMenu.setFont(new Font("Utopia", Font.BOLD, 40));
 
         // loadingWindow.add(new JLabel("Loading..."));
         // loadingWindow.setVisible(true);

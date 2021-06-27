@@ -100,9 +100,10 @@ public class GameView extends JFrame {
         private boolean menuHasRendered = false;
         private boolean pauseMenuHasRendered = false;
         public Canvas(Game game){
-            this.pauseMenu = new PauseMenu(game, this);
-            this.menu = new Menu(game, this);
             //this.pauseMenu = new PauseMenu(game, this);
+            this.setLayout(null);
+            this.menu = new Menu(game, this);
+            this.pauseMenu = new PauseMenu(game, this);
             menu.loadToPanel(); 
             pauseMenu.loadToPanel();
         }
@@ -135,6 +136,9 @@ public class GameView extends JFrame {
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
             if(state == STATE.GAME){    
+                
+                g.setColor(Color.WHITE); // paint background with all white
+                g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
                 menuHasRendered = false; 
                 pauseMenuHasRendered = false;
                 //menu.removeFromPanel();
@@ -143,12 +147,18 @@ public class GameView extends JFrame {
             }
             else if(state == STATE.MENU && menuHasRendered == false){
                 //System.out.printf("paintComponent: STATE.MENU\n");
+                g.setColor(Color.WHITE); // paint background with all white
+                g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
+                
                 pauseMenuHasRendered = false;
                 this.removeAll();
                 menu.loadToPanel();
                 menuHasRendered = true; 
             }else if(state == STATE.PAUSE && pauseMenuHasRendered == false){
-                System.out.println("in heereree");
+                world.render(g);
+                g.setColor(PauseMenu.backgroundColor); // paint background with all white
+                g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+                
                 menuHasRendered = false; 
                 this.removeAll();
                 pauseMenu.loadToPanel();
