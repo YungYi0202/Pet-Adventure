@@ -20,7 +20,10 @@ public class TutorialPage{
     private JButton skipButton = new JButton("Skip (S)");
     private JLabel title =  new JLabel("Tutorial", SwingConstants.CENTER);
     private JLabel restTime = new JLabel("Close in 5 seconds", SwingConstants.CENTER);
-    
+    private JLabel line1 = new JLabel("* Press UP to jump", SwingConstants.LEFT);
+    private JLabel line2 = new JLabel("* Press DOWN to slide", SwingConstants.LEFT);
+    private JLabel line3 = new JLabel("* Press S to pause the game", SwingConstants.LEFT);
+
     // private JPanel loadingWindow = new JPanel();
     
     public TutorialPage(Game game, JPanel panel){
@@ -28,19 +31,31 @@ public class TutorialPage{
         this.panel = panel;
 
         title.setFocusable(false);
-        title.setBounds(350, 150, 300, 120);
+        title.setBounds(350, 100, 300, 120);
         title.setFont(new Font("Utopia", Font.BOLD, 50));
 
         restTime.setFocusable(false);
-        restTime.setBounds(250, 300, 500, 100);
+        restTime.setBounds(250, 370, 500, 100);
         restTime.setFont(new Font("Utopia", Font.BOLD, 30));
         
 
         skipButton.setFocusable(false);
         skipButton.setUI(new StyledButtonUI(255,182,25));
         skipButton.addActionListener(new SkipButtonListener(this));
-        skipButton.setBounds(400, 400, 200, 100);
+        skipButton.setBounds(400, 470, 200, 80);
         skipButton.setFont(new Font("Utopia", Font.BOLD, 40));
+
+        line1.setFocusable(false);
+        line1.setBounds(250, 220, 500, 50);
+        line1.setFont(new Font("Utopia", Font.BOLD, 30));
+
+        line2.setFocusable(false);
+        line2.setBounds(250, 270, 500, 50);
+        line2.setFont(new Font("Utopia", Font.BOLD, 30));
+
+        line3.setFocusable(false);
+        line3.setBounds(250, 320, 500, 50);
+        line3.setFont(new Font("Utopia", Font.BOLD, 30));
 
     }
 
@@ -49,12 +64,18 @@ public class TutorialPage{
         panel.add(skipButton);
         restTime.setText("Close in " + String.valueOf(time) + " seconds" );
         panel.add(restTime);
+        panel.add(line1);
+        panel.add(line2);
+        panel.add(line3);
         
     }
     public void removeFromPanel(){
         panel.remove(title);
         panel.remove(skipButton);
         panel.remove(restTime);
+        panel.remove(line1);
+        panel.remove(line2);
+        panel.remove(line3);
     }
     
     public void gameResume(){
