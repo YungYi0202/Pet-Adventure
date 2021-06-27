@@ -104,6 +104,9 @@ public class Pet extends HealthPointSprite {
             this.nowstate = new Slide(this.petName);
             this.increaseLocationY(100);
         }
+        else if(this.nowstate instanceof Slide){
+            this.nowstate = new Slide(this.petName);
+        }
     }
     public void Vy_update(){ // gravity
         //if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
