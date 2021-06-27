@@ -41,7 +41,7 @@ public class Menu{
         petMenu.addActionListener(new PetMenuListener(this));
         petMenu.setFocusable(false);
         //petMenu.setSize(new Dimension(150,100));
-        System.out.printf("%d, %d\n", petMenu.getPreferredSize().width, petMenu.getPreferredSize().height);
+        //System.out.printf("%d, %d\n", petMenu.getPreferredSize().width, petMenu.getPreferredSize().height);
         //petMenu.setPreferredSize(new Dimension(150, 100));
         
         petMenu.setBounds(150,400,150,100); 
@@ -120,7 +120,7 @@ class PlayButtonListener implements  ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        System.out.printf( "playButton is clicked\n" );
+        //System.out.printf( "startButton is clicked\n" );
         menu.gameNewStart();
     }
 }
