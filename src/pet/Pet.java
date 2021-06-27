@@ -101,7 +101,6 @@ public class Pet extends HealthPointSprite {
     public void slide(){
         if(this.nowstate instanceof Run){
             setnormalY();
-            System.out.printf("call slide + %d\n",this.normalY);
             this.nowstate = new Slide(this.petName);
             this.increaseLocationY(100);
         }
@@ -117,7 +116,7 @@ public class Pet extends HealthPointSprite {
 
         Vy_update();
         this.nowstate = controller.update(this,this.nowstate);
-        System.out.println(this.nowstate); 
+        //System.out.println(this.nowstate); 
         this.increaseLocationY(this.nowVy);
         //System.out.println(this.nowVy);
         this.nowSpeed = controller.update_speed(this.normalSpeed);

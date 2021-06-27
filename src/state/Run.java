@@ -8,7 +8,7 @@ public class Run extends State {
     }
     public State getNext(Pet s) {
 	is.update();
-    System.out.println(s.getLocation().y);
+    //System.out.println(s.getLocation().y);
 	if (s.getVy() < 0){
 	    return new Jump(this.petName);
     }

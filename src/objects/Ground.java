@@ -15,7 +15,6 @@ public class Ground extends Sprite {
     }
     @Override
     public void collideWith(Sprite s) {
-    System.out.println("dealing");
 	Pet p = null;
 	if (s instanceof Pet)
 	    p = (Pet) s;
