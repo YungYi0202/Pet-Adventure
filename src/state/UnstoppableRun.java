@@ -7,7 +7,8 @@ public class UnstoppableRun extends State implements Unstoppable {
 	this.petName = petName;
 	remainTime = n;
     }
-    public UnstoppableRun() {
+    public UnstoppableRun(String petName) {
+	this.petName = petName;	
 	remainTime = 100;
     }
     public int getRemainTime() {
@@ -15,11 +16,11 @@ public class UnstoppableRun extends State implements Unstoppable {
     }
     public State getNext(Pet s) {
 	is.update();
-	if (--remainTime <= 0 && s.getVy() == 0)
+	if (--remainTime <= 0 && s.getVy() >= 0)
 	    return new Run(this.petName);
 	if (remainTime <= 0)
 	    return new Jump(this.petName);
-	if (s.getVy() != 0)
+	if (s.getVy() < 0)
 	    return new UnstoppableJump(remainTime,this.petName);
 	return this;
     }

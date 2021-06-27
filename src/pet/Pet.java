@@ -29,7 +29,7 @@ public class Pet extends HealthPointSprite {
     private int normalSpeed; // x方向, normal = 100
     private int nowSpeed;
     private int nowVy = 0;
-    private int gravity = 5;
+    private int gravity = 2;
     private final PetStateControl controller;
     private BufferedImage image;
     public ArrayList<String> propList = new ArrayList<String>();
@@ -92,17 +92,17 @@ public class Pet extends HealthPointSprite {
     }
     /////
 
-    public void jump(){
+    public void jump(){ // deal with stop 
         if(this.nowstate instanceof Run){
             //System.out.println("call jump");
             this.nowVy = -jump_velocity;
         }
     }
-    public void slide(){
+    public void slide(){ // deal with stop 
         if(this.nowstate instanceof Run){
             setnormalY();
             this.nowstate = new Slide(this.petName);
-            this.increaseLocationY(100);
+            this.increaseLocationY(50);
         }
         else if(this.nowstate instanceof Slide){
             this.nowstate = new Slide(this.petName);

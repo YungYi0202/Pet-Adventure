@@ -6,7 +6,7 @@ public class Stop extends State implements Unstoppable {
 	remainTime = n;
     }
     public Stop() {
-	remainTime = 40;    //??
+	remainTime = 20;    //??
     }
     public int getRemainTime() {
 	return remainTime;

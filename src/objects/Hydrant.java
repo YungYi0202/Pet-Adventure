@@ -33,7 +33,7 @@ public class Hydrant extends Prop{
             if( pet.getState() instanceof Unstoppable) return;
             pet.costHp(hpDamage);
             //TODO: 確認彭光湞有寫對應的State
-            pet.setState(new Stop());
+            pet.setState(new Stop()); // stop( pet.petName)
         }
     }
 

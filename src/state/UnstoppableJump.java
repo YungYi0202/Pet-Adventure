@@ -7,7 +7,8 @@ public class UnstoppableJump extends State implements Unstoppable {
     this.petName = petName;
 	remainTime = n;
     }
-    public UnstoppableJump() {
+    public UnstoppableJump(String petName) {
+    this.petName = petName;
 	remainTime = 100;
     }
     public int getRemainTime() {
