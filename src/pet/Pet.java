@@ -23,6 +23,7 @@ public class Pet extends HealthPointSprite {
     private int score = 0;
     private int damage = 100;
     private int Pet_HP;
+    public String petName;
     private int jump_velocity;
     private State nowstate;
     private int normalSpeed; // x方向, normal = 100
@@ -33,16 +34,12 @@ public class Pet extends HealthPointSprite {
     private BufferedImage image;
     public ArrayList<String> propList = new ArrayList<String>();
     private int bag_volume = 2;
-    public Pet(int Pet_HP,int jump_velocity){  // 已改成直接傳入
+    public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
-        /* shape = (size , body_offset, body_size) 
-        ** size = 圖片的大小
-        ** body_offset = 身體的左上角
-        ** body_size = 身體的長寬範圍
-        */
+        this.petName = petName;
         this.Pet_HP = Pet_HP;
         this.jump_velocity = jump_velocity;
-        State running = new Run();
+        State running = new Run(this.petName);
         this.nowstate = running;
         this.image = this.nowstate.getImage(); 
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
@@ -101,6 +98,14 @@ public class Pet extends HealthPointSprite {
             this.nowVy = -jump_velocity;
         }
     }
+    public void slide(){
+        if(this.nowstate instanceof Run){
+            setnormalY();
+            System.out.printf("call slide + %d\n",this.normalY);
+            this.nowstate = new Slide(this.petName);
+            this.increaseLocationY(100);
+        }
+    }
     public void Vy_update(){ // gravity
         //if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
         this.nowVy += this.gravity;
@@ -109,6 +114,7 @@ public class Pet extends HealthPointSprite {
     }
     @Override 
     public void update(){ 
+
         Vy_update();
         this.nowstate = controller.update(this,this.nowstate);
         System.out.println(this.nowstate); 
@@ -133,8 +139,8 @@ public class Pet extends HealthPointSprite {
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
 
-
     }
+
     private void delay(long ms) {
         try {
             Thread.sleep(ms);
@@ -160,3 +166,8 @@ public class Pet extends HealthPointSprite {
     }
 }
 
+/* shape = (size , body_offset, body_size) 
+        ** size = 圖片的大小
+        ** body_offset = 身體的左上角
+        ** body_size = 身體的長寬範圍
+        */

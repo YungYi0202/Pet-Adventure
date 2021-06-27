@@ -17,6 +17,8 @@ public class StageEasy1 extends Stage{
         //TODO: 把該有的Sprite加進去
         for(int i = 0 ; i < 50; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
+            //addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
+            //addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
         }
         // Leyna
         this.background = new ImageStateUtils().getImage("assets/background/background.png");

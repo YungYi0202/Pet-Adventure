@@ -148,7 +148,7 @@ public class GameView extends JFrame {
                 menu.loadToPanel();
                 menuHasRendered = true; 
             }else if(state == STATE.PAUSE && pauseMenuHasRendered == false){
-                System.out.println("in heereree");
+                //System.out.println("in heereree");
                 menuHasRendered = false; 
                 this.removeAll();
                 pauseMenu.loadToPanel();

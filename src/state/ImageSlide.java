@@ -13,16 +13,16 @@ import utils.ImageStateUtils;
  * @author - Leyna
  */
  
-public class ImageRun extends ImageState{
-    public ImageRun(String petName){
+public class ImageSlide extends ImageState{
+    public ImageSlide(String petName){
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        for(int i = 1; i <= 5; ++i){
-            String path = "assets/"+ petName +"/run/"+ petName +"_" + i + ".png";
+        //for(int i = 14; i <= 16; ++i){
+        String path = "assets/"+ petName +"/slide/"+ petName + "_" + 15 + ".png";
             
-            // frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
-            addFrame(new ImageStateUtils().getImage(path), 5);
-        }
+        frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
+            //addFrame(new ImageStateUtils().getImage(path), 3);
+        //}
     }
 }

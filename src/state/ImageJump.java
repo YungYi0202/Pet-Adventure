@@ -14,14 +14,14 @@ import utils.ImageStateUtils;
  */
 
 public class ImageJump extends ImageState{
-    public ImageJump(){
+    public ImageJump(String petName){
         totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         // add frames
         for(int i = 6; i <= 12; ++i){
             // String path = "../../assets/puppy/jump/puppy_" + i + ".png";
-            String path = "assets/puppy/jump/puppy_" + i + ".png";
+            String path = "assets/"+petName+"/jump/"+petName+"_" + i + ".png";
             addFrame(new ImageStateUtils().getImage(path), 5);
         }
     }

@@ -18,7 +18,8 @@ public abstract class ImageState{
 	long animTime; // current time in animation state
 	long totalDuration; // length of entire animation state
 	long defaultAnimLength;
-
+    String petName;
+    
 	public ImageState addFrame(BufferedImage image, long duration) {
 		totalDuration += duration;
 		frames.add(new ImageFrame(image, totalDuration));
