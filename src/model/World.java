@@ -109,6 +109,7 @@ public class World {
     // Actually, directly couple your model with the class "java.awt.Graphics" is not a good design
     // If you want to decouple them, create an interface that encapsulates the variation of the Graphics.
     public void render(Graphics g) {
+        stage.backgroundRender(g);
         for (Sprite sprite : sprites) {
             sprite.render(g);
         }

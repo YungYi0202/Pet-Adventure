@@ -21,7 +21,7 @@ import views.GameView;
 
 public abstract class Stage {
     //leyna changed to public
-    public Image background; //目前的作法background是在GameView裡畫的，作法待更新
+    private Image background; //目前的作法background是在GameView裡畫的，作法待更新
     private List<Position> positionList = new CopyOnWriteArrayList<Position>();
     private int index = 0;
     private int speed = 20;
@@ -33,7 +33,11 @@ public abstract class Stage {
         this.speed = speed;
     }
     
-    public Image getBackground(){return this.background;}
+    //public Image getBackground(){return this.background;}
+    public void backgroundRender(Graphics g){
+        g.drawImage(this.background, 0, 0, GameView.WIDTH, GameView.HEIGHT, null);
+    }
+
     public int getSpeed(){return this.speed;}
    
     //呼叫時要直接new 一個 sprite
