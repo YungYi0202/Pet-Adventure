@@ -29,7 +29,7 @@ public class Pet extends HealthPointSprite {
     private int normalSpeed; // x方向, normal = 100
     private int nowSpeed;
     private int nowVy = 0;
-    private int gravity = 5;
+    private int gravity = 2;
     private final PetStateControl controller;
     private BufferedImage image;
     public ArrayList<String> propList = new ArrayList<String>();

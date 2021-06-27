@@ -58,7 +58,7 @@ public abstract class GameLoop {
                 case TUTORIAL:
                     //System.out.printf("GameLoop: STATE.TUTORIAL TimeCount:%d\n", tutorialTimeCount);
                     if(tutorialTimeCount % 67 == 0){
-                        view.renderTutorialPage( 5 - tutorialTimeCount/67 );
+                        view.renderTutorialPage( 5 - tutorialTimeCount/67 , getWorld());
                     }
                     tutorialTimeCount++;
                     if(tutorialTimeCount >= 335){
@@ -128,7 +128,7 @@ public abstract class GameLoop {
         void render(World world);
         void renderMenu();
         void renderPauseMenu();
-        void renderTutorialPage(int time);
+        void renderTutorialPage(int time, World world);
     }
 
     public boolean stateIsGAME(){return state==STATE.GAME;}

@@ -48,9 +48,10 @@ public class PauseMenu{
         panel.add(title);
         panel.add(exitButton);
         panel.add(resumeButton);
-        System.out.printf("PauseMenu: loadToPanel\n");
+        //System.out.printf("PauseMenu: loadToPanel\n");
    }
     public void removeFromPanel(){
+        panel.remove(title);
         panel.remove(exitButton);
         panel.remove(resumeButton);
     }

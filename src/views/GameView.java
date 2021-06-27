@@ -49,7 +49,7 @@ public class GameView extends JFrame {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 if(game.stateIsGAME()){
-                    System.out.printf("keyPressed: stateIsGAME\n");
+                    //System.out.printf("keyPressed: stateIsGAME\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_UP:
                         game.jumpPet(P1);
@@ -64,7 +64,7 @@ public class GameView extends JFrame {
                     }
                 }
                 else if(game.stateIsMENU()){
-                    System.out.printf("keyPressed: stateIsMENU\n");
+                    //System.out.printf("keyPressed: stateIsMENU\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.newStart();
@@ -72,7 +72,7 @@ public class GameView extends JFrame {
                     }
                 }
                 else if(game.stateIsPAUSE()){
-                    System.out.printf("keyPressed: stateIsPAUSE\n");
+                    //System.out.printf("keyPressed: stateIsPAUSE\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_E:
                         game.exit();
@@ -83,7 +83,7 @@ public class GameView extends JFrame {
                     }
                 }
                 else if(game.stateIsTUTORIAL()){
-                    System.out.printf("keyPressed: stateIsPAUSE\n");
+                    //System.out.printf("keyPressed: stateIsPAUSE\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.resume();
@@ -146,11 +146,12 @@ public class GameView extends JFrame {
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
         @Override
-        public void renderTutorialPage(int time) {
+        public void renderTutorialPage(int time,World world) {
             //System.out.printf("renderMenu\n");
             state = STATE.TUTORIAL;
             tutorialPageHasRendered = false;
             tutorialPageCountDownTime = time;
+            this.world = world;
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
 
@@ -187,7 +188,7 @@ public class GameView extends JFrame {
                 pauseMenuHasRendered = true;
             }else if(state == STATE.TUTORIAL && tutorialPageHasRendered == false){
                 //System.out.printf("world.render(g);\n");
-                //world.render(g);
+                world.render(g);
                 g.setColor(PauseMenu.backgroundColor); // paint background with all white
                 g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
 
