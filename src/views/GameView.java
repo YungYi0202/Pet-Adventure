@@ -6,6 +6,7 @@ import model.Sprite;
 import model.World;
 import menu.Menu;
 import menu.PauseMenu;
+import menu.TutorialPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,6 +82,14 @@ public class GameView extends JFrame {
                         break;
                     }
                 }
+                else if(game.stateIsTUTORIAL()){
+                    System.out.printf("keyPressed: stateIsPAUSE\n");
+                    switch (keyEvent.getKeyCode()) {
+                    case KeyEvent.VK_S:
+                        game.resume();
+                        break;
+                    }
+                }
                 
             }
 
@@ -95,17 +104,24 @@ public class GameView extends JFrame {
         private World world;
         private Menu menu;
         private PauseMenu pauseMenu;
-        private enum STATE {MENU, GAME, PAUSE};
+        private TutorialPage tutorialPage;
+        private int tutorialPageCountDownTime;
+
+        private enum STATE {MENU, GAME, PAUSE, TUTORIAL};
         private STATE state;
         private boolean menuHasRendered = false;
         private boolean pauseMenuHasRendered = false;
+        private boolean tutorialPageHasRendered = false;
+        
         public Canvas(Game game){
             //this.pauseMenu = new PauseMenu(game, this);
             this.setLayout(null);
             this.menu = new Menu(game, this);
             this.pauseMenu = new PauseMenu(game, this);
+            this.tutorialPage = new TutorialPage(game, this);
             menu.loadToPanel(); 
             pauseMenu.loadToPanel();
+            tutorialPage.loadToPanel(5);
         }
 
         @Override
@@ -119,12 +135,22 @@ public class GameView extends JFrame {
         public void renderMenu() {
             //System.out.printf("renderMenu\n");
             state = STATE.MENU;
+            menuHasRendered = false; 
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
         @Override
         public void renderPauseMenu() {
             //System.out.printf("renderMenu\n");
             state = STATE.PAUSE;
+            pauseMenuHasRendered = false;
+            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
+        }   
+        @Override
+        public void renderTutorialPage(int time) {
+            //System.out.printf("renderMenu\n");
+            state = STATE.TUTORIAL;
+            tutorialPageHasRendered = false;
+            tutorialPageCountDownTime = time;
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
 
@@ -135,33 +161,40 @@ public class GameView extends JFrame {
             g.setColor(Color.WHITE); // paint background with all white
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
-            if(state == STATE.GAME){    
+            if(state == STATE.GAME){  
+                this.removeAll();
+
                 g.setColor(Color.WHITE); // paint background with all white
                 g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
-                
-                menuHasRendered = false; 
-                pauseMenuHasRendered = false;
-                //menu.removeFromPanel();
-                this.removeAll();
+            
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
             else if(state == STATE.MENU && menuHasRendered == false){
+                this.removeAll();
+                
                 g.setColor(Color.WHITE); // paint background with all white
                 g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
                 
-                pauseMenuHasRendered = false;
-                this.removeAll();
                 menu.loadToPanel();
                 menuHasRendered = true; 
             }else if(state == STATE.PAUSE && pauseMenuHasRendered == false){
+                this.removeAll();
                 world.render(g);
                 g.setColor(PauseMenu.backgroundColor); // paint background with all white
                 g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
                 
-                menuHasRendered = false; 
-                this.removeAll();
                 pauseMenu.loadToPanel();
                 pauseMenuHasRendered = true;
+            }else if(state == STATE.TUTORIAL && tutorialPageHasRendered == false){
+                //System.out.printf("world.render(g);\n");
+                //world.render(g);
+                g.setColor(PauseMenu.backgroundColor); // paint background with all white
+                g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+
+                this.removeAll();
+                tutorialPage.loadToPanel(tutorialPageCountDownTime);
+                tutorialPageHasRendered = true;
+            
             }
         }
 

@@ -16,7 +16,8 @@ public abstract class GameLoop {
     public Thread gameThread;
     private boolean menuHasRendered = false;
     private boolean pauseMenuHasRendered = false;
-    private enum STATE {MENU, GAME, PAUSE};
+    private int tutorialTimeCount = 0;
+    private enum STATE {MENU, GAME, PAUSE, TUTORIAL};
     private STATE state = STATE.MENU;
 
     public void setView(View view) {
@@ -40,6 +41,8 @@ public abstract class GameLoop {
                     }
                     break;
                 case GAME:
+                    //System.out.printf("GameLoop: STATE.GAME\n");
+                    tutorialTimeCount = 0;
                     menuHasRendered = false; //busy wait
                     pauseMenuHasRendered = false;
                     World world = getWorld();
@@ -52,21 +55,18 @@ public abstract class GameLoop {
                         pauseMenuHasRendered = true;
                     }
                     break;
-
+                case TUTORIAL:
+                    //System.out.printf("GameLoop: STATE.TUTORIAL TimeCount:%d\n", tutorialTimeCount);
+                    if(tutorialTimeCount % 67 == 0){
+                        view.renderTutorialPage( 5 - tutorialTimeCount/67 );
+                    }
+                    tutorialTimeCount++;
+                    if(tutorialTimeCount >= 335){
+                        resume();
+                    }
+                    break;
             }
 
-            // if(state == STATE.MENU && menuHasRendered == false){  //busy wait
-            //     view.render(this.getMenu());
-            //     menuHasRendered = true;
-            // }
-            // while (state == STATE.GAME) {
-            //     menuHasRendered = false; //busy wait
-            //     World world = getWorld();
-            //     world.update();
-            //     view.render(world);
-            //     delay(15);
-            // }
-            
             delay(15);
         }
         
@@ -103,8 +103,11 @@ public abstract class GameLoop {
         //     gameThread.notify();
         //     System.out.printf("gameThread.notify\n");
         // }
-        System.out.printf("resume\n");
         state = STATE.GAME;
+    }
+
+    public void resumeWithTutorial(){
+        state = STATE.TUTORIAL;
     }
 
     protected void delay(long ms) {
@@ -125,9 +128,11 @@ public abstract class GameLoop {
         void render(World world);
         void renderMenu();
         void renderPauseMenu();
+        void renderTutorialPage(int time);
     }
 
     public boolean stateIsGAME(){return state==STATE.GAME;}
     public boolean stateIsMENU(){return state==STATE.MENU;}
     public boolean stateIsPAUSE(){return state==STATE.PAUSE;}
+    public boolean stateIsTUTORIAL(){return state==STATE.TUTORIAL;}
 }

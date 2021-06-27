@@ -30,7 +30,8 @@ public class Game extends GameLoop {
         Pet pet1 = new Pet(500,60,"puppy");
         this.p1 = pet1;
         this.world = new World(new PetCollisionHandler(), stage, pet1);
-        resume();
+        System.out.printf("Game: world exists\n");
+        resumeWithTutorial();
     }
 
     //在 GameView.java 的 addKeyListener{}裡需要用到，這邊只會寫鍵盤可以操控的Pet行為
