@@ -1,8 +1,10 @@
 package state;
 import pet.Pet;
 public class Jump extends State {
-    public Jump() {
-	this.is = new ImageJump();
+    private String petName;
+    public Jump(String petName) {
+    this.petName = petName;
+	this.is = new ImageJump(petName);
     }
     public State getNext(Pet s) {
 	is.update();

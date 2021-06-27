@@ -14,13 +14,15 @@ import utils.ImageStateUtils;
  */
  
 public class ImageSlide extends ImageState{
-    public ImageSlide(){
+    public ImageSlide(String petName){
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        for(int i = 13; i <= 17; ++i){
-            String path = "assets/puppy/slide/puppy_" + i + ".png";
-            addFrame(new ImageStateUtils().getImage(path), 5);
-        }
+        //for(int i = 14; i <= 16; ++i){
+        String path = "assets/"+ petName +"/slide/"+ petName + "_" + 15 + ".png";
+            
+        frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
+            //addFrame(new ImageStateUtils().getImage(path), 3);
+        //}
     }
 }

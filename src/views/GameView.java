@@ -136,9 +136,9 @@ public class GameView extends JFrame {
             g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
             if(state == STATE.GAME){    
-                
                 g.setColor(Color.WHITE); // paint background with all white
                 g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
+                
                 menuHasRendered = false; 
                 pauseMenuHasRendered = false;
                 //menu.removeFromPanel();
@@ -146,7 +146,6 @@ public class GameView extends JFrame {
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
             else if(state == STATE.MENU && menuHasRendered == false){
-                //System.out.printf("paintComponent: STATE.MENU\n");
                 g.setColor(Color.WHITE); // paint background with all white
                 g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
                 

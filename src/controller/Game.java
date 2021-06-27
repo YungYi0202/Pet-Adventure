@@ -27,7 +27,7 @@ public class Game extends GameLoop {
         Menu menu = this.getMenu();
         Stage stage = StageManager.getStage( menu.getSelectedLevel() );
         //TODO:設定寵物是狗還是貓
-        Pet pet1 = new Pet(500,60);
+        Pet pet1 = new Pet(500,60,"puppy");
         this.p1 = pet1;
         this.world = new World(new PetCollisionHandler(), stage, pet1);
         resume();
@@ -40,7 +40,7 @@ public class Game extends GameLoop {
     }
 
     public void slidePet(int playerNumber){
-        // getPlayer(playerNumber).slide();
+        getPlayer(playerNumber).slide();
     }
 
     //TODO: 使用道具 

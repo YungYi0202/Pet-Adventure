@@ -12,6 +12,8 @@ import model.SpriteShape;
 public abstract class Sprite {
     protected World world;
     protected Point location = new Point();
+    //private Point normalLocation = new Point(); 
+    public int normalY;
     protected SpriteShape shape = new SpriteShape(new Dimension(), new Dimension(), new Dimension() ); 
 
     public abstract void update();
@@ -32,8 +34,17 @@ public abstract class Sprite {
     public void setWorld(World world) {
         this.world = world;
     }
-
-    
+    /*public Point getNormalLocation(){
+        //this.location.move(this.normalLocation.x, this.normalLocation.y);
+        return this.normalLocation;
+    }*/
+    public void setnormalY(){
+        this.normalY = this.location.y;
+    }
+    public void backToNormalLocation(){
+        this.location.move(this.location.x, this.normalY);
+        //return normalLocation;
+    }
     public Point getLocation() {
         return location;
     }
@@ -41,6 +52,7 @@ public abstract class Sprite {
     //從Stage用getNewSprites加進world之後會被設定好
     public void setLocation(Point location) {
         this.location = location;
+        //this.normalY = location.y;
     }
 
     public void decreaseLocationX(int x){

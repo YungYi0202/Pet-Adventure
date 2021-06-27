@@ -1,13 +1,16 @@
 package state;
 import pet.Pet;
 public class Run extends State {
-    public Run() {
-	this.is = new ImageRun();
+    private String petName;
+    public Run(String petName) {
+    this.petName = petName;
+	this.is = new ImageRun(this.petName);
     }
     public State getNext(Pet s) {
 	is.update();
+    //System.out.println(s.getLocation().y);
 	if (s.getVy() < 0){
-	    return new Jump();
+	    return new Jump(this.petName);
     }
 	return this;
     }

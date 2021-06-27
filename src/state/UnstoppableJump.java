@@ -2,7 +2,9 @@ package state;
 import pet.Pet;
 public class UnstoppableJump extends State implements Unstoppable {
     private int remainTime;
-    public UnstoppableJump(int n) {
+    private String petName;
+    public UnstoppableJump(int n,String petName) {
+    this.petName = petName;
 	remainTime = n;
     }
     public UnstoppableJump() {
@@ -14,9 +16,9 @@ public class UnstoppableJump extends State implements Unstoppable {
     public State getNext(Pet s) {
 	is.update();
 	if (--remainTime <= 0)
-	    return new Jump();
+	    return new Jump(this.petName);
 	if (s.getVy() == 0)
-	    return new UnstoppableRun(remainTime);
+	    return new UnstoppableRun(remainTime,this.petName);
 	return this;	    
     }
     public State getCollide() {
