@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Comparator;
+import java.lang.Math.*;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
@@ -28,7 +29,7 @@ public abstract class Stage {
     private int index = 0;
     private int indexFg = 0;  // by Peng.
     private int speed = 20;
-
+    private int endAbsX = 0;
     
     public void setBackground(Image background){
         this.background = background;
@@ -44,6 +45,7 @@ public abstract class Stage {
     }
 
     public int getSpeed(){return this.speed;}
+    public int getEndAbsX(){return this.endAbsX;}
 
     // Peng
     public void addFarground(int x, int y, Sprite sprite){
@@ -56,17 +58,25 @@ public abstract class Stage {
     
     //呼叫時要直接new 一個 sprite
     public void addSprite(int x, int y, Sprite sprite){
-        positionList.add( new Position(x, y, sprite) );
+        addSprite(new Point(x,y), sprite);
+        // positionList.add( new Position(x, y, sprite) );
     }
+    //最後都會進來這個
     public void addSprite(Point posi, Sprite sprite){
+        if(endAbsX <= posi.x + sprite.getBodySize().width){
+            endAbsX = posi.x + sprite.getBodySize().width;
+        }
         positionList.add( new Position(posi, sprite) );
     }
 
     public void addSpriteToFirstFloor(int x, Sprite sprite){
-        positionList.add( new Position(x, getFirstFloorY() - sprite.getBodySize().height , sprite) );
+        addSprite(new Point(x, getFirstFloorY() - sprite.getBodySize().height), sprite);
+        // positionList.add( new Position(x, getFirstFloorY() - sprite.getBodySize().height , sprite) );
     }
+
     public void addSpriteToSecondFloor(int x, Sprite sprite){
-        positionList.add( new Position(x, getSecondFloorY() - sprite.getBodySize().height , sprite) );
+        addSprite(new Point(x, getSecondFloorY() - sprite.getBodySize().height), sprite);
+        // positionList.add( new Position(x, getSecondFloorY() - sprite.getBodySize().height , sprite) );
     }
 
     List<Sprite> getNewSprites(int cur_abs_x){
@@ -91,7 +101,7 @@ public abstract class Stage {
     List<Sprite> getNewFargrounds(int cur_abs_x){
         List<Sprite> ret = new CopyOnWriteArrayList<Sprite>();
         while(indexFg < fargroundList.size() && fargroundList.get(indexFg).getImageX() < cur_abs_x){
-            Position p = fargroundList.get(index);
+            Position p = fargroundList.get(indexFg);
 	    Sprite s = p.getSprite();
             
             //把x的絕對位置轉換為相對位置

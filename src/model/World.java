@@ -23,7 +23,11 @@ public class World {
     //以下是陳咏誼加的，可改
     private Stage stage;
     private int cur_abs_x = GameView.WIDTH;
+    //TODO:根據stage 設定結束
+    private int end_abs_x;
     private List<Pet> players = new CopyOnWriteArrayList<Pet>();
+    private Boolean gameOver = false;
+    private String result = "WIN";
 
     public World(CollisionHandler collisionHandler, Stage stage ,Sprite... players) {
         this.collisionHandler = collisionHandler;
@@ -32,12 +36,13 @@ public class World {
             player.setLocation(new Point( (int)(GameView.WIDTH * 0.1), stage.getFirstFloorY() - player.getBodySize().height ));
         }
         //addSprites(players);
+        this.end_abs_x = stage.getEndAbsX();
         setPlayers(players);
         addSprites(stage.getNewSprites(cur_abs_x));
 	
-	addFargrounds(stage.getNewFargrounds(cur_abs_x));  // Peng
+	    addFargrounds(stage.getNewFargrounds(cur_abs_x));  // Peng
 	
-	//System.out.printf("World: sprites list size = %d\n", sprites.size());
+	    //System.out.printf("World: sprites list size = %d\n", sprites.size());
         // 1P掌握視窗速度
         this.players.get(0).setSpeed(this.stage.getSpeed());
     }
@@ -53,9 +58,22 @@ public class World {
     public int getSpeed(){return this.players.get(0).getSpeed();}
 
     public void update() {
+        // Result is LOSE
+        // if(players.get(0).isDead()){
+        //     this.result = "LOSE";
+        //     this.gameOver = true;
+        //     return;
+        // }
+
         cur_abs_x += this.getSpeed();
 
-	// Peng
+        // Result is WIN
+        if(cur_abs_x >= end_abs_x){
+            this.gameOver = true;
+            return;
+        }
+
+	    // Peng
         for (Sprite fg : fargrounds) {
             fg.update();
             //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
@@ -63,7 +81,6 @@ public class World {
                 removeFarground(fg);
             }
         }
-
 
         for (Sprite sprite : sprites) {
             sprite.update();
@@ -89,7 +106,7 @@ public class World {
 
         // 加入新Sprites
         addSprites(stage.getNewSprites(cur_abs_x));
-	addFargrounds(stage.getNewFargrounds(cur_abs_x));
+	    addFargrounds(stage.getNewFargrounds(cur_abs_x));
     }
 
     // Peng
@@ -143,9 +160,10 @@ public class World {
     // If you want to decouple them, create an interface that encapsulates the variation of the Graphics.
     public void render(Graphics g) {
         stage.backgroundRender(g);
-	for (Sprite fg : fargrounds) {
-	    fg.render(g);
-	}
+        //Peng
+        for (Sprite fg : fargrounds) {
+            fg.render(g);
+        }
         for (Sprite sprite : sprites) {
             sprite.render(g);
         }
@@ -153,4 +171,7 @@ public class World {
             player.render(g);
         }
     }
+
+    public Boolean isGameOver(){return this.gameOver;}
+    public String getResult(){return this.result;}
 }
