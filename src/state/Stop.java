@@ -1,5 +1,7 @@
 package state;
 import pet.Pet;
+import java.lang.*;
+import java.awt.*;
 public class Stop extends State implements Unstoppable {
     //private int remainTime;
     private String petName;
@@ -7,7 +9,10 @@ public class Stop extends State implements Unstoppable {
     //this.is = new ImageStop(petName);
 	//remainTime = n;
     //}
-    public Stop(String petName) {
+    public Stop(Pet s,State nowstate,String petName) {
+    if(nowstate instanceof Slide){
+        s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
+    }
     this.petName = petName;
     this.is = new ImageStop(this.petName);
 	remainTime = 100;    //??

@@ -92,7 +92,6 @@ public class Pet extends HealthPointSprite {
         return this.nowSpeed;
     }
     public void setSpeedAndRemainTime(int speed, int remainTime){
-        this.normalSpeed = speed;
         this.nowSpeed = speed;
         this.speedRemainTime = remainTime;
     }
@@ -108,10 +107,18 @@ public class Pet extends HealthPointSprite {
         if(this.nowstate instanceof Run){
             setnormalY();
             this.nowstate = new Slide(this.petName);
-            this.increaseLocationY(50);
+            this.increaseLocationY(50); // 稍微下降
         }
         else if(this.nowstate instanceof Slide){
             this.nowstate = new Slide(this.petName);
+        }
+        else if(this.nowstate instanceof UnstoppableRun){
+            setnormalY();
+            this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName);
+            this.increaseLocationY(50);
+        } 
+        else if(this.nowstate instanceof UnstoppableSlide){
+            this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName);
         }
     }
     public void Vy_update(){ // gravity
