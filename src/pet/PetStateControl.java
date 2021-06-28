@@ -17,7 +17,6 @@ public class PetStateControl{
         return this.state;
     }
     public int update_speed(int speed){
-
         if(this.state instanceof Stop){
             return this.stopping_speed;
         }
