@@ -97,6 +97,10 @@ public class Pet extends HealthPointSprite {
         this.normalSpeed = speed;
         this.nowSpeed = speed;
     }
+    public void setNowSpeed(int speed){
+        this.normalSpeed = speed;
+        this.nowSpeed = speed;
+    }
     public int getSpeed(){  //x方向 
         return this.nowSpeed;
     }

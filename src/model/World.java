@@ -59,18 +59,26 @@ public class World {
 
     public void update() {
         // Result is LOSE
-        // if(players.get(0).isDead()){
-        //     this.result = "LOSE";
-        //     this.gameOver = true;
-        //     return;
-        // }
+        if(players.get(0).isDead()){
+            this.result = "LOSE";
+            this.gameOver = true;
+            return;
+        }
 
         cur_abs_x += this.getSpeed();
 
         // Result is WIN
-        if(cur_abs_x >= end_abs_x){
+        if(players.get(0).arriveEnd()){
             this.gameOver = true;
             return;
+        }
+        if(cur_abs_x + GameView.WIDTH >= end_abs_x){
+            //TODO: 楊鈞安要改，到結尾
+            players.get(0).setNowSpeed(0);
+        }
+
+        for(Pet player: players){
+            player.update();
         }
 
 	    // Peng
@@ -90,9 +98,6 @@ public class World {
             }
         }
         
-        for(Pet player: players){
-            player.update();
-        }
         //Collision Detection
         //不確定有沒有錯
         for(Pet from: players){
