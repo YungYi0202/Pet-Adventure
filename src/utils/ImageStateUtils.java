@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 public class ImageStateUtils {
 	
-	public BufferedImage getImage(String path) {
+	static public BufferedImage getImage(String path) {
 		BufferedImage img = null;
 		try {
 			//img = ImageIO.read(getClass().getResource(path));
@@ -23,7 +23,7 @@ public class ImageStateUtils {
 		return img;
 	}
 
-	public BufferedImage resize(BufferedImage image, double rate){
+	static public BufferedImage resize(BufferedImage image, double rate){
 		BufferedImage resizedImage = new BufferedImage((int)(image.getWidth() * rate), (int)(image.getHeight() * rate), image.getType());
 		Graphics2D graphics2D = resizedImage.createGraphics();
     	graphics2D.drawImage(image, 0, 0, (int)(image.getWidth() * rate), (int)(image.getHeight() * rate), null);

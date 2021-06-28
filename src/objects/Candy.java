@@ -13,7 +13,8 @@ public class Candy extends Prop{
     private BufferedImage image;
     private int score = 30;
     public Candy(){
-        this.image = new ImageStateUtils().getImage("assets/candy/candy.png");
+        //this.image = new ImageStateUtils().getImage("assets/candy/candy.png");
+        this.image = ImageStateUtils.getImage("assets/candy/candy.png");
         int width = image.getWidth();
         int height = image.getHeight();
         setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));

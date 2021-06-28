@@ -21,7 +21,8 @@ public class ImageStop extends ImageState{
         //for(int i = 14; i <= 16; ++i){
         String path = "assets/"+ petName +"/run/"+ petName + "_" + 1 + ".png";
             
-        frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
+        // frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
+        frames.add(new ImageFrame(ImageStateUtils.getImage(path), 1));
             //addFrame(new ImageStateUtils().getImage(path), 3);
         //}
     }

@@ -19,6 +19,7 @@ public class ImageCandy extends ImageState{
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         String path = "../../assert/candy.png";
-        frames.add(new ImageStateUtils().getImage(path), i);
+        frames.add( ImageStateUtils.getImage(path), i);
+        // frames.add(new ImageStateUtils().getImage(path), i);
     }
 }

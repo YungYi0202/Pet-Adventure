@@ -23,7 +23,8 @@ public class ImageJump extends ImageState{
         for(int i = 6; i <= 12; ++i){
             // String path = "../../assets/puppy/jump/puppy_" + i + ".png";
             String path = "assets/"+petName+"/jump/"+petName+"_" + i + ".png";
-            addFrame(new ImageStateUtils().getImage(path), duration[i - 6]);
+            // addFrame(new ImageStateUtils().getImage(path), duration[i - 6]);
+            addFrame(ImageStateUtils.getImage(path), duration[i - 6]);
         }
     }
 }
