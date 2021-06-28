@@ -9,12 +9,12 @@ public class Stop extends State implements Unstoppable {
     //this.is = new ImageStop(petName);
 	//remainTime = n;
     //}
-    public Stop(Pet s,State nowstate,String petName) {
-    if(nowstate instanceof Slide){
-        s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
-    }
-    this.petName = petName;
-    this.is = new ImageStop(this.petName);
+    public Stop(Pet s, State nowstate,String petName) {
+	if(nowstate instanceof Slide){
+	    s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
+	}
+	this.petName = petName;
+	this.is = new ImageStop(this.petName);
 	remainTime = 60;    //??
     }
     public int getRemainTime() {

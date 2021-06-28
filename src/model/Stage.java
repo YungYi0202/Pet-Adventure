@@ -46,6 +46,9 @@ public abstract class Stage {
     public void addSprite(int x, int y, Sprite sprite){
         positionList.add( new Position(x, y, sprite) );
     }
+    public void addSprite(Point posi, Sprite sprite){
+        positionList.add( new Position(posi, sprite) );
+    }
 
     public void addSpriteToFirstFloor(int x, Sprite sprite){
         positionList.add( new Position(x, getFirstFloorY() - sprite.getBodySize().height , sprite) );
@@ -73,7 +76,7 @@ public abstract class Stage {
         return newSprites;
     }
 
-    public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.7); }
+    public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.75); }
     public int getSecondFloorY(){return (int)(GameView.HEIGHT * 0.4); }
 
     public void sortByX(){
