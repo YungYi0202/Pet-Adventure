@@ -22,10 +22,11 @@ import views.GameView;
 public abstract class Stage {
     //leyna changed to public
     private Image background; //目前的作法background是在GameView裡畫的，作法待更新
-    private List<Position> fargroundList = new CopyOnWriteArrayList<Position>();    // 據說要 maintain 一個 list.
+    private List<Position> fargroundList = new CopyOnWriteArrayList<Position>();    // 據說要 maintain 一個 list. by Peng.
     private List<Position> positionList = new CopyOnWriteArrayList<Position>();
     private PositionComparater comparator = new PositionComparater();
     private int index = 0;
+    private int indexFg = 0;  // by Peng.
     private int speed = 20;
 
     
@@ -44,6 +45,7 @@ public abstract class Stage {
 
     public int getSpeed(){return this.speed;}
 
+    // Peng
     public void addFarground(int x, int y, Sprite sprite){
         fargroundList.add( new Position(x, y, sprite) );
     }
@@ -71,7 +73,7 @@ public abstract class Stage {
         List<Sprite> newSprites = new CopyOnWriteArrayList<Sprite>();
         while(index < positionList.size() && positionList.get(index).getImageX() < cur_abs_x){
             Position p = positionList.get(index);
-            Sprite s = p.getSprite();
+             Sprite s = p.getSprite();
             
             //把x的絕對位置轉換為相對位置
             s.setLocation(new Point( GameView.WIDTH - (cur_abs_x - p.getX()) , p.getY() ));
@@ -84,6 +86,22 @@ public abstract class Stage {
         // }
 
         return newSprites;
+    }
+    // Peng.
+    List<Sprite> getNewFargrounds(int cur_abs_x){
+        List<Sprite> ret = new CopyOnWriteArrayList<Sprite>();
+        while(indexFg < fargroundList.size() && fargroundList.get(indexFg).getImageX() < cur_abs_x){
+            Position p = fargroundList.get(index);
+	    Sprite s = p.getSprite();
+            
+            //把x的絕對位置轉換為相對位置
+            s.setLocation(new Point( GameView.WIDTH - (cur_abs_x - p.getX()) , p.getY() ));
+            
+            ret.add(s);
+            indexFg++;
+        }
+
+        return ret;
     }
 
     public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.75); }

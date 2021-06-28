@@ -17,6 +17,7 @@ import views.GameView;
 
 public class World {
     private final List<Sprite> sprites = new CopyOnWriteArrayList<Sprite>();//exclusive of players
+    private final List<Sprite> fargrounds = new CopyOnWriteArrayList<Sprite>();
     private final CollisionHandler collisionHandler;
     
     //以下是陳咏誼加的，可改
@@ -33,7 +34,10 @@ public class World {
         //addSprites(players);
         setPlayers(players);
         addSprites(stage.getNewSprites(cur_abs_x));
-        //System.out.printf("World: sprites list size = %d\n", sprites.size());
+	
+	addFargrounds(stage.getNewFargrounds(cur_abs_x));  // Peng
+	
+	//System.out.printf("World: sprites list size = %d\n", sprites.size());
         // 1P掌握視窗速度
         this.players.get(0).setSpeed(this.stage.getSpeed());
     }
@@ -50,6 +54,17 @@ public class World {
 
     public void update() {
         cur_abs_x += this.getSpeed();
+
+	// Peng
+        for (Sprite fg : fargrounds) {
+            fg.update();
+            //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
+            if(fg.isOutOfWindow()){
+                removeFarground(fg);
+            }
+        }
+
+
         for (Sprite sprite : sprites) {
             sprite.update();
             //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
@@ -74,8 +89,15 @@ public class World {
 
         // 加入新Sprites
         addSprites(stage.getNewSprites(cur_abs_x));
+	addFargrounds(stage.getNewFargrounds(cur_abs_x));
     }
 
+    // Peng
+    public void addFargrounds(List<Sprite> newFg) {
+	for (Sprite fg : newFg)
+	    addFarground(fg);
+    }
+    
     public void addSprites(List<Sprite> newSprites) {
         for(Sprite sprite: newSprites){
             addSprite(sprite);
@@ -84,6 +106,12 @@ public class World {
 
     public void addSprites(Sprite... sprites) {
         stream(sprites).forEach(this::addSprite);
+    }
+
+    // Peng
+    public void addFarground(Sprite fg) {
+	fargrounds.add(fg);
+	fg.setWorld(this);
     }
 
     public void addSprite(Sprite sprite) {
@@ -96,6 +124,11 @@ public class World {
         sprite.setWorld(null);
     }
 
+    public void removeFarground(Sprite fg) {
+	fargrounds.remove(fg);
+	fg.setWorld(null);
+    }
+    
     public Collection<Sprite> getSprites(Rectangle area) {
         return sprites.stream()
                 .filter(s -> area.intersects(s.getBody()))
@@ -110,6 +143,9 @@ public class World {
     // If you want to decouple them, create an interface that encapsulates the variation of the Graphics.
     public void render(Graphics g) {
         stage.backgroundRender(g);
+	for (Sprite fg : fargrounds) {
+	    fg.render(g);
+	}
         for (Sprite sprite : sprites) {
             sprite.render(g);
         }
