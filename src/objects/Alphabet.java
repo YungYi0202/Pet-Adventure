@@ -10,11 +10,14 @@ import pet.Pet;
  
 public class Alphabet extends Prop{
     //TODO: 等陳奕瑄給圖
+    private Boolean collected;
+    private SerialAlphabet serial;
     private BufferedImage image;
-    private int score = 500;
+    private int score = 100;
     private static ImageStateUtils utils = new ImageStateUtils();
-    public Alphabet(String alpha){
-        
+    public Alphabet(String alpha, SerialAlphabet s){
+        this.collected = false;
+        this.serial = s;
         this.image = utils.getImage("assets/alphabet/" + alpha + ".png");
         this.image = utils.resize(image, 50, 80);
         int width = image.getWidth();
@@ -32,16 +35,18 @@ public class Alphabet extends Prop{
 
     public void collideWith(Sprite sprite){
         if(sprite instanceof Pet){
-            //this.isRemoved = true;
-            ((Pet)sprite).addScoreWithRender(this.score);
+            this.collected = true;
+            //System.out.printf("serial.isLastAlphabet(this): %b , serial.isAllCollected():%b\n", serial.isLastAlphabet(this) , serial.isAllCollected());
+            if(serial.isLastAlphabet(this) && serial.isAllCollected() ){
+                ((Pet)sprite).addScoreWithRender( this.score + serial.getBonus() );
+            }else{
+                ((Pet)sprite).addScoreWithRender( this.score );
+            }
             world.removeSprite(this);
         }
     }
 
-    /*
-    public int getScore(){return 30;}
-    public int getHpDamage(){return 0;}
-    public State getStateEffect(Sprite collideSprite){return null;}
-    public boolean canBeStoredInPropBox(){return false;}
-    */
+    public BufferedImage getImage(){return image;}
+    public Boolean isCollected(){return this.collected;}
+
 }

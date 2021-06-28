@@ -7,6 +7,7 @@ import objects.Ground;
 import objects.Candy;
 import objects.Hydrant;
 import objects.Alphabet;
+import objects.SerialAlphabet;
 import views.GameView;
 //Leyna
 import utils.ImageStateUtils;
@@ -20,7 +21,16 @@ public class StageEasy1 extends Stage{
         setSpeed(10);
         //TODO: 把該有的Sprite加進去
         
-        addSpriteToFirstFloor(2500, new Alphabet("F"));
+    
+        //serialAlphabet的用法
+        SerialAlphabet serial = new SerialAlphabet("F", "O", "O", "P");
+        addSprite(serial.absLocation, serial);
+        addSpriteToFirstFloor(2500, serial.get(0));
+        addSpriteToFirstFloor(3500, serial.get(1));
+        addSpriteToFirstFloor(4500, serial.get(2));
+        addSpriteToFirstFloor(5500, serial.get(3));
+
+        //addSpriteToFirstFloor(2500, new Alphabet("F"));
 
         for(int i = 0 ; i < 50; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());

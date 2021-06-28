@@ -46,6 +46,9 @@ public abstract class Stage {
     public void addSprite(int x, int y, Sprite sprite){
         positionList.add( new Position(x, y, sprite) );
     }
+    public void addSprite(Point posi, Sprite sprite){
+        positionList.add( new Position(posi, sprite) );
+    }
 
     public void addSpriteToFirstFloor(int x, Sprite sprite){
         positionList.add( new Position(x, getFirstFloorY() - sprite.getBodySize().height , sprite) );
