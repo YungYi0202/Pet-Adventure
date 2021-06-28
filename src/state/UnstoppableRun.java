@@ -11,7 +11,7 @@ public class UnstoppableRun extends State implements Unstoppable {
     public UnstoppableRun(String petName) {
 	this.petName = petName;	
 	this.is = new ImageRun(this.petName);
-	remainTime = 300;
+	remainTime = 60;
     }
     public int getRemainTime() {
 	return remainTime;
