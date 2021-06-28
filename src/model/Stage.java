@@ -22,7 +22,7 @@ import views.GameView;
 public abstract class Stage {
     //leyna changed to public
     private Image background; //目前的作法background是在GameView裡畫的，作法待更新
-    private List<Position> backgroundList = new CopyOnWriteArrayList<Position>();    // 據說要 maintain 一個 list.
+    private List<Position> fargroundList = new CopyOnWriteArrayList<Position>();    // 據說要 maintain 一個 list.
     private List<Position> positionList = new CopyOnWriteArrayList<Position>();
     private PositionComparater comparator = new PositionComparater();
     private int index = 0;
@@ -44,11 +44,11 @@ public abstract class Stage {
 
     public int getSpeed(){return this.speed;}
 
-    public void addBackground(int x, int y, Sprite sprite){
-        backgroundList.add( new Position(x, y, sprite) );
+    public void addFarground(int x, int y, Sprite sprite){
+        fargroundList.add( new Position(x, y, sprite) );
     }
-    public void addBackground(Point posi, Sprite sprite){
-        backgroundList.add( new Position(posi, sprite) );
+    public void addFarground(Point posi, Sprite sprite){
+        fargroundList.add( new Position(posi, sprite) );
     }
 
     

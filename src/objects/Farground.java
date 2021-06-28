@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 import pet.Pet;
 import java.lang.*;
 // author = qpoiPeng
-public class Background extends Sprite {
+public class Farground extends Sprite {
     private BufferedImage image;
     // 透過路徑決定要用哪張
-    public Background(String path){
+    public Farground(String path){
 	this.image = ImageStateUtils.getImage(path);   
 	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
     }
