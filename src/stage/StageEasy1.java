@@ -20,7 +20,8 @@ public class StageEasy1 extends Stage{
         setSpeed(10);
         //TODO: 把該有的Sprite加進去
         
-        addSpriteToFirstFloor(2500, new Alphabet("F"));
+        // addSpriteToFirstFloor(2500, new Alphabet("F"));
+        addSpriteToFirstFloor(2500, new Alphabet(1));
 
         for(int i = 0 ; i < 50; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
