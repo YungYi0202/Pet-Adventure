@@ -4,9 +4,10 @@ package model;
 
 //複製world的import，可改
 import java.awt.*;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Comparator;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
@@ -23,6 +24,7 @@ public abstract class Stage {
     //leyna changed to public
     private Image background; //目前的作法background是在GameView裡畫的，作法待更新
     private List<Position> positionList = new CopyOnWriteArrayList<Position>();
+    private PositionComparater comparator = new PositionComparater();
     private int index = 0;
     private int speed = 20;
 
@@ -45,6 +47,13 @@ public abstract class Stage {
         positionList.add( new Position(x, y, sprite) );
     }
 
+    public void addSpriteToFirstFloor(int x, Sprite sprite){
+        positionList.add( new Position(x, getFirstFloorY() - sprite.getBodySize().height , sprite) );
+    }
+    public void addSpriteToSecondFloor(int x, Sprite sprite){
+        positionList.add( new Position(x, getSecondFloorY() - sprite.getBodySize().height , sprite) );
+    }
+
     List<Sprite> getNewSprites(int cur_abs_x){
         List<Sprite> newSprites = new CopyOnWriteArrayList<Sprite>();
         while(index < positionList.size() && positionList.get(index).getImageX() < cur_abs_x){
@@ -65,4 +74,22 @@ public abstract class Stage {
     }
 
     public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.7); }
+    public int getSecondFloorY(){return (int)(GameView.HEIGHT * 0.4); }
+
+    public void sortByX(){
+        Collections.sort(positionList, comparator);
+    }
+}
+
+class PositionComparater implements Comparator<Position> {
+  @Override
+  public int compare(Position A, Position B) {
+    int startComparison = compare(A.getX(), B.getX());
+    return startComparison;
+  }
+  private static int compare(int a, int b) {
+    return a < b ? -1
+         : a > b ? 1
+         : 0;
+  }
 }

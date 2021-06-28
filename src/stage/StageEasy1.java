@@ -20,15 +20,17 @@ public class StageEasy1 extends Stage{
         setSpeed(15);
         //TODO: 把該有的Sprite加進去
         
+        addSpriteToFirstFloor(2500, new Alphabet("F"));
+
         for(int i = 0 ; i < 50; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
             addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new Candy());
             addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
-            addSprite((i+1) * 1000 + 50, this.getFirstFloorY() - 719, new Alphabet("F"));
         }
         // Leyna
         setBackground( new ImageStateUtils().getImage("assets/background/background.png") );
         // Cathy
+        sortByX();
         
     }
 }
