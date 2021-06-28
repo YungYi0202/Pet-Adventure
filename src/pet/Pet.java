@@ -103,15 +103,17 @@ public class Pet extends HealthPointSprite {
         this.nowSpeed = speed;
         this.speedRemainTime = remainTime;
     }
-    /////
+    public void setPropState(){
 
-    public void jump(){ // deal with stop 
+    }
+    ///////
+
+    public void jump(){  
         if(this.nowstate instanceof Run || this.nowstate instanceof UnstoppableRun){
-            //System.out.println("call jump");
             this.nowVy = -jump_velocity;
         }
     }
-    public void slide(){ // deal with stop 
+    public void slide(){ 
         if(this.nowstate instanceof Run){
             setnormalY();
             this.nowstate = new Slide(this.petName);
@@ -130,20 +132,23 @@ public class Pet extends HealthPointSprite {
         }
     }
     public void Vy_update(){ // gravity
-        //if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
         this.nowVy += this.gravity;
-            
-        //}
     }
     @Override 
     public void update(){ 
-
-        Vy_update();
-        this.nowstate = controller.update(this,this.nowstate);
-        //System.out.println(this.nowstate); 
-        this.increaseLocationY(this.nowVy);
-        //System.out.println(this.nowVy);
-        this.nowSpeed = controller.update_speed(this.normalSpeed);
+        if(this.Pet_HP <= 0){
+            Vy_update();
+            this.increaseLocationY(this.nowVy);
+            this.nowstate = new Dead(this.petName);
+            this.nowSpeed = 0;
+            /// control menu
+        }
+        else{
+            Vy_update();
+            this.nowstate = controller.update(this,this.nowstate); 
+            this.increaseLocationY(this.nowVy);
+            this.nowSpeed = controller.update_speed(this.normalSpeed);
+        }
     }
 
     @Override
@@ -169,9 +174,6 @@ public class Pet extends HealthPointSprite {
             g.drawString("+" + String.valueOf(scoreRender), range.x + range.width/2 - 10 , range.y - 20);
             scoreRenderRemainTime--;
         }
-        
-
-
     }
 
     private void delay(long ms) {

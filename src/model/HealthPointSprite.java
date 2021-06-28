@@ -24,6 +24,7 @@ public abstract class HealthPointSprite extends Sprite {
         if (hpBar.isDead()) {
             //world.removeSprite(this);  ///// remove 本身 的實作
             AudioPlayer.playSounds(AUDIO_DIE);
+            
         }
     }
 
