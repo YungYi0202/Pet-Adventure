@@ -35,6 +35,8 @@ public class Pet extends HealthPointSprite {
     public ArrayList<String> propList = new ArrayList<String>();
     private int bag_volume = 2;
     private int speedRemainTime;
+    private int scoreRender;
+    private int scoreRenderRemainTime = 0;
     public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
         this.petName = petName;
@@ -71,6 +73,11 @@ public class Pet extends HealthPointSprite {
     public void addScore(int amount){
         this.score += amount;
     }
+    public void addScoreWithRender(int amount){
+        this.score += amount;
+        this.scoreRenderRemainTime = 40;
+        this.scoreRender = amount;
+    }
     public int getHp(){
         return this.Pet_HP;
     }
@@ -92,6 +99,7 @@ public class Pet extends HealthPointSprite {
         return this.nowSpeed;
     }
     public void setSpeedAndRemainTime(int speed, int remainTime){
+        // this.normalSpeed = speed;
         this.nowSpeed = speed;
         this.speedRemainTime = remainTime;
     }
@@ -148,11 +156,21 @@ public class Pet extends HealthPointSprite {
         g.setColor(Color.black); 
         String show_score = "score: " + String.valueOf(this.score);
         g.drawString(show_score, (GameView.WIDTH/10*8), GameView.HEIGHT/12);
-        /////
+        // draw pet
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
+
+        // score render
+        if(scoreRenderRemainTime > 0){
+            g.setFont(fnt0);
+            g.setColor(Color.black); 
+            g.drawString("+" + String.valueOf(scoreRender), range.x + range.width/2 - 10 , range.y - 20);
+            scoreRenderRemainTime--;
+        }
+        
+
 
     }
 

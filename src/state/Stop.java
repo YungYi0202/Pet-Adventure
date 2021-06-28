@@ -15,7 +15,7 @@ public class Stop extends State implements Unstoppable {
     }
     this.petName = petName;
     this.is = new ImageStop(this.petName);
-	remainTime = 100;    //??
+	remainTime = 60;    //??
     }
     public int getRemainTime() {
 	return remainTime;
