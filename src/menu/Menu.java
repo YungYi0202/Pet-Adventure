@@ -17,8 +17,8 @@ public class Menu{
     private final Game game;
     private final JPanel panel;
 
-
-    private String[] petChoices = { "Puppy","Kitten"};
+    //Leyna lower first letter
+    private String[] petChoices = { "puppy","pitten"};
     private JComboBox<String> petMenu = new JComboBox<String>(petChoices);
     private int defaultPetIndex = 0;
     private String selectedPet = petChoices[defaultPetIndex];

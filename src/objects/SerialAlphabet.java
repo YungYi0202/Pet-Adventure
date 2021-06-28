@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
 
+
 import pet.Pet;
 
 public class SerialAlphabet extends Sprite{
@@ -18,8 +19,12 @@ public class SerialAlphabet extends Sprite{
     public Point absLocation;
 
     public SerialAlphabet(String ... alphas){
+        //int [] alphabetCount = new int[52];
         for(String alpha: alphas){
-            list.add(new Alphabet(alpha, this));
+            //int index = (int)(alpha.charAt(0) - 'a');
+            //list.add(new Alphabet(alpha + String.valueOf( alphabetCount[index] ) , this));
+            list.add(new Alphabet(alpha  , this));
+            //alphabetCount[index]++;
         }
         absLocation = new Point(800,100);
     }

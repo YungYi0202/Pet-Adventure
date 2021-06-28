@@ -8,6 +8,9 @@ public abstract class State {
     public abstract State getCollide();
     protected ImageState is;
     public int remainTime;
+    public int getRemainTime() {
+	return remainTime;
+    }
     public BufferedImage getImage() {
 	return is.getImage();
     }

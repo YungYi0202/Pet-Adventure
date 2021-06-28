@@ -13,9 +13,6 @@ public class UnstoppableJump extends State implements Unstoppable {
     this.is = new ImageJump(petName);
 	remainTime = 60;
     }
-    public int getRemainTime() {
-	return remainTime;
-    }
     public State getNext(Pet s) {
 	is.update();
 	if (--remainTime <= 0)

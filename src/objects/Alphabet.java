@@ -15,11 +15,13 @@ public class Alphabet extends Prop{
     private BufferedImage image;
     private int score = 100;
     private static ImageStateUtils utils = new ImageStateUtils();
+
     public Alphabet(String alpha, SerialAlphabet s){
         this.collected = false;
         this.serial = s;
         this.image = utils.getImage("assets/alphabet/" + alpha + ".png");
-        this.image = utils.resize(image, 50, 80);
+        //this.image = utils.resize(image, 50, 80);
+
         int width = image.getWidth();
         int height = image.getHeight();
         //System.out.printf("Alphabet: width:%d\n height:%d\n", width, height);

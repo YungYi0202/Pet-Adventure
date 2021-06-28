@@ -23,9 +23,9 @@ public class ImageStateUtils {
 		return img;
 	}
 
-	public BufferedImage resize(BufferedImage image, int width, int height){
+	public BufferedImage resize(BufferedImage image, double rate){
 		Graphics2D graphics2D = image.createGraphics();
-    	graphics2D.drawImage(image, 0, 0, width, height, null);
+    	graphics2D.drawImage(image, 0, 0, (int)(image.getWidth() * rate), (int)(image.getHeight() * rate), null);
     	graphics2D.dispose();
 		return image;
 	}
