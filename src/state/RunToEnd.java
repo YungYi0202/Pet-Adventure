@@ -24,7 +24,6 @@ public class RunToEnd extends State{
         remainTime = 100;
     }
     if(this.is instanceof ImageRun){
-        System.out.println("whhhhhhhhhhhhhhhhhhhh");
         s.increaseLocationX(s.getNormalSpeed());
     }
     if(remainTime <= 0){
