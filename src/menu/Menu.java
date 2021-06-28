@@ -18,7 +18,7 @@ public class Menu{
     private final JPanel panel;
 
 
-    private String[] petChoices = { "Dog","Cat"};
+    private String[] petChoices = { "Puppy","Kitten"};
     private JComboBox<String> petMenu = new JComboBox<String>(petChoices);
     private int defaultPetIndex = 0;
     private String selectedPet = petChoices[defaultPetIndex];

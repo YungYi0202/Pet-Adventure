@@ -92,7 +92,7 @@ public class Pet extends HealthPointSprite {
         return this.nowSpeed;
     }
     public void setSpeedAndRemainTime(int speed, int remainTime){
-        this.normalSpeed = speed;
+        // this.normalSpeed = speed;
         this.nowSpeed = speed;
         this.speedRemainTime = remainTime;
     }
