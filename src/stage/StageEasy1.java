@@ -8,6 +8,7 @@ import objects.Candy;
 import objects.Hydrant;
 import objects.Alphabet;
 import objects.SerialAlphabet;
+import objects.Farground;
 import views.GameView;
 //Leyna
 import utils.ImageStateUtils;
@@ -20,7 +21,9 @@ public class StageEasy1 extends Stage{
     public StageEasy1(){
         setSpeed(15);
         //TODO: 把該有的Sprite加進去
-        
+	
+	addFarground(0, 0, new Farground("assets/farground/farground_1.png"));
+	
         //serialAlphabet的用法
         SerialAlphabet serial = new SerialAlphabet("F", "O", "O1", "P");
         addSprite(serial.absLocation, serial);

@@ -91,7 +91,7 @@ public abstract class Stage {
     List<Sprite> getNewFargrounds(int cur_abs_x){
         List<Sprite> ret = new CopyOnWriteArrayList<Sprite>();
         while(indexFg < fargroundList.size() && fargroundList.get(indexFg).getImageX() < cur_abs_x){
-            Position p = fargroundList.get(index);
+            Position p = fargroundList.get(indexFg);
 	    Sprite s = p.getSprite();
             
             //把x的絕對位置轉換為相對位置
