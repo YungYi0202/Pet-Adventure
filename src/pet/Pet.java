@@ -37,11 +37,13 @@ public class Pet extends HealthPointSprite {
     private int speedRemainTime;
     private int scoreRender;
     private int scoreRenderRemainTime = 0;
+    private boolean isdead;
     public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
         this.petName = petName;
         this.Pet_HP = Pet_HP;
         this.jump_velocity = jump_velocity;
+        this.isdead = false;
         State running = new Run(this.petName);
         this.nowstate = running;
         this.image = this.nowstate.getImage(); 
@@ -103,15 +105,23 @@ public class Pet extends HealthPointSprite {
         this.nowSpeed = speed;
         this.speedRemainTime = remainTime;
     }
-    /////
+    //public void setPropState(){
 
-    public void jump(){ // deal with stop 
+    //}
+    public void set_isDead(){
+        this.isdead = true;
+    }
+    public boolean isDead(){
+        return this.isdead;
+    }
+    ///////
+
+    public void jump(){  
         if(this.nowstate instanceof Run || this.nowstate instanceof UnstoppableRun){
-            //System.out.println("call jump");
             this.nowVy = -jump_velocity;
         }
     }
-    public void slide(){ // deal with stop 
+    public void slide(){ 
         if(this.nowstate instanceof Run){
             setnormalY();
             this.nowstate = new Slide(this.petName);
@@ -130,20 +140,28 @@ public class Pet extends HealthPointSprite {
         }
     }
     public void Vy_update(){ // gravity
-        //if( this.nowstate instanceof Jump || this.nowstate instanceof UnstoppableJump ){
         this.nowVy += this.gravity;
-            
-        //}
     }
     @Override 
     public void update(){ 
-
-        Vy_update();
-        this.nowstate = controller.update(this,this.nowstate);
-        //System.out.println(this.nowstate); 
-        this.increaseLocationY(this.nowVy);
-        //System.out.println(this.nowVy);
-        this.nowSpeed = controller.update_speed(this.normalSpeed);
+        if(this.Pet_HP <= 0){
+            Vy_update();
+            this.increaseLocationY(this.nowVy);
+            if( !(this.nowstate instanceof Dead)){
+                //System.out.println("herer ff");
+                //System.out.println(this.nowstate);
+                this.nowstate = new Dead(this.petName);
+            }
+            this.nowSpeed = 0;
+            this.nowstate = controller.update(this,this.nowstate); 
+            /// control menu
+        }
+        else{
+            Vy_update();
+            this.nowstate = controller.update(this,this.nowstate); 
+            this.increaseLocationY(this.nowVy);
+            this.nowSpeed = controller.update_speed(this.normalSpeed);
+        }
     }
 
     @Override
@@ -169,9 +187,6 @@ public class Pet extends HealthPointSprite {
             g.drawString("+" + String.valueOf(scoreRender), range.x + range.width/2 - 10 , range.y - 20);
             scoreRenderRemainTime--;
         }
-        
-
-
     }
 
     private void delay(long ms) {
