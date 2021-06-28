@@ -22,7 +22,11 @@ public class World {
     //以下是陳咏誼加的，可改
     private Stage stage;
     private int cur_abs_x = GameView.WIDTH;
+    //TODO:根據stage 設定結束
+    private int end_abs_x = 50000;
     private List<Pet> players = new CopyOnWriteArrayList<Pet>();
+    private Boolean gameOver = false;
+    private String result = "WIN";
 
     public World(CollisionHandler collisionHandler, Stage stage ,Sprite... players) {
         this.collisionHandler = collisionHandler;
@@ -49,7 +53,21 @@ public class World {
     public int getSpeed(){return this.players.get(0).getSpeed();}
 
     public void update() {
+        // Result is LOSE
+        // if(players.get(0).isDead()){
+        //     this.result = "LOSE";
+        //     this.gameOver = true;
+        //     return;
+        // }
+
         cur_abs_x += this.getSpeed();
+
+        // Result is WIN
+        if(cur_abs_x >= end_abs_x){
+            this.gameOver = true;
+            return;
+        }
+
         for (Sprite sprite : sprites) {
             sprite.update();
             //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
@@ -117,4 +135,7 @@ public class World {
             player.render(g);
         }
     }
+
+    public Boolean isGameOver(){return this.gameOver;}
+    public String getResult(){return this.result;}
 }

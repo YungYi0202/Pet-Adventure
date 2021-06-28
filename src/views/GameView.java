@@ -7,6 +7,7 @@ import model.World;
 import menu.Menu;
 import menu.PauseMenu;
 import menu.TutorialPage;
+import menu.ResultPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,6 +91,14 @@ public class GameView extends JFrame {
                         break;
                     }
                 }
+                else if(game.stateIsRESULT()){
+                    //System.out.printf("keyPressed: stateIsPAUSE\n");
+                    switch (keyEvent.getKeyCode()) {
+                    case KeyEvent.VK_S:
+                        game.exit();
+                        break;
+                    }
+                }
                 
             }
 
@@ -105,13 +114,16 @@ public class GameView extends JFrame {
         private Menu menu;
         private PauseMenu pauseMenu;
         private TutorialPage tutorialPage;
+        private ResultPage resultPage;
         private int tutorialPageCountDownTime;
+        private int resultPageCountDownTime;
 
-        private enum STATE {MENU, GAME, PAUSE, TUTORIAL};
+        private enum STATE {MENU, GAME, PAUSE, TUTORIAL, RESULT};
         private STATE state;
         private boolean menuHasRendered = false;
         private boolean pauseMenuHasRendered = false;
         private boolean tutorialPageHasRendered = false;
+        private boolean resultPageHasRendered = false;
         
         public Canvas(Game game){
             //this.pauseMenu = new PauseMenu(game, this);
@@ -119,9 +131,11 @@ public class GameView extends JFrame {
             this.menu = new Menu(game, this);
             this.pauseMenu = new PauseMenu(game, this);
             this.tutorialPage = new TutorialPage(game, this);
+            this.resultPage = new ResultPage(game, this);
             menu.loadToPanel(); 
             pauseMenu.loadToPanel();
             tutorialPage.loadToPanel(5);
+            resultPage.loadToPanel("WIN", 5);
         }
 
         @Override
@@ -154,6 +168,14 @@ public class GameView extends JFrame {
             this.world = world;
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
+        @Override
+        public void renderResultPage(int time, World world){
+            state = STATE.RESULT;
+            resultPageHasRendered = false;
+            resultPageCountDownTime = time;
+            this.world = world;
+            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while. 
+        }
 
         @Override
         protected void paintComponent(Graphics g /*paintbrush*/) {
@@ -196,6 +218,15 @@ public class GameView extends JFrame {
                 tutorialPage.loadToPanel(tutorialPageCountDownTime);
                 tutorialPageHasRendered = true;
             
+            }else if(state == STATE.RESULT && resultPageHasRendered == false){
+                //System.out.printf("world.render(g);\n");
+                world.render(g);
+                g.setColor(PauseMenu.backgroundColor); // paint background with all white
+                g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+
+                this.removeAll();
+                resultPage.loadToPanel(world.getResult(), resultPageCountDownTime);
+                resultPageHasRendered = true;
             }
         }
 

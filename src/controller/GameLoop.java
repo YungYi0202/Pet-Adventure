@@ -17,7 +17,8 @@ public abstract class GameLoop {
     private boolean menuHasRendered = false;
     private boolean pauseMenuHasRendered = false;
     private int tutorialTimeCount = 0;
-    private enum STATE {MENU, GAME, PAUSE, TUTORIAL};
+    private int resultTimeCount = 0;
+    private enum STATE {MENU, GAME, PAUSE, TUTORIAL, RESULT};
     private STATE state = STATE.MENU;
 
     public void setView(View view) {
@@ -35,6 +36,7 @@ public abstract class GameLoop {
             // menu
             switch(state){
                 case MENU:
+                    resultTimeCount = 0;
                     if(menuHasRendered == false){
                         view.renderMenu();
                         menuHasRendered = true;
@@ -47,6 +49,9 @@ public abstract class GameLoop {
                     pauseMenuHasRendered = false;
                     World world = getWorld();
                     world.update();
+                    if(world.isGameOver()){
+                        over();
+                    }
                     view.render(world);
                     break;
                 case PAUSE:
@@ -63,6 +68,15 @@ public abstract class GameLoop {
                     tutorialTimeCount++;
                     if(tutorialTimeCount >= 335){
                         resume();
+                    }
+                    break;
+                case RESULT:
+                    if(resultTimeCount % 67 == 0){
+                        view.renderResultPage( 5 - resultTimeCount/67, getWorld());
+                    }
+                    resultTimeCount++;
+                    if(resultTimeCount >= 335){
+                        exit();
                     }
                     break;
             }
@@ -106,6 +120,10 @@ public abstract class GameLoop {
         state = STATE.GAME;
     }
 
+    public void over(){
+        state = STATE.RESULT;
+    }
+
     public void resumeWithTutorial(){
         state = STATE.TUTORIAL;
     }
@@ -129,10 +147,12 @@ public abstract class GameLoop {
         void renderMenu();
         void renderPauseMenu();
         void renderTutorialPage(int time, World world);
+        void renderResultPage(int time, World world);
     }
 
     public boolean stateIsGAME(){return state==STATE.GAME;}
     public boolean stateIsMENU(){return state==STATE.MENU;}
     public boolean stateIsPAUSE(){return state==STATE.PAUSE;}
     public boolean stateIsTUTORIAL(){return state==STATE.TUTORIAL;}
+    public boolean stateIsRESULT(){return state==STATE.RESULT;}
 }
