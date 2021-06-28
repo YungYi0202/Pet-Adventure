@@ -42,7 +42,7 @@ public class ResultPage{
         backButton.setFocusable(false);
         backButton.setUI(new StyledButtonUI(255,182,25));
         backButton.addActionListener(new BackButtonListener(this));
-        backButton.setBounds(350, 470, 300, 80);
+        backButton.setBounds(300, 470, 400, 80);
         backButton.setFont(new Font("Utopia", Font.BOLD, 40));
 
     }
