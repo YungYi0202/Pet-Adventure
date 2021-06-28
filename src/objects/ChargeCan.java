@@ -11,7 +11,8 @@ import state.Charge;
 public class ChargeCan extends Prop{
     private BufferedImage image;
     public ChargeCan(){
-        this.image = new ImageStateUtils().getImage("assets/candy/candy.png"); // 待改
+        //this.image = new ImageStateUtils().getImage("assets/candy/candy.png"); // 待改
+        this.image = ImageStateUtils.getImage("assets/candy/candy.png"); // 待改
         int width = image.getWidth();
         int height = image.getHeight();
         setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));

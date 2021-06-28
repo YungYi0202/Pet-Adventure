@@ -9,6 +9,10 @@ public class Position {
         this.abs_posi = new Point(x, y);
         this.sprite = sprite;
     }
+    public Position(Point posi, Sprite sprite){
+        this.abs_posi = posi;
+        this.sprite = sprite;
+    }
     private Point abs_posi;
     private Sprite sprite;
     public int getX(){

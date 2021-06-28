@@ -21,7 +21,8 @@ public class ImageSlide extends ImageState{
         int[] duration = {5,5,15,5,5};
         for(int i = 13; i <= 17; ++i){
             String path = "assets/"+ petName +"/slide/"+ petName + "_" + i + ".png";            
-            addFrame(new ImageStateUtils().getImage(path), duration[i - 13]);
+            // addFrame(new ImageStateUtils().getImage(path), duration[i - 13]);
+            addFrame(ImageStateUtils.getImage(path), duration[i - 13]);
         }
     }
 }

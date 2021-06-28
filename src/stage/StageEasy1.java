@@ -7,6 +7,7 @@ import objects.Ground;
 import objects.Candy;
 import objects.Hydrant;
 import objects.Alphabet;
+import objects.SerialAlphabet;
 import views.GameView;
 //Leyna
 import utils.ImageStateUtils;
@@ -20,8 +21,15 @@ public class StageEasy1 extends Stage{
         setSpeed(10);
         //TODO: 把該有的Sprite加進去
         
-        // addSpriteToFirstFloor(2500, new Alphabet("F"));
-        addSpriteToFirstFloor(2500, new Alphabet(1));
+        //serialAlphabet的用法
+        SerialAlphabet serial = new SerialAlphabet("F", "o", "o", "P");
+        addSprite(serial.absLocation, serial);
+        addSpriteToFirstFloor(2500, serial.get(0));
+        addSpriteToFirstFloor(3500, serial.get(1));
+        addSpriteToFirstFloor(4500, serial.get(2));
+        addSpriteToFirstFloor(5500, serial.get(3));
+
+        //addSpriteToFirstFloor(2500, new Alphabet("F"));
 
         for(int i = 0 ; i < 50; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
@@ -29,7 +37,8 @@ public class StageEasy1 extends Stage{
             addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
         }
         // Leyna
-        setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );
+        setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
+        // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );
         // Cathy
         sortByX();
         

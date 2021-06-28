@@ -20,7 +20,8 @@ public class ImageGround extends ImageState{
         frames = new ArrayList<ImageFrame>();
         for(int i = 1; i <=2; ++i){
             String path = "assert/ground/ground_" + i + ".png";
-            addFrame(new ImageStateUtils().getImage(path), 5);
+            // addFrame(new ImageStateUtils().getImage(path), 5);
+            addFrame(ImageStateUtils.getImage(path), 5);
         }
     }
     BufferedImage getGround(int i) {
