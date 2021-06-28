@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.AlphaComposite;
 import javax.imageio.ImageIO;
 
 /**
@@ -31,6 +32,15 @@ public class ImageStateUtils {
 		return resizedImage;
 	}
 	
+	public BufferedImage opacity(BufferedImage image, float opacity){
+		BufferedImage opacityImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+		Graphics2D graphics2D = opacityImage.createGraphics();
+		// float opacity = 0.5f;
+		graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+    	graphics2D.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
+    	graphics2D.dispose();
+		return opacityImage;
+	}
 }
 
 // import state.ImageRenderer;
