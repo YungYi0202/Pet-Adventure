@@ -18,7 +18,6 @@ import views.GameView;
 /**
  * @author - Yung-Yi Chen
  */
-//TODO: Sort By (x + offset.width)=imageX
 
 public abstract class Stage {
     //leyna changed to public

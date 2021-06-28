@@ -12,12 +12,17 @@ import views.GameView;
 
 import pet.Pet;
 
+/**
+ * @author - Yung-Yi Chen
+ */
+
 public class SerialAlphabet extends Sprite{
     //TODO: 等陳奕瑄給圖
     private int bonus = 300;
     private List<Alphabet> list = new ArrayList<Alphabet>();
     public Point absLocation;
     double shrinkRate = 0.5;
+    float opacityRate = (float)0.5;
     int interval = 10;
     int margin = 90;
     int Y = 100;
@@ -45,14 +50,13 @@ public class SerialAlphabet extends Sprite{
         //TODO: draw at right-up corner
         int width = 0;
         for(Alphabet alpha: list){
-            BufferedImage img;
+            BufferedImage img = ImageStateUtils.resize(alpha.getImage(), shrinkRate);
             if(alpha.isCollected()){
-                //TODO: draw 實心的照片
-                img = ImageStateUtils.resize(alpha.getImage(), shrinkRate);
+                //draw 實心的照片
                 g.drawImage(img, absLocation.x + width, Y, img.getWidth(), img.getHeight(), null);
             }else{
-                //TODO: draw 半透明的照片
-                img = ImageStateUtils.resize(alpha.getImage(), shrinkRate);
+                //半透明的照片
+                img = ImageStateUtils.opacity(img, opacityRate);
                 g.drawImage(img, absLocation.x + width, Y, img.getWidth(), img.getHeight(), null);
             }
             width += img.getWidth() + interval;

@@ -22,7 +22,7 @@ public class StageEasy1 extends Stage{
         //TODO: 把該有的Sprite加進去
         
         //serialAlphabet的用法
-        SerialAlphabet serial = new SerialAlphabet("F", "o", "o", "P");
+        SerialAlphabet serial = new SerialAlphabet("F", "O", "O1", "P");
         addSprite(serial.absLocation, serial);
         addSpriteToFirstFloor(2500, serial.get(0));
         addSpriteToFirstFloor(3500, serial.get(1));
