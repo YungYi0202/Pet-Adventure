@@ -7,6 +7,7 @@ import java.lang.*;
 public class PetStateControl{
     //private int lower_speed = 5; // 用前面的速度
     private int stopping_speed = 0;
+    private int increasingSpeed = 0;
     private State state;
     public PetStateControl(State nowstate){
         this.state = nowstate;
@@ -21,9 +22,14 @@ public class PetStateControl{
             return this.stopping_speed;
         }
         else if(this.state instanceof Unstoppable){
-            return speed/3;
+            if(increasingSpeed < speed){
+                increasingSpeed += 1;
+            }
+            return increasingSpeed;
         }
         else{
+            //acceleration = 0;
+            increasingSpeed = 0;
             return speed;
         }
     }

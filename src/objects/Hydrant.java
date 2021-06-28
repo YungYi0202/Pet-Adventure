@@ -2,6 +2,7 @@ package objects;
 
 import state.Stop;
 import state.Unstoppable;
+import state.Dead;
 import model.Prop;
 import utils.ImageStateUtils;
 import java.awt.*;
@@ -38,7 +39,9 @@ public class Hydrant extends Prop{
             if( pet.getState() instanceof Unstoppable) return;
             pet.costHp(hpDamage);
             //TODO: 確認彭光湞有寫對應的State
-            pet.setState(new Stop(pet,pet.getState(),pet.petName)); 
+            if(!(pet.getState() instanceof Dead)){
+                pet.setState(new Stop(pet,pet.getState(),pet.petName)); 
+            }
         }
     }
 
