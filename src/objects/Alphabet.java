@@ -16,7 +16,7 @@ public class Alphabet extends Prop{
     public Alphabet(int i){
         
         this.image = utils.getImage("assets/alphabet/alphabet_" + i + ".png");
-        // this.image = utils.resize(image, 50, 80);
+        // this.image = utils.resize(image, 0.5);
         int width = image.getWidth();
         int height = image.getHeight();
         //System.out.printf("Alphabet: width:%d\n height:%d\n", width, height);
