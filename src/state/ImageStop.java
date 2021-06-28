@@ -19,7 +19,7 @@ public class ImageStop extends ImageState{
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         //for(int i = 14; i <= 16; ++i){
-        String path = "assets/"+ petName +"/run/"+ petName + "_" + 1 + ".png";
+        String path = "assets/"+ petName +"/stop/"+ petName + "_" + 18 + ".png";
             
         // frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
         frames.add(new ImageFrame(ImageStateUtils.getImage(path), 1));
