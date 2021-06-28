@@ -32,7 +32,7 @@ public class PetStateControl{
                     increasingSpeed += 1;
                 }
             }
-            System.out.println(increasingSpeed);
+            //System.out.println(increasingSpeed);
             return increasingSpeed;
         }
         else{
