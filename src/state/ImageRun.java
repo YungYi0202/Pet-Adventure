@@ -21,7 +21,7 @@ public class ImageRun extends ImageState{
         for(int i = 1; i <= 5; ++i){
             String path = "assets/"+ petName +"/run/"+ petName +"_" + i + ".png";
             
-            // frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
+            //frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
             addFrame(new ImageStateUtils().getImage(path), 5);
         }
     }

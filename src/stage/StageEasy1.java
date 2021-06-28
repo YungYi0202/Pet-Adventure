@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
  */
 public class StageEasy1 extends Stage{
     public StageEasy1(){
-        setSpeed(10);
+        setSpeed(15);
         //TODO: 把該有的Sprite加進去
         
         for(int i = 0 ; i < 50; i++){
