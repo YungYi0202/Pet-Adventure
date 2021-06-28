@@ -73,7 +73,6 @@ public class World {
             return;
         }
         if(cur_abs_x + GameView.WIDTH >= end_abs_x){
-            System.out.println("here");
             //TODO: 楊鈞安要改，到結尾
             if( !(players.get(0).getState() instanceof RunToEnd)){
                 players.get(0).setNowSpeed(0);

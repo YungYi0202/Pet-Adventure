@@ -136,10 +136,8 @@ public class Pet extends HealthPointSprite {
     ///////
     public boolean toEnd(){
         if(getLocation().x >= GameView.WIDTH/10*7){
-            System.out.println("in");
             return true;
         }
-        System.out.println("out");
         return false;
     }
     public void jump(){  
