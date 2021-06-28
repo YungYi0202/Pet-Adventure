@@ -32,7 +32,7 @@ public class ImageStateUtils {
 		return resizedImage;
 	}
 	
-	public BufferedImage opacity(BufferedImage image, float opacity){
+	static public BufferedImage opacity(BufferedImage image, float opacity){
 		BufferedImage opacityImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
 		Graphics2D graphics2D = opacityImage.createGraphics();
 		// float opacity = 0.5f;
