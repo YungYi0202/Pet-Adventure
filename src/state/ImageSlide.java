@@ -18,11 +18,10 @@ public class ImageSlide extends ImageState{
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        //for(int i = 14; i <= 16; ++i){
-        String path = "assets/"+ petName +"/slide/"+ petName + "_" + 15 + ".png";
-            
-        frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
-            //addFrame(new ImageStateUtils().getImage(path), 3);
-        //}
+        int[] duration = {5,5,15,5,5};
+        for(int i = 13; i <= 17; ++i){
+            String path = "assets/"+ petName +"/slide/"+ petName + "_" + i + ".png";            
+            addFrame(new ImageStateUtils().getImage(path), duration[i - 13]);
+        }
     }
 }

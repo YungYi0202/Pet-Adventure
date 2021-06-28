@@ -24,10 +24,11 @@ public class ImageStateUtils {
 	}
 
 	public BufferedImage resize(BufferedImage image, double rate){
-		Graphics2D graphics2D = image.createGraphics();
+		BufferedImage resizedImage = new BufferedImage((int)(image.getWidth() * rate), (int)(image.getHeight() * rate), image.getType());
+		Graphics2D graphics2D = resizedImage.createGraphics();
     	graphics2D.drawImage(image, 0, 0, (int)(image.getWidth() * rate), (int)(image.getHeight() * rate), null);
     	graphics2D.dispose();
-		return image;
+		return resizedImage;
 	}
 	
 }
