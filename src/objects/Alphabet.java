@@ -8,6 +8,10 @@ import model.Sprite;
 import java.awt.image.BufferedImage;
 import pet.Pet;
  
+/**
+ * @author - Yung-Yi Chen
+ */
+ 
 public class Alphabet extends Prop{
     //TODO: 等陳奕瑄給圖
     private Boolean collected;
@@ -48,6 +52,7 @@ public class Alphabet extends Prop{
     }
 
     public BufferedImage getImage(){return image;}
+    public int getImageWidth(){return image.getWidth();}
     public Boolean isCollected(){return this.collected;}
 
 }

@@ -10,6 +10,10 @@ import model.Sprite;
 import java.awt.image.BufferedImage;
 import pet.Pet;
 
+/**
+ * @author - Yung-Yi Chen
+ */
+
 public class Hydrant extends Prop{
     //TODO: 等陳奕瑄給圖
     private BufferedImage image = null;

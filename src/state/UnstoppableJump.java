@@ -11,7 +11,7 @@ public class UnstoppableJump extends State implements Unstoppable {
     public UnstoppableJump(String petName) {
     this.petName = petName;
     this.is = new ImageJump(petName);
-	remainTime = 60;
+	remainTime = 100;
     }
     public State getNext(Pet s) {
 	is.update();
