@@ -14,7 +14,7 @@ public class UnstoppableSlide extends State implements Unstoppable {
     public UnstoppableSlide(String petName) {
 	this.petName = petName;	
 	this.is = new ImageSlide(this.petName); //?
-	remainTime = 60;
+	remainTime = 100;
     }
     public State getNext(Pet s) {
 	is.update();

@@ -48,6 +48,7 @@ public class Alphabet extends Prop{
     }
 
     public BufferedImage getImage(){return image;}
+    public int getImageWidth(){return image.getWidth();}
     public Boolean isCollected(){return this.collected;}
 
 }
