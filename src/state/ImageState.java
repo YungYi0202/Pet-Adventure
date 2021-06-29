@@ -57,7 +57,7 @@ public abstract class ImageState{
         }
     }
     
-    BufferedImage getImage() {
+    public BufferedImage getImage() {
         if (frames.size() == 0) {
             return null;
         }
