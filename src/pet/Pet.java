@@ -2,6 +2,7 @@ package pet;
 import state.*;
 import state.ImageRenderer;
 import state.State;
+import state.PropState;
 import model.Sprite;
 import model.HealthPointSprite;
 import model.SpriteShape; 
@@ -154,7 +155,7 @@ public class Pet extends HealthPointSprite {
             propList.remove(0);
             if(nowProp.equals("ChargeCan")){
                 this.nowPropState = new Charge(this.petName);
-                this.nowstate = new UnstoppableRun(200,this.petName);
+                this.nowstate = new UnstoppableRun(150,this,this.petName);
             }
         }
     }
@@ -176,9 +177,11 @@ public class Pet extends HealthPointSprite {
             //setnormalY();
             this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName);
             this.increaseLocationY(50);
+            //System.out.println("fuckyou");
         } 
         else if(this.nowstate instanceof UnstoppableSlide){
             this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName);
+            //System.out.println("you");
         }
     }
     public void Vy_update(){ // gravity
@@ -215,6 +218,7 @@ public class Pet extends HealthPointSprite {
     public void render(Graphics g){
 
         super.render(g); // healthbar render
+
         ///// score render
         Font fnt0 = new Font("ariel", Font.BOLD, 20);
         g.setFont(fnt0);
@@ -235,7 +239,8 @@ public class Pet extends HealthPointSprite {
         // draw prop
         if(this.nowPropState != null){
             // only for charge
-            Rectangle proprange = new Rectangle( getX()-60, getY()+20, (int)getRange().getWidth()/2, (int)getRange().getHeight()/3*2);
+            Rectangle proprange = this.nowPropState.getPropRange(this);
+            //Rectangle proprange = new Rectangle( getX()-60, getY()+20, (int)getRange().getWidth()/2, (int)getRange().getHeight()/3*2);
             this.propimage = this.nowPropState.getImage();
             g.drawImage(this.propimage, proprange.x, proprange.y, proprange.width, proprange.height, null);
         }

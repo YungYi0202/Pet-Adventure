@@ -12,12 +12,10 @@ public class Slide extends State {
     }
     public State getNext(Pet s) {
 	is.update();
-    //System.out.println(s.getLocation().y);
 	if(--remainTime <= 0){
 	    //s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
 		//s.setLocation(new Point( s.getLocation().x , s.getLocation().y - s.getVy()-50));
 	    s.decreaseLocationY(50);
-	    //	    s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
 	    return new Run(this.petName);
 	}
 	return this;

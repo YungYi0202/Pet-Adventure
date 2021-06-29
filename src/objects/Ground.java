@@ -20,7 +20,7 @@ public class Ground extends Sprite {
 	if (s instanceof Pet)
 	    p = (Pet) s;
 	if (p.getState() instanceof UnstoppableJump && p.getVy() > 0) ///?
-	    p.setState( new UnstoppableRun(p.getState().remainTime , p.petName) );
+	    p.setState( new UnstoppableRun(p.getState().remainTime, p, p.petName) );
 	else if(p.getState() instanceof Jump && p.getVy() > 0)
 	    p.setState(new Run(p.petName));
     //else if(p.getState() instanceof Run || p.getState() instanceof Slide)

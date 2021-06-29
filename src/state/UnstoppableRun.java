@@ -3,7 +3,10 @@ import pet.Pet;
 public class UnstoppableRun extends State implements Unstoppable {
     //private int remainTime;
 	private String petName;
-    public UnstoppableRun(int n,String petName) {
+    public UnstoppableRun(int n,Pet s,String petName) {
+	if(s.getState() instanceof Slide ){
+		s.decreaseLocationY(50);
+	}
 	this.petName = petName;
 	this.is = new ImageRun(this.petName);
 	remainTime = n;

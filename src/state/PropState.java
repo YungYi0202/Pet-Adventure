@@ -14,6 +14,9 @@ public abstract class PropState extends State {
     public State getCollide() {
         return null;
     }
+    public Rectangle getPropRange(Pet s){
+        return null;
+    }
 	//if (is != null)
 	    //is.update();
 	//return this;
