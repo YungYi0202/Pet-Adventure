@@ -54,7 +54,9 @@ public abstract class Sprite {
         this.location = location;
         //this.normalY = location.y;
     }
-
+    public void increaseLocationX(int x){
+        this.location.move(this.location.x + x, this.location.y);
+    }
     public void decreaseLocationX(int x){
         //System.out.printf("Before: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
         this.location.move(this.location.x - x, this.location.y);

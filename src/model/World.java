@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import pet.Pet;
-
+import state.RunToEnd;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
 
@@ -74,7 +74,11 @@ public class World {
         // }
         if(cur_abs_x + GameView.WIDTH >= end_abs_x){
             //TODO: 楊鈞安要改，到結尾
-            players.get(0).setNowSpeed(0);
+            if( !(players.get(0).getState() instanceof RunToEnd)){
+                players.get(0).setNowSpeed(0);
+                players.get(0).runToEnd();
+            }
+            
         }
 
         for(Pet player: players){
