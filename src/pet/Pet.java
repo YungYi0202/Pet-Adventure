@@ -233,7 +233,7 @@ public class Pet extends HealthPointSprite {
             float opacityRate = (float)0.5;
             this.image = ImageStateUtils.opacity(this.image, opacityRate);
         }
-        setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
+        setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(image.getWidth() / 2, 0), new Dimension(image.getWidth() / 2, image.getHeight()));
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
 
         // draw prop
