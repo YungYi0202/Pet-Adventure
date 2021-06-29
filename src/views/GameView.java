@@ -62,7 +62,13 @@ public class GameView extends JFrame {
                         System.out.println("pause");
                         game.pause();
                         break;
+                    case KeyEvent.VK_LEFT:
+                        System.out.println("useProp");
+                        game.usePropPet(P1);
+                        break;
                     }
+                
+
                 }
                 else if(game.stateIsMENU()){
                     //System.out.printf("keyPressed: stateIsMENU\n");

@@ -26,12 +26,14 @@ public class Pet extends HealthPointSprite {
     public String petName;
     private int jump_velocity;
     private State nowstate;
+    private PropState nowPropState = null;
     private int normalSpeed; // x方向, normal = 100
     private int nowSpeed;
     private int nowVy = 0;
     private int gravity = 2;
     private final PetStateControl controller;
     private BufferedImage image;
+    private BufferedImage propimage;
     public ArrayList<String> propList = new ArrayList<String>();
     private int bag_volume = 2;
     private int speedRemainTime;
@@ -49,6 +51,7 @@ public class Pet extends HealthPointSprite {
         this.ending = false;
         State running = new Run(this.petName);
         this.nowstate = running;
+        this.nowPropState = null;
         this.image = this.nowstate.getImage(); 
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
         controller = new PetStateControl(this.nowstate);
@@ -115,8 +118,8 @@ public class Pet extends HealthPointSprite {
         this.nowSpeed = speed;
         this.speedRemainTime = remainTime;
     }
-    public void setPropState(){
-
+    public void setPropState(PropState state){
+        this.nowPropState = state;
     }
     public void set_isDead(){
         this.isdead = true;
@@ -133,12 +136,27 @@ public class Pet extends HealthPointSprite {
     public void runToEnd(){
         this.nowstate = new RunToEnd(this,this.petName);
     }
+    public PropState getNowPropState(){
+        return this.nowPropState;
+    }
     ///////
+
     public boolean toEnd(){
-        if(getLocation().x >= GameView.WIDTH/10*7){
+        if(getLocation().x >= GameView.WIDTH/10*7){ 
             return true;
         }
         return false;
+    }
+    public void useProp(){
+        // revise 
+        if(this.nowPropState == null && propList.size() > 0 && !(this.nowstate instanceof RunToEnd)){
+            String nowProp = propList.get(0);
+            propList.remove(0);
+            if(nowProp.equals("ChargeCan")){
+                this.nowPropState = new Charge(this.petName);
+                this.nowstate = new UnstoppableRun(200,this.petName);
+            }
+        }
     }
     public void jump(){  
         if(this.nowstate instanceof Run || this.nowstate instanceof UnstoppableRun){
@@ -147,7 +165,7 @@ public class Pet extends HealthPointSprite {
     }
     public void slide(){ 
         if(this.nowstate instanceof Run){
-            setnormalY();
+            //setnormalY();
             this.nowstate = new Slide(this.petName);
             this.increaseLocationY(50); // 稍微下降
         }
@@ -155,7 +173,7 @@ public class Pet extends HealthPointSprite {
             this.nowstate = new Slide(this.petName);
         }
         else if(this.nowstate instanceof UnstoppableRun){
-            setnormalY();
+            //setnormalY();
             this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName);
             this.increaseLocationY(50);
         } 
@@ -171,27 +189,25 @@ public class Pet extends HealthPointSprite {
         if(this.nowstate instanceof RunToEnd){
             Vy_update();
             this.increaseLocationY(this.nowVy);
-            this.nowstate = controller.update(this,this.nowstate); 
-            //this.increaseLocationX(this.normalSpeed);
-
+            this.nowstate = controller.update(this,this.nowstate);
+            this.nowPropState = null; 
         }
         else if(this.Pet_HP <= 0){
             Vy_update();
             this.increaseLocationY(this.nowVy);
             if( !(this.nowstate instanceof Dead)){
-                //System.out.println("herer ff");
-                //System.out.println(this.nowstate);
                 this.nowstate = new Dead(this.petName);
             }
             this.nowSpeed = 0;
             this.nowstate = controller.update(this,this.nowstate); 
-            /// control menu
+            this.nowPropState = null;
         }
         else{
             Vy_update();
             this.nowstate = controller.update(this,this.nowstate); 
             this.increaseLocationY(this.nowVy);
-            this.nowSpeed = controller.update_speed(this.normalSpeed);
+            this.nowSpeed = controller.update_speed(this,this.normalSpeed);
+            this.nowPropState = controller.propStateUpdate(this,this.nowPropState);
         }
     }
 
@@ -205,11 +221,24 @@ public class Pet extends HealthPointSprite {
         g.setColor(Color.black); 
         String show_score = "score: " + String.valueOf(this.score);
         g.drawString(show_score, (GameView.WIDTH/10*8), GameView.HEIGHT/12);
+
         // draw pet
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
+        if(this.nowstate instanceof Unstoppable && !(this.nowstate instanceof Stop)){
+            float opacityRate = (float)0.5;
+            this.image = ImageStateUtils.opacity(this.image, opacityRate);
+        }
         setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);
+
+        // draw prop
+        if(this.nowPropState != null){
+            // only for charge
+            Rectangle proprange = new Rectangle( getX()-60, getY()+20, (int)getRange().getWidth()/2, (int)getRange().getHeight()/3*2);
+            this.propimage = this.nowPropState.getImage();
+            g.drawImage(this.propimage, proprange.x, proprange.y, proprange.width, proprange.height, null);
+        }
 
         // score render
         if(scoreRenderRemainTime > 0){
@@ -220,13 +249,6 @@ public class Pet extends HealthPointSprite {
         }
     }
 
-    private void delay(long ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
     @Override
     public void collideWith(Sprite sprite){
         return;

@@ -9,6 +9,7 @@ import objects.Hydrant;
 import objects.Alphabet;
 import objects.SerialAlphabet;
 import objects.Farground;
+import objects.ChargeCan;
 import views.GameView;
 //Leyna
 import utils.ImageStateUtils;
@@ -36,9 +37,12 @@ public class StageEasy1 extends Stage{
 
         for(int i = 0 ; i < 10; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
-            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new Candy());
-            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
+            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new ChargeCan());
+            
         }
+        addSprite( 8000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
+        addSprite( 4000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
+        addSprite( 2000 , (int)(GameView.HEIGHT * 0.2) , new ChargeCan());
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
         // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );

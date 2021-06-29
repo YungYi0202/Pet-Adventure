@@ -5,13 +5,16 @@ import java.awt.image.BufferedImage;
 
 public abstract class PropState extends State {
     /* Though this class implements all abstract method, this is a abstract class */
-    public State getNext(Pet s) {
-	if (--remainTime <= 0)
-	    return null;
+    //public BufferedImage getImage() {
+	//return is.getImage();
+    //}
+    public PropState getNext(Pet s) {
+        return null; 
     }
     public State getCollide() {
-	if (is != null)
-	    is.update();
-	return this;
+        return null;
     }
+	//if (is != null)
+	    //is.update();
+	//return this;
 }

@@ -21,11 +21,13 @@ public class UnstoppableSlide extends State implements Unstoppable {
 	slideRemainTime++;
 	remainTime--;
     if(slideRemainTime >= 35 && remainTime > 0){
-        s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
+        //s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
+		s.setLocation(new Point( s.getLocation().x , s.getLocation().y - s.getVy()-50));
         return new UnstoppableRun(remainTime ,this.petName);
     }
 	else if(slideRemainTime >= 35){
-		s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
+		//s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
+		s.setLocation(new Point( s.getLocation().x , s.getLocation().y - s.getVy()-50));
         return new Run(this.petName);
 	}
 	else if(remainTime <= 0)

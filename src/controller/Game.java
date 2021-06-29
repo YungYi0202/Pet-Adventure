@@ -45,7 +45,9 @@ public class Game extends GameLoop {
     }
 
     //TODO: 使用道具 
-    //public void useProp(int playerNumber){}
+    public void usePropPet(int playerNumber){
+        getPlayer(playerNumber).useProp();
+    }
 
     public Pet getPlayer(int playerNumber) {
         return p1;

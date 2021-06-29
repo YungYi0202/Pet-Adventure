@@ -18,11 +18,11 @@ public class PetStateControl{
         this.state = nowstate.getNext(s); // 傳入 pet s
         return this.state;
     }
-    public int update_speed(int speed){
+    public int update_speed(Pet s, int speed){
         if(this.state instanceof Stop){
             return this.stopping_speed;
         }
-        else if(this.state instanceof Unstoppable){
+        else if(this.state instanceof Unstoppable){ // 撞到
             if(increasingSpeed < speed){
                 if(lowerSpeedTime > 0){
                     lowerSpeedTime--;
@@ -32,15 +32,19 @@ public class PetStateControl{
                     increasingSpeed += 1;
                 }
             }
-            //System.out.println(increasingSpeed);
             return increasingSpeed;
         }
         else{
-            //acceleration = 0;
             lowerSpeedTime = 5;
             increasingSpeed = 0;
             return speed;
         }
+    }
+    public PropState propStateUpdate(Pet s, PropState nowPropState){
+        if(nowPropState != null){
+            return nowPropState.getNext(s);
+        }
+        return null;
     }
 
 }
