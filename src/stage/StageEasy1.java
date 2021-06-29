@@ -6,6 +6,7 @@ import model.Sprite;
 import objects.Ground;
 import objects.Candy;
 import objects.Hydrant;
+import objects.Bird;
 import objects.Alphabet;
 import objects.SerialAlphabet;
 import objects.Farground;
@@ -33,16 +34,18 @@ public class StageEasy1 extends Stage{
         addSpriteToFirstFloor(4500, serial.get(2));
         addSpriteToFirstFloor(5500, serial.get(3));
 
+
         //addSpriteToFirstFloor(2500, new Alphabet("F"));
 
         for(int i = 0 ; i < 10; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
-            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new ChargeCan());
-            
+	    Bird b = new Bird();
+	    addSprite((i+1) * 1000, getFirstFloorY() - b.getBodySize().height - 120, b);
+            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new Candy());
+            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
         }
-        addSprite( 8000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
-        addSprite( 4000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
-        addSprite( 2000 , (int)(GameView.HEIGHT * 0.2) , new ChargeCan());
+	// 測試加到 2 樓, Peng
+	addSprite( 1000 , this.getSecondFloorY() , new Ground());
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
         // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );

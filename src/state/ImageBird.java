@@ -13,15 +13,17 @@ import utils.ImageStateUtils;
  * @author - Leyna
  */
  
-public class ImageDead extends ImageState{
-    public ImageDead(String petName){
+public class ImageBird extends ImageState{
+    public ImageBird(){
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        int[] duration = {5, 5, 1000};
-        for(int i = 19; i <= 21; ++i){
-            String path = "assets/"+ petName +"/dead/"+ petName +"_" + i + ".png";
-            frames.add(new ImageFrame(new ImageStateUtils().getImage(path), duration[i - 19]));
+        for(int i = 1; i <= 6; ++i){
+            String path = "assets/bird/bird_" + i + ".png";
+            
+            // frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
+            // addFrame(new ImageStateUtils().getImage(path), 5);
+            addFrame(ImageStateUtils.getImage(path), 8);
         }
     }
 }

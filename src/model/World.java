@@ -68,10 +68,10 @@ public class World {
         cur_abs_x += this.getSpeed();
 
         // Result is WIN
-        if(players.get(0).arriveEnd()){
-            this.gameOver = true;
-            return;
-        }
+	if(players.get(0).arriveEnd()){
+	    this.gameOver = true;
+	    return;
+	}
         if(cur_abs_x + GameView.WIDTH >= end_abs_x){
             //TODO: 楊鈞安要改，到結尾
             if( !(players.get(0).getState() instanceof RunToEnd)){
@@ -82,10 +82,10 @@ public class World {
         }
 
         for(Pet player: players){
-            player.update();
+	    player.update();
         }
 
-	    // Peng
+	// Peng
         for (Sprite fg : fargrounds) {
             fg.update();
             //把沒入螢幕範圍、應該要消失的sprite拿掉（例如糖果被吃掉）
