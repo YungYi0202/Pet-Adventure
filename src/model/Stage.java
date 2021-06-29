@@ -115,7 +115,7 @@ public abstract class Stage {
     }
 
     public int getFirstFloorY(){return (int)(GameView.HEIGHT * 0.75); }
-    public int getSecondFloorY(){return (int)(GameView.HEIGHT * 0.4); }
+    public int getSecondFloorY(){return (int)(GameView.HEIGHT * 0.45); }
 
     public void sortByX(){
         Collections.sort(positionList, comparator);
