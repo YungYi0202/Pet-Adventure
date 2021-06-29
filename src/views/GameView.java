@@ -15,6 +15,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.lang.*;
+import java.awt.image.BufferedImage;
 
 /**
  * @author - Yung-Yi Chen
@@ -200,9 +201,10 @@ public class GameView extends JFrame {
             }
             else if(state == STATE.MENU && menuHasRendered == false){
                 this.removeAll();
-                
-                g.setColor(Color.WHITE); // paint background with all white
-                g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
+                BufferedImage img = menu.getBackground();
+                g.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
+                //g.setColor(Color.WHITE); // paint background with all white
+                //g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
                 
                 menu.loadToPanel();
                 menuHasRendered = true; 

@@ -47,7 +47,7 @@ public class StageEasy1 extends Stage{
         }
 	    // 測試加到 2 樓, Peng
 	    addSprite( 1000 , this.getSecondFloorY() , new Ground());
-        addSprite( 3000 , (int)(GameView.HEIGHT * 0.5) , new ChargeCan());
+        addSprite( 3100 , (int)(GameView.HEIGHT * 0.5) , new ChargeCan());
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
         // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );

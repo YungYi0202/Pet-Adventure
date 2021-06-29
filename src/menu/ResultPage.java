@@ -48,7 +48,7 @@ public class ResultPage{
     }
     // result is "WIN" or "LOSE"
     public void loadToPanel(String result, int time){
-        System.out.printf("result page load\n");
+        // System.out.printf("result page load\n");
         title.setText("You " + result + " !");
         restTime.setText("Close in " + String.valueOf(time) + " seconds" );
         panel.add(title);
