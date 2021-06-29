@@ -18,12 +18,10 @@ public class ImageDead extends ImageState{
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
+        int[] duration = {5, 5, 1000};
         for(int i = 19; i <= 21; ++i){
-            String path = "assets/"+ petName +"/run/"+ petName +"_" + i + ".png";
-            
-            //frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
-            // addFrame(new ImageStateUtils().getImage(path), 5);
-            addFrame(ImageStateUtils.getImage(path), 5);
+            String path = "assets/"+ petName +"/dead/"+ petName +"_" + i + ".png";
+            frames.add(new ImageFrame(new ImageStateUtils().getImage(path), duration[i - 19]));
         }
     }
 }
