@@ -39,6 +39,8 @@ public class StageEasy1 extends Stage{
             //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new Candy());
             //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
         }
+	// 測試加到 2 樓, Peng
+	addSprite( 1000 , this.getSecondFloorY() , new Ground());
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
         // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );

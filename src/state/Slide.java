@@ -14,7 +14,8 @@ public class Slide extends State {
 	is.update();
     //System.out.println(s.getLocation().y);
 	if(--remainTime <= 0){
-	    s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
+	    s.decreaseLocationY(50);
+	    //	    s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
 	    return new Run(this.petName);
 	}
 	return this;
