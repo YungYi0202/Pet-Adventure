@@ -41,6 +41,7 @@ public class GameView extends JFrame {
 
     public void launch() {
         // GUI Stuff
+        setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setContentPane(canvas);
         setSize(WIDTH, HEIGHT);
@@ -190,8 +191,8 @@ public class GameView extends JFrame {
         protected void paintComponent(Graphics g /*paintbrush*/) {
             super.paintComponent(g);
             // Now, let's paint
-            g.setColor(Color.WHITE); // paint background with all white
-            g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
+            // g.setColor(Color.WHITE); // paint background with all white
+            // g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
             if(state == STATE.GAME){  
                 this.removeAll();

@@ -1,4 +1,5 @@
 import controller.Game;
+import controller.GameLoop;
 import pet.Pet;
 import pet.PetCollisionHandler;
 import model.HealthPointSprite;
@@ -25,7 +26,8 @@ public class Main {
         //addAudioByFilePath(Attacking.AUDIO_SWORD_CLASH_1, new File("assets/audio/sword-clash1.wav"));
         //addAudioByFilePath(Attacking.AUDIO_SWORD_CLASH_2, new File("assets/audio/sword-clash2.wav"));
         addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
-
+        addAudioByFilePath(Game.AUDIO_GAME, new File("assets/audio/game.wav"));
+        addAudioByFilePath(Game.AUDIO_MENU, new File("assets/audio/menu.wav"));
         // initialization procedure
         // Pet p1 = new Pet(500,20);
         //TODO: 之後要加入改變關卡的menu？
@@ -34,8 +36,9 @@ public class Main {
         
         // Game game = new Game(world, p1);  // controller
         Game game = new Game();  // controller
-        GameView view = new GameView(game);  // view
+        GameView view = new GameView(game);  // view        
         game.start();  // run the game and the game loop
         view.launch(); // launch the GUI
+        
     }
 }

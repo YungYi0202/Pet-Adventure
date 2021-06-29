@@ -2,6 +2,7 @@ package controller;
 
 import model.World;
 import menu.Menu;
+import media.AudioPlayer;
 
 /**
  * @author - Yung-Yi Chen
@@ -20,6 +21,8 @@ public abstract class GameLoop {
     private int resultTimeCount = 0;
     private enum STATE {MENU, GAME, PAUSE, TUTORIAL, RESULT};
     private STATE state = STATE.MENU;
+    public static final String AUDIO_GAME = "game";
+    public static final String AUDIO_MENU = "menu";
 
     public void setView(View view) {
         this.view = view;
@@ -40,6 +43,8 @@ public abstract class GameLoop {
                     if(menuHasRendered == false){
                         view.renderMenu();
                         menuHasRendered = true;
+                        System.out.printf("MenuRender\n");
+                        // AudioPlayer.playSounds(AUDIO_MENU);
                     }
                     break;
                 case GAME:
@@ -102,11 +107,13 @@ public abstract class GameLoop {
             // }
         // }
         //state = STATE.MENU;
-        //TODO: 
+        AudioPlayer.pauseSounds(AUDIO_GAME);
         state = STATE.PAUSE;
     }
 
     public void exit(){
+        AudioPlayer.stopSounds(AUDIO_GAME);
+        
         state = STATE.MENU;
     }
 
@@ -117,6 +124,7 @@ public abstract class GameLoop {
         //     gameThread.notify();
         //     System.out.printf("gameThread.notify\n");
         // }
+        AudioPlayer.playSounds(AUDIO_GAME);
         state = STATE.GAME;
     }
 
@@ -125,6 +133,7 @@ public abstract class GameLoop {
     }
 
     public void resumeWithTutorial(){
+        // AudioPlayer.stopSounds(AUDIO_MENU);
         state = STATE.TUTORIAL;
     }
 
