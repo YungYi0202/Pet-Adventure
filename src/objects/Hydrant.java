@@ -18,7 +18,7 @@ import pet.Pet;
 public class Hydrant extends Prop{
     //TODO: 等陳奕瑄給圖
     private BufferedImage image = null;
-    private int hpDamage = 50;
+    private int hpDamage = 300;
     public Hydrant(){
         //this.image = new ImageStateUtils().getImage("assets/hydrant/hydrant.png");
         this.image = ImageStateUtils.getImage("assets/hydrant/hydrant.png");

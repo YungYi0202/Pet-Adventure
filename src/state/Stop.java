@@ -13,7 +13,7 @@ public class Stop extends State implements Unstoppable {
 	if(nowstate instanceof Slide){
 	    //s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
 		//s.setLocation(new Point( s.getLocation().x , s.getLocation().y - s.getVy()-50));
-		s.decreaseLocationY(50);
+		s.decreaseLocationY(s.getSlideY());
 	}
 	this.petName = petName;
 	this.is = new ImageStop(this.petName);

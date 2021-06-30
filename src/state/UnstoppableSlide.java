@@ -6,14 +6,14 @@ public class UnstoppableSlide extends State implements Unstoppable {
     //private int remainTime;
     private int slideRemainTime;
     private String petName;
-    public UnstoppableSlide(int n,String petName) {
+    public UnstoppableSlide(int n,String petName,boolean doubleSlide) {
 	this.petName = petName;
-	this.is = new ImageSlide(this.petName); //?
+	this.is = new ImageSlide(this.petName,doubleSlide); //?
 	remainTime = n;
     }
-    public UnstoppableSlide(String petName) {
+    public UnstoppableSlide(String petName,boolean doubleSlide) {
 	this.petName = petName;	
-	this.is = new ImageSlide(this.petName); //?
+	this.is = new ImageSlide(this.petName,doubleSlide); //?
 	remainTime = 100;
     }
     public State getNext(Pet s) {
@@ -21,16 +21,16 @@ public class UnstoppableSlide extends State implements Unstoppable {
 	slideRemainTime++;
 	remainTime--;
 	if(slideRemainTime >= 35 && remainTime > 0){
-	    s.decreaseLocationY(50);
+	    s.decreaseLocationY(s.getSlideY());
 	    //        s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
 	    return new UnstoppableRun(remainTime, s,this.petName);
 	}
 	else if(slideRemainTime >= 35){
-	    s.decreaseLocationY(50);
+	    s.decreaseLocationY(s.getSlideY());
 	    return new Run(this.petName);
 	}
 	else if(remainTime <= 0)
-	    return new Slide(this.petName);
+	    return new Slide(this.petName,true);
 	return this;
     }
     public State getCollide() {

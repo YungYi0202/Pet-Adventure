@@ -37,12 +37,12 @@ public class StageEasy1 extends Stage{
 
         //addSpriteToFirstFloor(2500, new Alphabet("F"));
 
-        for(int i = 0 ; i < 10; i++){
+        for(int i = 0 ; i < 50; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
 	    //Bird b = new Bird();
 	    //addSprite((i+1) * 1000, getFirstFloorY() - b.getBodySize().height - 120, b);
             //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new Candy());
-            addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
+           addSprite((i+1) * 700 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
 
         }
 	    // 測試加到 2 樓, Peng

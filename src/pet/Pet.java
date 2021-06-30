@@ -42,6 +42,7 @@ public class Pet extends HealthPointSprite {
     private int scoreRenderRemainTime = 0;
     private boolean isdead;
     private boolean ending;
+    private int slideDecreaseY = 100;
 
     public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
@@ -59,6 +60,9 @@ public class Pet extends HealthPointSprite {
     }
     
     /// 取用任何 pet 資訊的地方 (給別人用的)
+    public int getSlideY(){
+        return this.slideDecreaseY;
+    }
     public void addProps(String prop){
         if(propList.size() < this.bag_volume){
             propList.add(prop);
@@ -166,22 +170,18 @@ public class Pet extends HealthPointSprite {
     }
     public void slide(){ 
         if(this.nowstate instanceof Run){
-            //setnormalY();
-            this.nowstate = new Slide(this.petName);
-            this.increaseLocationY(50); // 稍微下降
+            this.nowstate = new Slide(this.petName,false);
+            this.increaseLocationY(getSlideY()); // 稍微下降
         }
         else if(this.nowstate instanceof Slide){
-            this.nowstate = new Slide(this.petName);
+            this.nowstate = new Slide(this.petName,true);
         }
         else if(this.nowstate instanceof UnstoppableRun){
-            //setnormalY();
-            this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName);
-            this.increaseLocationY(50);
-            //System.out.println("fuckyou");
+            this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName,false);
+            this.increaseLocationY(getSlideY());
         } 
         else if(this.nowstate instanceof UnstoppableSlide){
-            this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName);
-            //System.out.println("you");
+            this.nowstate = new UnstoppableSlide(this.nowstate.remainTime , this.petName,true);
         }
     }
     public void Vy_update(){ // gravity
@@ -199,6 +199,7 @@ public class Pet extends HealthPointSprite {
             Vy_update();
             this.increaseLocationY(this.nowVy);
             if( !(this.nowstate instanceof Dead)){
+                setLocation(new Point(getLocation().x , getLocation().y + 50 ));
                 this.nowstate = new Dead(this.petName);
             }
             this.nowSpeed = 0;

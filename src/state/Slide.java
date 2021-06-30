@@ -5,17 +5,15 @@ import java.awt.*;
 public class Slide extends State {
     private int remainTime;
     private String petName;
-    public Slide(String petName) {
+    public Slide(String petName,boolean doubleSlide) {
 	this.remainTime = 35;
 	this.petName = petName;
-	this.is = new ImageSlide(petName);
+	this.is = new ImageSlide(petName,doubleSlide);
     }
     public State getNext(Pet s) {
 	is.update();
 	if(--remainTime <= 0){
-	    //s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
-		//s.setLocation(new Point( s.getLocation().x , s.getLocation().y - s.getVy()-50));
-	    s.decreaseLocationY(50);
+	    s.decreaseLocationY(s.getSlideY());
 	    return new Run(this.petName);
 	}
 	return this;

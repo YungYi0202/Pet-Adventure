@@ -4,8 +4,8 @@ public class UnstoppableRun extends State implements Unstoppable {
     //private int remainTime;
 	private String petName;
     public UnstoppableRun(int n,Pet s,String petName) {
-	if(s.getState() instanceof Slide ){
-		s.decreaseLocationY(50);
+	if(s.getState() instanceof Slide){
+		s.decreaseLocationY(s.getSlideY());
 	}
 	this.petName = petName;
 	this.is = new ImageRun(this.petName);
