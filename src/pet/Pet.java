@@ -168,6 +168,9 @@ public class Pet extends HealthPointSprite {
             propList.remove(0);
             if(nowProp.equals("ChargeCan")){
                 this.nowPropState = new Charge(this.petName);
+                if(this.nowstate instanceof Slide || this.nowstate instanceof UnstoppableSlide){
+                    decreaseLocationY(getSlideY());
+                }
                 this.nowstate = new UnstoppableRun(150,this,this.petName);
             }
             if(nowProp.equals("DoublePoint")){
@@ -218,6 +221,7 @@ public class Pet extends HealthPointSprite {
             Vy_update();
             this.increaseLocationY(this.nowVy);
             if( !(this.nowstate instanceof Dead)){
+
                 setLocation(new Point(getLocation().x , getLocation().y + 45 ));
                 this.nowstate = new Dead(this.petName);
             }
