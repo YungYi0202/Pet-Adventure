@@ -9,6 +9,10 @@ import java.lang.*;
 // author = qpoiPeng
 public class Ground extends Sprite {
     private BufferedImage image;
+    public Ground(int n) {
+	this.image = ImageStateUtils.getImage("assets/ground/ground_" + n + ".png");
+	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));	
+    }
     public Ground(){
 	//this.image = new ImageStateUtils().getImage("assets/ground/ground_1.png");
 	this.image = ImageStateUtils.getImage("assets/ground/ground_1.png");
