@@ -8,7 +8,9 @@ public class RunToEnd extends State{
     public RunToEnd(Pet s,String petName) {
         if(s.getState() instanceof Slide || s.getState() instanceof UnstoppableSlide){
 	        //s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
-            s.setLocation(new Point( s.getLocation().x , s.getLocation().y - s.getVy()-50));
+            //s.setLocation(new Point( s.getLocation().x , s.getLocation().y - s.getVy()-50));
+            s.decreaseLocationY(s.getSlideY());
+
 	    }
         remainTime = 1000;
 	    this.petName = petName;
@@ -20,7 +22,7 @@ public class RunToEnd extends State{
     public State getNext(Pet s) {
 	is.update();
     remainTime--;
-	if(s.toEnd() && this.is instanceof ImageRun){
+	if(s.toEnd() && this.is instanceof ImageRun){ // revise in here
         this.is = new ImageEnd(this.petName);
         remainTime = 100;
     }

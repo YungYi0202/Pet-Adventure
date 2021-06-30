@@ -87,9 +87,15 @@ public class Pet extends HealthPointSprite {
         this.score += amount;
     }
     public void addScoreWithRender(int amount){
-        this.score += amount;
+        if(this.nowPropState instanceof DoublePoint){
+            this.score += amount*2;
+            this.scoreRender = amount*2;
+        }
+        else{
+            this.score += amount;
+            this.scoreRender = amount;
+        }
         this.scoreRenderRemainTime = 40;
-        this.scoreRender = amount;
     }
     public int getHp(){
         return this.Pet_HP;
@@ -161,8 +167,11 @@ public class Pet extends HealthPointSprite {
                 this.nowPropState = new Charge(this.petName);
                 this.nowstate = new UnstoppableRun(150,this,this.petName);
             }
-            /*if(nowProp.equals("Doublepoint")){
-                this.nowPropState = new Doublepoint(this.petName);
+            if(nowProp.equals("DoublePoint")){
+                this.nowPropState = new DoublePoint(this.petName);
+            }
+            /*if(nowProp.equals("Shield")){
+                this.nowPropState = new Shield(this.petName);
             }*/
         }
     }
@@ -202,7 +211,7 @@ public class Pet extends HealthPointSprite {
             Vy_update();
             this.increaseLocationY(this.nowVy);
             if( !(this.nowstate instanceof Dead)){
-                setLocation(new Point(getLocation().x , getLocation().y + 50 ));
+                setLocation(new Point(getLocation().x , getLocation().y + 45 ));
                 this.nowstate = new Dead(this.petName);
             }
             this.nowSpeed = 0;
@@ -244,8 +253,10 @@ public class Pet extends HealthPointSprite {
         if(this.nowPropState != null){
             Rectangle proprange = this.nowPropState.getPropRange(this);
             //Rectangle proprange = new Rectangle( getX()-60, getY()+20, (int)getRange().getWidth()/2, (int)getRange().getHeight()/3*2);
-            this.propimage = this.nowPropState.getImage();
-            g.drawImage(this.propimage, proprange.x, proprange.y, proprange.width, proprange.height, null);
+            if(proprange != null){
+                this.propimage = this.nowPropState.getImage();
+                g.drawImage(this.propimage, proprange.x, proprange.y, proprange.width, proprange.height, null);
+            } 
         }
 
         // score render
