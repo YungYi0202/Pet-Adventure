@@ -4,7 +4,6 @@ import model.Stage;
 import model.Position;
 import model.Sprite;
 import objects.Ground;
-import objects.Hole;
 import objects.SecondFloor;
 import objects.Candy;
 import objects.Hydrant;
@@ -18,12 +17,10 @@ import views.GameView;
 import utils.ImageStateUtils;
 import java.awt.image.BufferedImage;
 
-/**
- * @author - Yung-Yi Chen
- */
-public class StageEasy extends Stage{
-    public StageEasy(){
-        setSpeed(15);
+
+public class StageHard extends Stage{
+    public StageHard(){
+        setSpeed(25);
         //TODO: 把該有的Sprite加進去
 	
 	addFarground(0, 0, new Farground("assets/farground/farground_1.png"));
@@ -36,7 +33,7 @@ public class StageEasy extends Stage{
         addSpriteToSecondFloor(12000, serial.get(2));
         addSpriteToFirstFloor(15500, serial.get(3));
 
-	//	addSpriteToFirstFloor(1000, new Hydrant());
+	addSpriteToFirstFloor(1000, new Hydrant());
 	addSpriteToFirstFloor(2000, new Hydrant());
 	addSpriteToFirstFloor(3200, new Hydrant());
 	addSpriteToFirstFloor(5000, new Hydrant());
@@ -63,11 +60,7 @@ public class StageEasy extends Stage{
 
 	
         for(int i = 0 ; i < 22; i++){
-	    if (i == 1)
-		addSprite(i * 1000 , this.getFirstFloorY() , new Hole(1));
-	    else
-		addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
-
+            addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
 	    //Bird b = new Bird();
 	    //addSprite((i+1) * 1000, getFirstFloorY() - b.getBodySize().height - 120, b);
             //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new Candy());
