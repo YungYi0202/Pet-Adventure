@@ -8,6 +8,8 @@ import menu.Menu;
 import menu.PauseMenu;
 import menu.TutorialPage;
 import menu.ResultPage;
+import menu.ScoreBoard;
+
 import utils.ImageStateUtils;
 
 import javax.swing.*;
@@ -124,6 +126,7 @@ public class GameView extends JFrame {
         private PauseMenu pauseMenu;
         private TutorialPage tutorialPage;
         private ResultPage resultPage;
+        private ScoreBoard scoreBoard;
         private int tutorialPageCountDownTime;
         private int resultPageCountDownTime;
 
@@ -142,10 +145,12 @@ public class GameView extends JFrame {
             this.pauseMenu = new PauseMenu(game, this);
             this.tutorialPage = new TutorialPage(game, this);
             this.resultPage = new ResultPage(game, this);
+            this.scoreBoard = new ScoreBoard(game, this);
             menu.loadToPanel(); 
             pauseMenu.loadToPanel();
             tutorialPage.loadToPanel(5);
-            resultPage.loadToPanel("WIN", 5);
+            resultPage.loadToPanel("WIN", 5, 0);
+            scoreBoard.loadToPanel(0);
         }
 
         @Override
@@ -199,7 +204,7 @@ public class GameView extends JFrame {
 
                 //g.setColor(Color.WHITE); // paint background with all white
                 //g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
-            
+                scoreBoard.loadToPanel(world.getScore());
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
             else if(state == STATE.MENU && menuHasRendered == false){
@@ -213,6 +218,7 @@ public class GameView extends JFrame {
                 menuHasRendered = true; 
             }else if(state == STATE.PAUSE && pauseMenuHasRendered == false){
                 this.removeAll();
+                scoreBoard.loadToPanel(world.getScore());
                 world.render(g);
                 // g.setColor(PauseMenu.backgroundColor); // paint background with all white
                 // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
@@ -238,7 +244,7 @@ public class GameView extends JFrame {
                 // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
                 this.renderBoard(g);
                 this.removeAll();
-                resultPage.loadToPanel(world.getResult(), resultPageCountDownTime);
+                resultPage.loadToPanel(world.getResult(), resultPageCountDownTime, world.getScore());
                 resultPageHasRendered = true;
             }
         }

@@ -17,6 +17,8 @@ import java.lang.*;
 import java.util.*;
 import views.GameView;
 import state.ImageCharge;
+import media.AudioPlayer;
+import menu.Menu;
 //還有其他要import的記得import
 
 //楊鈞安
@@ -46,6 +48,13 @@ public class Pet extends HealthPointSprite {
     private boolean ending;
     private int slideDecreaseY = 70;
     private int endJump = 0;
+    private Font fnt0 = new Font("ariel", Font.BOLD, 30);
+    public static final String AUDIO_ADDSCORE = "addScore";
+    public static final String AUDIO_ADDPROP = "addProp";
+    public static final String AUDIO_USEPROP = "useProp";
+    public static final String AUDIO_COSTHP = "costHp";
+    public static final String AUDIO_PUPPYDIE = "puppyDie";
+    public static final String AUDIO_KITTENDIE = "kittenDie";
 
     public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
@@ -67,6 +76,7 @@ public class Pet extends HealthPointSprite {
         return this.slideDecreaseY;
     }
     public void addProps(String prop){
+        AudioPlayer.playSounds(AUDIO_ADDPROP);
         if(propList.size() < this.bag_volume){
             propList.add(prop);
         }
@@ -88,14 +98,15 @@ public class Pet extends HealthPointSprite {
     }
     public void addScore(int amount){
         this.score += amount;
+        if(amount > 0) AudioPlayer.playSounds(AUDIO_ADDSCORE);
     }
     public void addScoreWithRender(int amount){
         if(this.nowPropState instanceof DoublePoint){
-            this.score += amount*2;
+            addScore(amount*2);
             this.scoreRender = amount*2;
         }
         else{
-            this.score += amount;
+            addScore(amount);
             this.scoreRender = amount;
         }
         this.scoreRenderRemainTime = 40;
@@ -104,6 +115,7 @@ public class Pet extends HealthPointSprite {
         return this.Pet_HP;
     }
     public void costHp(int amount){ //傳入要增減的血量
+        if(amount > 0 && nowstate instanceof Dead == false) AudioPlayer.playSounds(AUDIO_COSTHP);
         this.Pet_HP -= amount;
         onDamaged(amount);
     }
@@ -164,6 +176,7 @@ public class Pet extends HealthPointSprite {
     public void useProp(){
         // revise 
         if(this.nowPropState == null && propList.size() > 0 && !(this.nowstate instanceof RunToEnd)){
+            AudioPlayer.playSounds(AUDIO_USEPROP);
             String nowProp = propList.get(0);
             propList.remove(0);
             if(nowProp.equals("ChargeCan")){
@@ -220,6 +233,8 @@ public class Pet extends HealthPointSprite {
             if( !(this.nowstate instanceof Dead)){
                 setLocation(new Point(getLocation().x , getLocation().y + 45 ));
                 this.nowstate = new Dead(this.petName);
+                if(petName == Menu.PUPPY) AudioPlayer.playSounds(AUDIO_PUPPYDIE);
+                if(petName == Menu.KITTEN) AudioPlayer.playSounds(AUDIO_KITTENDIE);
             }
             this.nowSpeed = 0;
             this.nowstate = controller.update(this,this.nowstate); 
@@ -240,11 +255,11 @@ public class Pet extends HealthPointSprite {
         super.render(g); // healthbar render
 
         ///// score render
-        Font fnt0 = new Font("ariel", Font.BOLD, 30);
-        g.setFont(fnt0);
-        g.setColor(Color.black); 
-        String show_score = "score: " + String.valueOf(this.score);
-        g.drawString(show_score, (GameView.WIDTH/10*7)+50, GameView.HEIGHT/12);
+        // Font fnt0 = new Font("ariel", Font.BOLD, 30);
+        // g.setFont(fnt0);
+        // g.setColor(Color.black); 
+        // String show_score = "score: " + String.valueOf(this.score);
+        // g.drawString(show_score, (GameView.WIDTH/10*7)+50, GameView.HEIGHT/12);
 
         // draw pet
         Rectangle range = this.getRange();

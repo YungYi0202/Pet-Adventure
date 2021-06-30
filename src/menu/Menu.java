@@ -20,9 +20,10 @@ public class Menu{
     private final JPanel panel;
 
     private BufferedImage background;
-
+    public static final String PUPPY = "puppy";
+    public static final String KITTEN = "kitten";
     //Leyna lower first letter
-    private String[] petChoices = { "puppy","kitten"};
+    private String[] petChoices = { PUPPY,KITTEN};
     private JComboBox<String> petMenu = new JComboBox<String>(petChoices);
     private int defaultPetIndex = 0;
     private String selectedPet = petChoices[defaultPetIndex];

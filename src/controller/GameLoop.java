@@ -43,8 +43,6 @@ public abstract class GameLoop {
                     if(menuHasRendered == false){
                         view.renderMenu();
                         menuHasRendered = true;
-                        System.out.printf("MenuRender\n");
-                        // AudioPlayer.playSounds(AUDIO_MENU);
                     }
                     break;
                 case GAME:
@@ -113,7 +111,7 @@ public abstract class GameLoop {
 
     public void exit(){
         AudioPlayer.stopSounds(AUDIO_GAME);
-        
+        AudioPlayer.playSounds(AUDIO_MENU);
         state = STATE.MENU;
     }
 
@@ -133,7 +131,7 @@ public abstract class GameLoop {
     }
 
     public void resumeWithTutorial(){
-        // AudioPlayer.stopSounds(AUDIO_MENU);
+        AudioPlayer.stopSounds(AUDIO_MENU);
         state = STATE.TUTORIAL;
     }
 

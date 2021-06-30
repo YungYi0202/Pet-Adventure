@@ -9,7 +9,6 @@ import java.awt.*;
  * @author - andyyoung
  */
 public abstract class HealthPointSprite extends Sprite {
-    public static final String AUDIO_DIE = "Die";
     public int count = 0;
     protected HealthPointBar hpBar;
 
@@ -24,7 +23,7 @@ public abstract class HealthPointSprite extends Sprite {
         if (hpBar.isDead() && count == 0) {
             //world.removeSprite(this);  ///// remove 本身 的實作
 
-            AudioPlayer.playSounds(AUDIO_DIE);
+            // AudioPlayer.playSounds(AUDIO_DIE);
             count = 1;
         }
     }
