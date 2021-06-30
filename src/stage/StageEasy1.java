@@ -35,9 +35,9 @@ public class StageEasy1 extends Stage{
         addSpriteToFirstFloor(4500, serial.get(2));
         addSpriteToFirstFloor(5500, serial.get(3));
 
-
+	Ground g = new Ground(2);
         //addSpriteToFirstFloor(2500, new Alphabet("F"));
-
+	
         for(int i = 0 ; i < 10; i++){
             addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
 	    //Bird b = new Bird();
