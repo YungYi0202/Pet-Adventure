@@ -7,7 +7,11 @@ public abstract class State {
     public abstract State getNext(Pet s);
     public abstract State getCollide();
     protected ImageState is;
+    //private ImageState is;
     public int remainTime;
+    public ImageState getImageState(){
+        return this.is;
+    }
     public int getRemainTime() {
 	return remainTime;
     }

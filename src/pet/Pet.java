@@ -3,6 +3,7 @@ import state.*;
 import state.ImageRenderer;
 import state.State;
 import state.PropState;
+import state.ImageEnd;
 import model.Sprite;
 import model.HealthPointSprite;
 import model.SpriteShape; 
@@ -43,6 +44,7 @@ public class Pet extends HealthPointSprite {
     private boolean isdead;
     private boolean ending;
     private int slideDecreaseY = 100;
+    private int endJump = 0;
 
     public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
         super(Pet_HP); // 創建 Healthpointbar
@@ -202,6 +204,10 @@ public class Pet extends HealthPointSprite {
     @Override 
     public void update(){ 
         if(this.nowstate instanceof RunToEnd){
+            if(this.nowstate.getImageState() instanceof ImageEnd && this.endJump == 0){
+                this.nowVy = -jump_velocity;
+                this.endJump = 1;
+            }
             Vy_update();
             this.increaseLocationY(this.nowVy);
             this.nowstate = controller.update(this,this.nowstate);
