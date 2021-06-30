@@ -13,7 +13,7 @@ public class StageManager{
             case "Medium":
                 return new StageEasy1();
             case "Hard":
-                return new StageEasy1();
+                return new StageEasy();
         }
         return null;
     }
