@@ -3,17 +3,16 @@ import pet.Pet;
 import java.lang.*;
 import java.awt.*;
 public class UnstoppableSlide extends State implements Unstoppable {
-    //private int remainTime;
     private int slideRemainTime;
     private String petName;
     public UnstoppableSlide(int n,String petName,boolean doubleSlide) {
 	this.petName = petName;
-	this.is = new ImageSlide(this.petName,doubleSlide); //?
+	this.is = new ImageSlide(this.petName,doubleSlide); 
 	remainTime = n;
     }
     public UnstoppableSlide(String petName,boolean doubleSlide) {
 	this.petName = petName;	
-	this.is = new ImageSlide(this.petName,doubleSlide); //?
+	this.is = new ImageSlide(this.petName,doubleSlide); 
 	remainTime = 100;
     }
     public State getNext(Pet s) {

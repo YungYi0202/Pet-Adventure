@@ -161,6 +161,9 @@ public class Pet extends HealthPointSprite {
                 this.nowPropState = new Charge(this.petName);
                 this.nowstate = new UnstoppableRun(150,this,this.petName);
             }
+            /*if(nowProp.equals("Doublepoint")){
+                this.nowPropState = new Doublepoint(this.petName);
+            }*/
         }
     }
     public void jump(){  
@@ -221,11 +224,11 @@ public class Pet extends HealthPointSprite {
         super.render(g); // healthbar render
 
         ///// score render
-        Font fnt0 = new Font("ariel", Font.BOLD, 20);
+        Font fnt0 = new Font("ariel", Font.BOLD, 30);
         g.setFont(fnt0);
         g.setColor(Color.black); 
         String show_score = "score: " + String.valueOf(this.score);
-        g.drawString(show_score, (GameView.WIDTH/10*8), GameView.HEIGHT/12);
+        g.drawString(show_score, (GameView.WIDTH/10*7)+50, GameView.HEIGHT/12);
 
         // draw pet
         Rectangle range = this.getRange();
@@ -239,7 +242,6 @@ public class Pet extends HealthPointSprite {
 
         // draw prop
         if(this.nowPropState != null){
-            // only for charge
             Rectangle proprange = this.nowPropState.getPropRange(this);
             //Rectangle proprange = new Rectangle( getX()-60, getY()+20, (int)getRange().getWidth()/2, (int)getRange().getHeight()/3*2);
             this.propimage = this.nowPropState.getImage();

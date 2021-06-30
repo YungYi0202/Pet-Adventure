@@ -53,7 +53,7 @@ public class HealthPointBar extends Sprite {
     @Override
     public Rectangle getRange() { /// Todo 位置可能要改 
         //return new Rectangle(owner.getX(), owner.getY() - 15, (int) owner.getRange().getWidth(), 10);
-        return new Rectangle(GameView.WIDTH/9 , GameView.HEIGHT/12, GameView.WIDTH/5*2, 20);
+        return new Rectangle(GameView.WIDTH/9 , GameView.HEIGHT/16, GameView.WIDTH/5*2, 20);
     } 
 
     @Override
