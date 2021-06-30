@@ -20,6 +20,7 @@ public class ResultPage{
     // private JButton backButton = new JButton("Skip (S)");
     private JButton backButton = new JButton("Back To Menu (S)");
     private JLabel title =  new JLabel("You Win", SwingConstants.CENTER);
+    private JLabel score = new JLabel("Score: 0", SwingConstants.CENTER);
     private JLabel restTime = new JLabel("Close in 5 seconds", SwingConstants.CENTER);
     // private JLabel line1 = new JLabel("* Press UP to jump", SwingConstants.LEFT);
     // private JLabel line2 = new JLabel("* Press DOWN to slide", SwingConstants.LEFT);
@@ -35,6 +36,10 @@ public class ResultPage{
         title.setBounds(350, 100, 300, 120);
         title.setFont(new Font("Utopia", Font.BOLD, 50));
 
+        score.setFocusable(false);
+        score.setBounds(200, 230, 600, 120);
+        score.setFont(new Font("Utopia", Font.BOLD, 60));
+
         restTime.setFocusable(false);
         restTime.setBounds(250, 370, 500, 100);
         restTime.setFont(new Font("Utopia", Font.BOLD, 30));
@@ -47,17 +52,20 @@ public class ResultPage{
 
     }
     // result is "WIN" or "LOSE"
-    public void loadToPanel(String result, int time){
+    public void loadToPanel(String result, int time, int scoreVal){
         // System.out.printf("result page load\n");
         title.setText("You " + result + " !");
         restTime.setText("Close in " + String.valueOf(time) + " seconds" );
+        score.setText("Score: "+ String.valueOf(scoreVal));
         panel.add(title);
+        panel.add(score);
         panel.add(restTime);
         panel.add(backButton);
     }
 
     public void removeFromPanel(){
         panel.remove(title);
+        panel.remove(score);
         panel.remove(restTime);
         panel.remove(backButton);
     }

@@ -24,7 +24,7 @@ public class SerialAlphabet extends Sprite{
     double shrinkRate = 0.5;
     float opacityRate = (float)0.5;
     int interval = 10;
-    int margin = 90;
+    int margin = 70;
     int Y = 100;
 
     public SerialAlphabet(String ... alphas){

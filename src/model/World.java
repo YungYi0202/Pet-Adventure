@@ -69,10 +69,10 @@ public class World {
         cur_abs_x += this.getSpeed();
 
         // Result is WIN
-	if(players.get(0).arriveEnd()){
-	    this.gameOver = true;
-	    return;
-	}
+        if(players.get(0).arriveEnd()){
+            this.gameOver = true;
+            return;
+        }
         if(cur_abs_x + GameView.WIDTH >= end_abs_x){
             //TODO: 楊鈞安要改，到結尾
             if( !(players.get(0).getState() instanceof RunToEnd)){
@@ -189,4 +189,5 @@ public class World {
 
     public Boolean isGameOver(){return this.gameOver;}
     public String getResult(){return this.result;}
+    public int getScore(){return players.get(0).getScore();}
 }

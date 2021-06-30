@@ -52,12 +52,12 @@ public class AudioPlayer {
                     break;
                 case Game.AUDIO_MENU:
                     System.out.printf("playSounds: MENU\n");
-
                     menuClip = AudioSystem.getClip();
                     menuClip.open(AudioSystem.getAudioInputStream(sounds.get(audioName)));
                     menuClip.setMicrosecondPosition(menuClipTimePosition);
                     menuClip.start();
                     menuClip.loop(Clip.LOOP_CONTINUOUSLY);
+                    break;
                 default:
                     Clip clip = AudioSystem.getClip();
                     clip.open(AudioSystem.getAudioInputStream(sounds.get(audioName)));
