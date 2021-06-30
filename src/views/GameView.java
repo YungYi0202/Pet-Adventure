@@ -8,6 +8,7 @@ import menu.Menu;
 import menu.PauseMenu;
 import menu.TutorialPage;
 import menu.ResultPage;
+import utils.ImageStateUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.lang.*;
+import java.awt.image.BufferedImage;
 
 /**
  * @author - Yung-Yi Chen
@@ -39,6 +41,7 @@ public class GameView extends JFrame {
 
     public void launch() {
         // GUI Stuff
+        setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setContentPane(canvas);
         setSize(WIDTH, HEIGHT);
@@ -59,11 +62,11 @@ public class GameView extends JFrame {
                         game.slidePet(P1);
                         break;
                     case KeyEvent.VK_S:
-                        System.out.println("pause");
+                        // System.out.println("pause");
                         game.pause();
                         break;
                     case KeyEvent.VK_LEFT:
-                        System.out.println("useProp");
+                        // System.out.println("useProp");
                         game.usePropPet(P1);
                         break;
                     }
@@ -130,7 +133,8 @@ public class GameView extends JFrame {
         private boolean pauseMenuHasRendered = false;
         private boolean tutorialPageHasRendered = false;
         private boolean resultPageHasRendered = false;
-        
+        private BufferedImage board = ImageStateUtils.getImage("assets/menu/menu_1.png");
+
         public Canvas(Game game){
             //this.pauseMenu = new PauseMenu(game, this);
             this.setLayout(null);
@@ -187,8 +191,8 @@ public class GameView extends JFrame {
         protected void paintComponent(Graphics g /*paintbrush*/) {
             super.paintComponent(g);
             // Now, let's paint
-            g.setColor(Color.WHITE); // paint background with all white
-            g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
+            // g.setColor(Color.WHITE); // paint background with all white
+            // g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
             if(state == STATE.GAME){  
                 this.removeAll();
@@ -200,25 +204,28 @@ public class GameView extends JFrame {
             }
             else if(state == STATE.MENU && menuHasRendered == false){
                 this.removeAll();
-                
-                g.setColor(Color.WHITE); // paint background with all white
-                g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
+                BufferedImage img = menu.getBackground();
+                g.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
+                //g.setColor(Color.WHITE); // paint background with all white
+                //g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
                 
                 menu.loadToPanel();
                 menuHasRendered = true; 
             }else if(state == STATE.PAUSE && pauseMenuHasRendered == false){
                 this.removeAll();
                 world.render(g);
-                g.setColor(PauseMenu.backgroundColor); // paint background with all white
-                g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+                // g.setColor(PauseMenu.backgroundColor); // paint background with all white
+                // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+                this.renderBoard(g);
                 
                 pauseMenu.loadToPanel();
                 pauseMenuHasRendered = true;
             }else if(state == STATE.TUTORIAL && tutorialPageHasRendered == false){
                 //System.out.printf("world.render(g);\n");
                 world.render(g);
-                g.setColor(PauseMenu.backgroundColor); // paint background with all white
-                g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+                // g.setColor(PauseMenu.backgroundColor); // paint background with all white
+                // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+                this.renderBoard(g);
 
                 this.removeAll();
                 tutorialPage.loadToPanel(tutorialPageCountDownTime);
@@ -227,9 +234,9 @@ public class GameView extends JFrame {
             }else if(state == STATE.RESULT && resultPageHasRendered == false){
                 //System.out.printf("world.render(g);\n");
                 world.render(g);
-                g.setColor(PauseMenu.backgroundColor); // paint background with all white
-                g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
-
+                // g.setColor(PauseMenu.backgroundColor); // paint background with all white
+                // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
+                this.renderBoard(g);
                 this.removeAll();
                 resultPage.loadToPanel(world.getResult(), resultPageCountDownTime);
                 resultPageHasRendered = true;
@@ -237,6 +244,10 @@ public class GameView extends JFrame {
         }
 
         public Menu getMenu(){return this.menu;}
+
+        private void renderBoard(Graphics g){
+            g.drawImage(this.board, GameView.WIDTH/10, GameView.HEIGHT/10 + 20, board.getWidth(), board.getHeight(), null);
+        }
 
     }
 }

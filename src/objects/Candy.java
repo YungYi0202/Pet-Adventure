@@ -36,7 +36,7 @@ public class Candy extends Prop{
     public void collideWith(Sprite sprite){
         if(sprite instanceof Pet){
             //this.isRemoved = true;
-            ((Pet)sprite).addScore(this.score);
+            ((Pet)sprite).addScoreWithRender(this.score);
             world.removeSprite(this);
         }
     }

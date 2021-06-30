@@ -4,6 +4,7 @@ import model.Stage;
 import model.Position;
 import model.Sprite;
 import objects.Ground;
+import objects.SecondFloor;
 import objects.Candy;
 import objects.Hydrant;
 import objects.Bird;
@@ -24,7 +25,7 @@ public class StageEasy1 extends Stage{
         setSpeed(15);
         //TODO: 把該有的Sprite加進去
 	
-	addFarground(0, 0, new Farground("assets/farground/farground_1.png"));
+	    addFarground(0, 0, new Farground("assets/farground/farground_1.png"));
 	
         //serialAlphabet的用法
         SerialAlphabet serial = new SerialAlphabet("F", "O", "O1", "P");
@@ -46,8 +47,12 @@ public class StageEasy1 extends Stage{
 
         }
 	    // 測試加到 2 樓, Peng
-	    addSprite( 1000 , this.getSecondFloorY() , new Ground());
+
+        addSprite( 1000 , this.getSecondFloorY() , new SecondFloor(1));
+        addSprite( 1800 , this.getSecondFloorY() , new SecondFloor(2));
+        addSprite( 2600 , this.getSecondFloorY() , new SecondFloor(3));
         addSprite( 3000 , (int)(GameView.HEIGHT * 0.5) , new ChargeCan());
+
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
         // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );

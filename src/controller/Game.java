@@ -16,7 +16,6 @@ public class Game extends GameLoop {
 
     private World world;
 
-
     // public Game(World world, Pet p1) {
     //     this.p1 = p1;
     //     this.world = world;
@@ -31,6 +30,7 @@ public class Game extends GameLoop {
         this.p1 = pet1;
         this.world = new World(new PetCollisionHandler(), stage, pet1);
         System.out.printf("Game: world exists\n");
+        
         resumeWithTutorial();
     }
 
