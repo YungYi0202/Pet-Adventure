@@ -52,7 +52,8 @@ public class StageEasy1 extends Stage{
         addSprite( 1800 , this.getSecondFloorY() , new SecondFloor(2));
         addSprite( 2600 , this.getSecondFloorY() , new SecondFloor(3));
         addSprite( 3000 , (int)(GameView.HEIGHT * 0.5) , new ChargeCan());
-
+        addSprite( 3100 , (int)(GameView.HEIGHT * 0.5) , new ChargeCan());
+        addSprite( 3200 , (int)(GameView.HEIGHT * 0.5) , new ChargeCan());
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
         // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );

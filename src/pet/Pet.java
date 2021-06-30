@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.lang.*;
 import java.util.*;
 import views.GameView;
+import state.ImageCharge;
 //還有其他要import的記得import
 
 //楊鈞安
@@ -43,7 +44,7 @@ public class Pet extends HealthPointSprite {
     private int scoreRenderRemainTime = 0;
     private boolean isdead;
     private boolean ending;
-    private int slideDecreaseY = 100;
+    private int slideDecreaseY = 70;
     private int endJump = 0;
 
     public Pet(int Pet_HP,int jump_velocity,String petName){  // 已改成直接傳入
@@ -264,7 +265,22 @@ public class Pet extends HealthPointSprite {
                 g.drawImage(this.propimage, proprange.x, proprange.y, proprange.width, proprange.height, null);
             } 
         }
-
+        // proplist render
+        for(int i = 0;i < this.propList.size();i++){
+            ImageState Prop = null;
+            if(propList.get(i).equals("ChargeCan")){
+                Prop = new ImageCharge(this.petName);
+            }
+            else if(propList.get(i).equals("DoublePoint")){
+                //
+            }
+            if(Prop != null){
+                Rectangle image_range = new Rectangle( GameView.WIDTH/7 + 100*i, GameView.HEIGHT/10, 70, 40);
+                //Rectangle(GameView.WIDTH/9 , GameView.HEIGHT/16, GameView.WIDTH/5*2, 20);
+                BufferedImage image_prop = Prop.getImage();
+                g.drawImage(image_prop, image_range.x, image_range.y, image_range.width, image_range.height, null);
+            }
+        }
         // score render
         if(scoreRenderRemainTime > 0){
             g.setFont(fnt0);
@@ -293,7 +309,7 @@ public class Pet extends HealthPointSprite {
 }
 
 /* shape = (size , body_offset, body_size) 
-        ** size = 圖片的大小
-        ** body_offset = 身體的左上角
-        ** body_size = 身體的長寬範圍
-        */
+** size = 圖片的大小
+** body_offset = 身體的左上角
+** body_size = 身體的長寬範圍
+*/
