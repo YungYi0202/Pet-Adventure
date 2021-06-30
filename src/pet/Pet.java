@@ -284,7 +284,7 @@ public class Pet extends HealthPointSprite {
         for(int i = 0;i < this.propList.size();i++){
             ImageState Prop = null;
             if(propList.get(i).equals("ChargeCan")){
-                Prop = new ImageCharge(this.petName);
+                Prop = new ImageCharge(this.petName,true);
             }
             else if(propList.get(i).equals("DoublePoint")){
                 //

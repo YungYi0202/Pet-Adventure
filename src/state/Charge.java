@@ -7,7 +7,7 @@ public class Charge extends PropState{
     private int ChargeSpeed = 40;
     public Charge(String petName) {
 	this.petName = petName;	
-	this.is = new ImageCharge(this.petName);
+	this.is = new ImageCharge(this.petName,false);
 	remainTime = 100;
     }
     @Override
