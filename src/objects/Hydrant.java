@@ -24,7 +24,7 @@ public class Hydrant extends Prop{
         this.image = ImageStateUtils.getImage("assets/hydrant/hydrant.png");
         int width = image.getWidth();
         int height = image.getHeight();
-        setShape(new Dimension(width, height), new Dimension(0, 0), new Dimension(width, height));
+        setShape(new Dimension(width, height), new Dimension(0, 50), new Dimension(width, height - 50));
     }
     
     

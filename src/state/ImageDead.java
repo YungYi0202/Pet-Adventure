@@ -18,7 +18,7 @@ public class ImageDead extends ImageState{
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
-        int[] duration = {30, 30, 140};
+        int[] duration = {7, 7, 190};
         for(int i = 19; i <= 21; ++i){
             String path = "assets/"+ petName +"/dead/"+ petName +"_" + i + ".png";
             //frames.add(new ImageFrame(new ImageStateUtils().getImage(path), duration[i - 19]));

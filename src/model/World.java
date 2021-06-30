@@ -8,6 +8,7 @@ import pet.Pet;
 import state.RunToEnd;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
+import objects.Ground;
 
 import views.GameView;
 
@@ -173,8 +174,13 @@ public class World {
         for (Sprite fg : fargrounds) {
             fg.render(g);
         }
+	for (Sprite ground : sprites) {
+	    if (ground instanceof Ground)
+		ground.render(g);
+	}
         for (Sprite sprite : sprites) {
-            sprite.render(g);
+	    if (!(sprite instanceof Ground))
+		sprite.render(g);
         }
         for (Pet player: players){
             player.render(g);
