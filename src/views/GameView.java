@@ -9,7 +9,6 @@ import menu.PauseMenu;
 import menu.TutorialPage;
 import menu.ResultPage;
 import menu.ScoreBoard;
-
 import utils.ImageStateUtils;
 
 import javax.swing.*;
@@ -23,7 +22,6 @@ import java.awt.image.BufferedImage;
 /**
  * @author - Yung-Yi Chen
  */
-//TODO: background是不是應該放在這裡，在Canvas.paintComponent裡更新(g.setColor())
 
 public class GameView extends JFrame {
     public static final int HEIGHT = 800;
@@ -47,7 +45,6 @@ public class GameView extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setContentPane(canvas);
         setSize(WIDTH, HEIGHT);
-        //setContentPane(canvas);
         setVisible(true);
 
         // Keyboard listener
@@ -55,7 +52,6 @@ public class GameView extends JFrame {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 if(game.stateIsGAME()){
-                    //System.out.printf("keyPressed: stateIsGAME\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_UP:
                         game.jumpPet(P1);
@@ -64,11 +60,9 @@ public class GameView extends JFrame {
                         game.slidePet(P1);
                         break;
                     case KeyEvent.VK_S:
-                        // System.out.println("pause");
                         game.pause();
                         break;
                     case KeyEvent.VK_LEFT:
-                        // System.out.println("useProp");
                         game.usePropPet(P1);
                         break;
                     }
@@ -76,7 +70,6 @@ public class GameView extends JFrame {
 
                 }
                 else if(game.stateIsMENU()){
-                    //System.out.printf("keyPressed: stateIsMENU\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.newStart();
@@ -84,7 +77,6 @@ public class GameView extends JFrame {
                     }
                 }
                 else if(game.stateIsPAUSE()){
-                    //System.out.printf("keyPressed: stateIsPAUSE\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_E:
                         game.exit();
@@ -113,10 +105,6 @@ public class GameView extends JFrame {
                 
             }
 
-            /*
-            @Override
-            public void keyPressed(KeyEvent keyEvent)
-            */
         });
     }
 
@@ -139,7 +127,6 @@ public class GameView extends JFrame {
         private BufferedImage board = ImageStateUtils.getImage("assets/menu/menu_1.png");
 
         public Canvas(Game game){
-            //this.pauseMenu = new PauseMenu(game, this);
             this.setLayout(null);
             this.menu = new Menu(game, this);
             this.pauseMenu = new PauseMenu(game, this);
@@ -162,21 +149,18 @@ public class GameView extends JFrame {
 
         @Override
         public void renderMenu() {
-            //System.out.printf("renderMenu\n");
             state = STATE.MENU;
             menuHasRendered = false; 
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
         @Override
         public void renderPauseMenu() {
-            //System.out.printf("renderMenu\n");
             state = STATE.PAUSE;
             pauseMenuHasRendered = false;
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
         @Override
         public void renderTutorialPage(int time,World world) {
-            //System.out.printf("renderMenu\n");
             state = STATE.TUTORIAL;
             tutorialPageHasRendered = false;
             tutorialPageCountDownTime = time;
@@ -194,15 +178,9 @@ public class GameView extends JFrame {
         @Override
         protected void paintComponent(Graphics g /*paintbrush*/) {
             super.paintComponent(g);
-            // Now, let's paint
-            // g.setColor(Color.WHITE); // paint background with all white
-            // g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
             
             if(state == STATE.GAME){  
                 this.removeAll();
-
-                //g.setColor(Color.WHITE); // paint background with all white
-                //g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
                 scoreBoard.loadToPanel(world.getScore());
                 world.render(g); // ask the world to paint itself and paint the sprites on the canvas
             }
@@ -210,8 +188,6 @@ public class GameView extends JFrame {
                 this.removeAll();
                 BufferedImage img = menu.getBackground();
                 g.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
-                //g.setColor(Color.WHITE); // paint background with all white
-                //g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
                 
                 menu.loadToPanel();
                 menuHasRendered = true; 
@@ -219,17 +195,12 @@ public class GameView extends JFrame {
                 this.removeAll();
                 scoreBoard.loadToPanel(world.getScore());
                 world.render(g);
-                // g.setColor(PauseMenu.backgroundColor); // paint background with all white
-                // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
                 this.renderBoard(g);
                 
                 pauseMenu.loadToPanel();
                 pauseMenuHasRendered = true;
             }else if(state == STATE.TUTORIAL && tutorialPageHasRendered == false){
-                //System.out.printf("world.render(g);\n");
                 world.render(g);
-                // g.setColor(PauseMenu.backgroundColor); // paint background with all white
-                // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
                 this.renderBoard(g);
 
                 this.removeAll();
@@ -237,10 +208,7 @@ public class GameView extends JFrame {
                 tutorialPageHasRendered = true;
             
             }else if(state == STATE.RESULT && resultPageHasRendered == false){
-                //System.out.printf("world.render(g);\n");
                 world.render(g);
-                // g.setColor(PauseMenu.backgroundColor); // paint background with all white
-                // g.fillRoundRect(GameView.WIDTH/10, GameView.HEIGHT/10 + 20, GameView.WIDTH*8/10, GameView.HEIGHT*6/10, 40, 40);
                 this.renderBoard(g);
                 this.removeAll();
                 resultPage.loadToPanel(world.getResult(), resultPageCountDownTime, world.getScore());
