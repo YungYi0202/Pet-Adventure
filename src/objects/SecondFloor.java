@@ -14,14 +14,14 @@ public class SecondFloor extends Sprite {
     public SecondFloor(int n){
 	//this.image = new ImageStateUtils().getImage("assets/ground/ground_1.png");
 	this.image = ImageStateUtils.getImage("assets/secondfloor/secondfloor_" + n + ".png");
-	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), image.getHeight()));
+	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0), new Dimension(image.getWidth(), 1));
     }
     @Override
     public void collideWith(Sprite s) {
 	Pet p = null;
 	if (s instanceof Pet)
 	    p = (Pet) s;
-	if (p.getState() instanceof UnstoppableJump && p.getVy() > 0) ///?
+	if (p.getState() instanceof UnstoppableJump && p.getVy() > 0)
 	    p.setState( new UnstoppableRun(p.getState().remainTime, p, p.petName) );
 	else if(p.getState() instanceof Jump && p.getVy() > 0)
 	    p.setState(new Run(p.petName));

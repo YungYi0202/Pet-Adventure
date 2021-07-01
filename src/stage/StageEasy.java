@@ -82,14 +82,7 @@ public class StageEasy extends Stage{
 
 	addSpriteToFirstFloor(21500, new Owner());
         for(int i = 0 ; i < 22; i++){
-	    //if (i == 1)
-	    //	addSprite(i * 1000 , this.getFirstFloorY() , new Hole(1));
-	    //else
-		addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
-
-	    //Bird b = new Bird();
-	    //addSprite((i+1) * 1000, getFirstFloorY() - b.getBodySize().height - 120, b);
-
+	    addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
         }
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
