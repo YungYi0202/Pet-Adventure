@@ -23,7 +23,7 @@ public class ImageCharge extends ImageState{
             path = "assets/can/can_1.png";
         }
         else{
-            path = "assets/unstop/unstop.png";
+            path = "assets/skill/skill_1.png";
         }
         frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
     }
