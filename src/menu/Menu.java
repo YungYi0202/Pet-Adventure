@@ -1,15 +1,13 @@
 package menu;
 
 import controller.Game;
+import views.GameView;
+import utils.ImageStateUtils;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import views.GameView;
-import javax.swing.*;
-import utils.ImageStateUtils;
 import java.awt.image.BufferedImage;
-//import javax.swing.plaf.multi.MultiComboBoxUI;
-//import javax.swing.JOptionPane;
 
 /**
  * @author - Yung-Yi Chen
@@ -47,17 +45,12 @@ public class Menu{
         petMenu.setVisible(true);
         petMenu.addActionListener(new PetMenuListener(this));
         petMenu.setFocusable(false);
-        //petMenu.setSize(new Dimension(150,100));
-        //System.out.printf("%d, %d\n", petMenu.getPreferredSize().width, petMenu.getPreferredSize().height);
-        //petMenu.setPreferredSize(new Dimension(150, 100));
         
         petMenu.setBounds(margin,550,petMenu.getPreferredSize().width, petMenu.getPreferredSize().height); 
-        //petMenu.setFont(new Font("Utopia", Font.BOLD, 40));
 
         playButton.setFocusable(false);
         playButton.setUI(new StyledButtonUI(255,182,25));
         playButton.addActionListener(new PlayButtonListener(this));
-        //playButton.setPreferredSize(new Dimension(200, 100));
         playButton.setBounds(400, 510, 200, 100);
         playButton.setFont(new Font("Utopia", Font.BOLD, 40));
 
@@ -68,18 +61,11 @@ public class Menu{
         // levelMenu.setBounds(GameView.WIDTH - margin - levelMenu.getPreferredSize().width, 580, levelMenu.getPreferredSize().width, levelMenu.getPreferredSize().height);
         int tmp = GameView.WIDTH - margin - levelMenu.getPreferredSize().width;
         levelMenu.setBounds(tmp, 550, levelMenu.getPreferredSize().width, levelMenu.getPreferredSize().height);
-        //levelMenu.setPreferredSize(new Dimension(200, 100));
-        //levelMenu.setFont(new Font("Utopia", Font.BOLD, 40));
-
-        // loadingWindow.add(new JLabel("Loading..."));
-        // loadingWindow.setVisible(true);
-        // loadingWindow.setFocusable(false);
     }
     public void loadToPanel(){
         panel.add(petMenu);
         panel.add(playButton);
         panel.add(levelMenu);
-        //System.out.printf("loadToPanel\n");
     }
     public void removeFromPanel(){
         panel.remove(petMenu);
@@ -97,7 +83,6 @@ public class Menu{
     }
 
     public void gameNewStart(){
-        //panel.add(loadingWindow);
         this.game.newStart();
     }
 
@@ -105,22 +90,6 @@ public class Menu{
     public String getSelectedPet(){return selectedPet;}
 
     public BufferedImage getBackground(){return background;}
-    
-    // public static void loadingPopup(){
-    //     JLabel messageLabel = new JLabel("<html><body><p style='width: 300px;'>"+"Loading"+"</p></body></html>");
-    //     Timer timer = new Timer(5000, 
-    //         new ActionListener()
-    //         {   
-    //             @Override
-    //             public void actionPerformed(ActionEvent event)
-    //             {
-    //                 SwingUtilities.getWindowAncestor(messageLabel).dispose();
-    //             }
-    //         });
-    //     timer.setRepeats(false);
-    //     timer.start();
-    //     JOptionPane.showMessageDialog(null, messageLabel);
-    // }
     
 }
 
@@ -131,7 +100,6 @@ class PlayButtonListener implements  ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        //System.out.printf( "startButton is clicked\n" );
         menu.gameNewStart();
     }
 }
@@ -143,10 +111,8 @@ class LevelMenuListener implements  ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        //System.out.println( e.getModifiers() );
         JComboBox comboBox = (JComboBox)e.getSource();
         menu.setSelectedLevel((String)comboBox.getSelectedItem());
-        //System.out.println( comboBox.getSelectedItem() );
     }
 }
 
@@ -157,9 +123,7 @@ class PetMenuListener implements  ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        //System.out.println( e.getModifiers() );
         JComboBox comboBox = (JComboBox)e.getSource();
         menu.setSelectedPet((String)comboBox.getSelectedItem());
-        //System.out.println( comboBox.getSelectedItem() );
     }
 }

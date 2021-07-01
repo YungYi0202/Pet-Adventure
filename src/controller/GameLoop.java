@@ -9,8 +9,6 @@ import media.AudioPlayer;
  */
 
 public abstract class GameLoop {
-    //Test game: running = menuHasRendered = true
-    //Test menu: running = menuHasRendered = false
     private View view;
     public Thread gameThread;
     private boolean menuHasRendered = false;
@@ -29,7 +27,6 @@ public abstract class GameLoop {
     public void start() {
         gameThread = new Thread(this::gameLoop);
         gameThread.start();
-        //new Thread(this::gameLoop).start();
     }
 
     private void gameLoop() {
@@ -44,7 +41,6 @@ public abstract class GameLoop {
                     }
                     break;
                 case GAME:
-                    //System.out.printf("GameLoop: STATE.GAME\n");
                     tutorialTimeCount = 0;
                     menuHasRendered = false; //busy wait
                     pauseMenuHasRendered = false;
@@ -62,7 +58,6 @@ public abstract class GameLoop {
                     }
                     break;
                 case TUTORIAL:
-                    //System.out.printf("GameLoop: STATE.TUTORIAL TimeCount:%d\n", tutorialTimeCount);
                     if(tutorialTimeCount % 67 == 0){
                         view.renderTutorialPage( 5 - tutorialTimeCount/67 , getWorld());
                     }
@@ -90,19 +85,6 @@ public abstract class GameLoop {
     protected abstract World getWorld();
 
     public void pause() {
-        // synchronized(gameThread){
-            // try{    
-            //     gameThread.wait();
-            //     System.out.printf("gameThread.wait\n");
-            // }
-            // catch(InterruptedException e) {
-            //     e.printStackTrace();
-            // }finally{
-            //     state = STATE.MENU;
-            //     System.out.printf("running = false\n");
-            // }
-        // }
-        //state = STATE.MENU;
         AudioPlayer.pauseSounds(AUDIO_GAME);
         state = STATE.PAUSE;
     }
@@ -114,12 +96,6 @@ public abstract class GameLoop {
     }
 
     public void resume() {
-        // synchronized(gameThread){
-        //     state = STATE.GAME;
-        //     System.out.printf("running = true\n");
-        //     gameThread.notify();
-        //     System.out.printf("gameThread.notify\n");
-        // }
         AudioPlayer.playSounds(AUDIO_GAME);
         state = STATE.GAME;
     }

@@ -1,13 +1,11 @@
 package menu;
 
 import controller.Game;
+import views.GameView;
 
 import java.awt.*;
 import java.awt.event.*;
-import views.GameView;
 import javax.swing.*;
-//import javax.swing.plaf.multi.MultiComboBoxUI;
-//import javax.swing.JOptionPane;
 
 /**
  * @author - Yung-Yi Chen
@@ -17,16 +15,10 @@ public class ResultPage{
     private final Game game;
     private final JPanel panel;
 
-    // private JButton backButton = new JButton("Skip (S)");
     private JButton backButton = new JButton("Back To Menu (S)");
     private JLabel title =  new JLabel("You Win", SwingConstants.CENTER);
     private JLabel score = new JLabel("Score: 0", SwingConstants.CENTER);
     private JLabel restTime = new JLabel("Close in 5 seconds", SwingConstants.CENTER);
-    // private JLabel line1 = new JLabel("* Press UP to jump", SwingConstants.LEFT);
-    // private JLabel line2 = new JLabel("* Press DOWN to slide", SwingConstants.LEFT);
-    // private JLabel line3 = new JLabel("* Press S to pause the game", SwingConstants.LEFT);
-
-    // private JPanel loadingWindow = new JPanel();
     
     public ResultPage(Game game, JPanel panel){
         this.game = game;
@@ -53,7 +45,6 @@ public class ResultPage{
     }
     // result is "WIN" or "LOSE"
     public void loadToPanel(String result, int time, int scoreVal){
-        // System.out.printf("result page load\n");
         title.setText("You " + result + " !");
         restTime.setText("Close in " + String.valueOf(time) + " seconds" );
         score.setText("Score: "+ String.valueOf(scoreVal));

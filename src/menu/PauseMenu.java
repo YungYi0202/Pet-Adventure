@@ -1,12 +1,11 @@
 package menu;
 
 import controller.Game;
+import views.GameView;
 
 import java.awt.*;
 import java.awt.event.*;
-import views.GameView;
 import javax.swing.*;
-//import javax.swing.JOptionPane;
 
 /**
  * @author - Yung-Yi Chen
@@ -48,7 +47,6 @@ public class PauseMenu{
         panel.add(title);
         panel.add(exitButton);
         panel.add(resumeButton);
-        //System.out.printf("PauseMenu: loadToPanel\n");
    }
     public void removeFromPanel(){
         panel.remove(title);
@@ -57,7 +55,6 @@ public class PauseMenu{
     }
 
     public void gameExit(){
-        //panel.add(loadingWindow);
         this.game.exit();
     }
 

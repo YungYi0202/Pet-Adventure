@@ -1,13 +1,11 @@
 package menu;
 
 import controller.Game;
+import views.GameView;
 
 import java.awt.*;
 import java.awt.event.*;
-import views.GameView;
 import javax.swing.*;
-//import javax.swing.plaf.multi.MultiComboBoxUI;
-//import javax.swing.JOptionPane;
 
 /**
  * @author - Yung-Yi Chen
@@ -23,8 +21,6 @@ public class TutorialPage{
     private JLabel line1 = new JLabel("* Press UP to jump", SwingConstants.LEFT);
     private JLabel line2 = new JLabel("* Press DOWN to slide", SwingConstants.LEFT);
     private JLabel line3 = new JLabel("* Press S to pause the game", SwingConstants.LEFT);
-
-    // private JPanel loadingWindow = new JPanel();
     
     public TutorialPage(Game game, JPanel panel){
         this.game = game;
