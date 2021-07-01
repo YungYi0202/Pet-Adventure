@@ -23,7 +23,7 @@ public class ImageOwner extends ImageState{
             
             // frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
             // addFrame(new ImageStateUtils().getImage(path), 5);
-            addFrame(ImageStateUtils.getImage(path), 8);
+            addFrame(ImageStateUtils.resize(ImageStateUtils.getImage(path), 0.8), 8);
         }
     }
 }
