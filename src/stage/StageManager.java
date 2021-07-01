@@ -9,11 +9,9 @@ public class StageManager{
         //TODO:
         switch(level){
             case "Easy":
-                return new StageEasy1();
-            case "Medium":
-                return new StageEasy1();
-            case "Hard":
                 return new StageEasy();
+            case "Hard":
+                return new StageHard();
         }
         return null;
     }

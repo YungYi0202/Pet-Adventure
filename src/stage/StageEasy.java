@@ -36,9 +36,18 @@ public class StageEasy extends Stage{
         addSpriteToSecondFloor(8000, serial.get(1));
         addSpriteToSecondFloor(12000, serial.get(2));
         addSpriteToFirstFloor(15500, serial.get(3));
+	
 
-	//	addSpriteToFirstFloor(1000, new Hydrant());
-	addSpriteToFirstFloor(2000, new Hydrant());
+	addSprite(1330, this.getFirstFloorY() - 300, new Candy());
+	addSprite(1530, this.getFirstFloorY() - 380, new Candy());
+	addSprite(1730, this.getFirstFloorY() - 300, new Candy());
+
+	addSpriteToFirstFloor(1500, new Hydrant());
+	for (int i = 0; i < 3; ++i)
+	    addSpriteToFirstFloor(2300 + 200 * i, new Candy());
+	addSprite(3030, this.getFirstFloorY() - 300, new Candy());
+	addSprite(3230, this.getFirstFloorY() - 380, new Candy());
+	addSprite(3430, this.getFirstFloorY() - 300, new Candy());
 	addSpriteToFirstFloor(3200, new Hydrant());
 	addSpriteToFirstFloor(5000, new Hydrant());
 	addSpriteToFirstFloor(6000, new Hydrant());
@@ -47,14 +56,23 @@ public class StageEasy extends Stage{
 	addSpriteToFirstFloor(20000, new Hydrant());
 	addSpriteToFirstFloor(20800, new Hydrant());
 
-	addSpriteToFirstFloor(3500, new Candy());
-	addSpriteToSecondFloor(6000, new Candy());
+	for (int i = 0; i < 3; ++i)
+	    addSpriteToFirstFloor(3500 + 200 * i, new Candy());
+	for (int i = 0; i < 3; ++i)
+	    addSpriteToSecondFloor(5600 + i * 200, new Candy());
 	addSpriteToFirstFloor(7000, new Candy());
-	addSpriteToFirstFloor(9000, new Candy());
-	addSpriteToSecondFloor(12500, new Candy());
+	for (int i = 0; i < 6; ++i)
+	    addSpriteToFirstFloor(8800 + 200 * i, new Candy());
+	addSprite(10000, this.getFirstFloorY() - 300, new Candy());
+	addSprite(10200, this.getFirstFloorY() - 380, new Candy());
+	addSprite(10400, this.getFirstFloorY() - 300, new Candy());
+	for (int i = 0; i < 5; ++i)
+	    addSpriteToFirstFloor(14400 + 200 * i, new Candy());
+	addSprite(5000, this.getSecondFloorY() - 300, new Candy());
+	addSprite(5200, this.getSecondFloorY() - 380, new Candy());
+	addSprite(5400, this.getSecondFloorY() - 300, new Candy());
 
 	addSpriteToFirstFloor(14000, new ChargeCan());
-	addSprite(5200, this.getSecondFloorY() - 380, new Candy());
 	addSprite(4000, this.getSecondFloorY(), new SecondFloor(1));
 	addSprite(5000, this.getSecondFloorY(), new SecondFloor(3));
 	addSprite(14000, this.getSecondFloorY(), new SecondFloor(1));
@@ -64,20 +82,10 @@ public class StageEasy extends Stage{
 
 	addSpriteToFirstFloor(21500, new Owner());
         for(int i = 0 ; i < 22; i++){
-	    //if (i == 1)
-	    //	addSprite(i * 1000 , this.getFirstFloorY() , new Hole(1));
-	    //else
-		addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
-
-	    //Bird b = new Bird();
-	    //addSprite((i+1) * 1000, getFirstFloorY() - b.getBodySize().height - 120, b);
-            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.2) , new Candy());
-            //addSprite((i+1) * 1000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
-
+	    addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
         }
         // Leyna
         setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
-        // setBackground( new ImageStateUtils().getImage("assets/background/background_1.png") );
         // Cathy
         sortByX();
         
