@@ -16,6 +16,12 @@ public class Hole extends Sprite {
 	if (n == 1)
 	    setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension((int)(image.getWidth() * 0.5), 0),
 		     new Dimension((int)(image.getWidth() * 0.5), image.getHeight()));	
+	else if (n == 2)
+	    setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0),
+		     new Dimension(0, 0));	
+	else if (n == 3)
+	    setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0),
+		     new Dimension((int)(image.getWidth() * 0.5), image.getHeight()));	
     }
     @Override
     public void collideWith(Sprite s) {
@@ -36,14 +42,6 @@ public class Hole extends Sprite {
     public void update() {
         this.decreaseLocationX(this.getWorld().getSpeed());
     }
-    // @Override
-    // public Dimension getBodyOffset() {
-	//     return new Dimension((int)(image.getWidth() * 0.5), 0);
-    // }
-    // @Override
-    // public Dimension getBodySize() {
-	// return new Dimension((int)(image.getWidth() * 0.5), image.getHeight());       
-    // }
     public void render(Graphics g) {
         Rectangle range = this.getRange();
         g.drawImage(this.image, range.x, range.y, range.width, range.height, null);

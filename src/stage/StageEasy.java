@@ -9,6 +9,7 @@ import objects.SecondFloor;
 import objects.Candy;
 import objects.Hydrant;
 import objects.Bird;
+import objects.Owner;
 import objects.Alphabet;
 import objects.SerialAlphabet;
 import objects.Farground;
@@ -61,11 +62,11 @@ public class StageEasy extends Stage{
 	addSprite(16000, this.getSecondFloorY(), new SecondFloor(2));
 	addSprite(17000, this.getSecondFloorY(), new SecondFloor(3));
 
-	
+	addSpriteToFirstFloor(21500, new Owner());
         for(int i = 0 ; i < 22; i++){
-	    if (i == 1)
-		addSprite(i * 1000 , this.getFirstFloorY() , new Hole(1));
-	    else
+	    //if (i == 1)
+	    //	addSprite(i * 1000 , this.getFirstFloorY() , new Hole(1));
+	    //else
 		addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
 
 	    //Bird b = new Bird();

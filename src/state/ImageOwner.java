@@ -13,14 +13,17 @@ import utils.ImageStateUtils;
  * @author - Leyna
  */
  
-public class ImageRun extends ImageState{
-    public ImageRun(String petName){
+public class ImageOwner extends ImageState{
+    public ImageOwner(){
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         for(int i = 1; i <= 5; ++i){
-            String path = "assets/owner/owner.png";
-            addFrame(ImageStateUtils.getImage(path), 5);
+            String path = "assets/owner/owner_" + i + ".png";
+            
+            // frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
+            // addFrame(new ImageStateUtils().getImage(path), 5);
+            addFrame(ImageStateUtils.getImage(path), 8);
         }
     }
 }
