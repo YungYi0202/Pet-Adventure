@@ -1,6 +1,6 @@
 package pet;
 import state.*;
-import state.ImageRenderer;
+//import state.ImageRenderer;
 import state.State;
 import state.PropState;
 import state.ImageEnd;
