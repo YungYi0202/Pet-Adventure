@@ -225,7 +225,7 @@ public class Pet extends HealthPointSprite {
     public void update(){ 
         if(this.nowstate instanceof RunToEnd){
             if(this.nowstate.getImageState() instanceof ImageEnd && this.endJump == 0){
-                this.nowVy = -jump_velocity;
+                this.nowVy = -jump_velocity/2;
                 this.endJump = 1;
             }
             Vy_update();
@@ -302,7 +302,7 @@ public class Pet extends HealthPointSprite {
                 g.drawImage(image_prop, image_range.x, image_range.y, image_range.width, image_range.height, null);
             }
         }
-        
+
         // score render
         if(scoreRenderRemainTime > 0){
             g.setFont(fnt0);

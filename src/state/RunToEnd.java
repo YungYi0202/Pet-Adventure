@@ -13,6 +13,7 @@ public class RunToEnd extends State{
         remainTime = 1000;
 	    this.petName = petName;
 	    this.is = new ImageRun(this.petName);
+        s.setGravity(20);
     }
     public int getRemainTime() {
 	return remainTime;
@@ -27,6 +28,8 @@ public class RunToEnd extends State{
 	
 	if(s.toEnd() && this.is instanceof ImageRun){ // revise in here
         this.is = new ImageEnd(this.petName);
+        s.decreaseLocationY(s.getVy());
+        s.setGravity(2);
     }
     
     if(s.getLocation().x >= GameView.WIDTH/10*7-50 && this.is instanceof ImageEnd && this.check == 0){
