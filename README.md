@@ -6,6 +6,11 @@
 - B08902036 楊鈞安
 - B08902057 陳奕瑄
 
+## How to start play at your computer
+```
+make run
+```
+
 ## How you divide the responsibilities of the team members
 
 - 陳咏誼
@@ -79,30 +84,30 @@
 小寵物跟小主人走丟了！還好小主人是個愛吃鬼，路上掉了許多餅乾，你可以協助小寵物沿著餅乾路線，避開路上的障礙找回小主人嗎？
   
 ### 操作方法
-- ![](https://i.imgur.com/k1yFJpo.png =30x) ：跳躍。
-- ![](https://i.imgur.com/zImomMZ.png =30x) ：滑行。
-- ![](https://i.imgur.com/xBJD6Du.png =30x) ：釋放道具。
+- ![](https://i.imgur.com/k1yFJpo.png ) ：跳躍。
+- ![](https://i.imgur.com/zImomMZ.png ) ：滑行。
+- ![](https://i.imgur.com/xBJD6Du.png ) ：釋放道具。
 
 ### 遊戲物件
 - 小寵物
-    - ![](https://i.imgur.com/n3ZJa6n.png =70x)　：小狗狗，性格開朗，愛撒嬌。
+    - ![](https://i.imgur.com/n3ZJa6n.png )　：小狗狗，性格開朗，愛撒嬌。
 
-    - ![](https://i.imgur.com/5fJ5CrD.png =70x)　：小貓貓，喜歡耍帥，有點傲嬌。
+    - ![](https://i.imgur.com/5fJ5CrD.png )　：小貓貓，喜歡耍帥，有點傲嬌。
 
 - 餅乾
-    - ![](https://i.imgur.com/1cWlNvV.png =40x)  ：一般餅乾，吃了可以加 30 分。
-    - ![](https://i.imgur.com/DRgVOnV.png =40x)  ：字母餅乾，吃了可以加 100 分。湊齊字母後可以再加 300 分。
+    - ![](https://i.imgur.com/1cWlNvV.png )  ：一般餅乾，吃了可以加 30 分。
+    - ![](https://i.imgur.com/DRgVOnV.png )  ：字母餅乾，吃了可以加 100 分。湊齊字母後可以再加 300 分。
 - 道具
-    - ![](https://i.imgur.com/WacWDE6.png =40x) ：加速道具，吃了可以加速，並進入無敵狀態。
-    - ![](https://i.imgur.com/PeH7ksL.png =40x) ：防護罩道具，吃了可以撞到障礙物一次不扣血。
-    - ![](https://i.imgur.com/wLUUcKp.png =40x) ：雙倍道具，吃了之後得到的分數會雙倍。
+    - ![](https://i.imgur.com/WacWDE6.png ) ：加速道具，吃了可以加速，並進入無敵狀態。
+    - ![](https://i.imgur.com/PeH7ksL.png ) ：防護罩道具，吃了可以撞到障礙物一次不扣血。
+    - ![](https://i.imgur.com/wLUUcKp.png ) ：雙倍道具，吃了之後得到的分數會雙倍。
 - 障礙物
-    - ![](https://i.imgur.com/A7ETgam.png =40x) ：鳥，撞上會扣血。
-    - ![](https://i.imgur.com/csnMGjK.png =40x) ：消防栓，撞上會扣血。
+    - ![](https://i.imgur.com/A7ETgam.png ) ：鳥，撞上會扣血。
+    - ![](https://i.imgur.com/csnMGjK.png ) ：消防栓，撞上會扣血。
 - 欄杆：
-    - ![](https://i.imgur.com/DHbbKGQ.png =100x)![](https://i.imgur.com/9NFTbXK.png =100x)　：欄杆，可以跳上去。
+    - ![](https://i.imgur.com/DHbbKGQ.png )![](https://i.imgur.com/9NFTbXK.png )　：欄杆，可以跳上去。
 - 洞
-    - ![](https://i.imgur.com/1OLMvyb.png =100x)![](https://i.imgur.com/Frp26Uo.png =100x)　：洞，掉入即死亡。
+    - ![](https://i.imgur.com/1OLMvyb.png )![](https://i.imgur.com/Frp26Uo.png )　：洞，掉入即死亡。
 
 ### 遊戲流程
 - 主選單
