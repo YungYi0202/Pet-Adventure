@@ -1,7 +1,10 @@
 package state;
+
 import pet.Pet;
+
 import java.lang.*;
 import java.awt.*;
+
 public class Shield extends PropState implements Unstoppable{
     private String petName;
     public Shield(String petName) {

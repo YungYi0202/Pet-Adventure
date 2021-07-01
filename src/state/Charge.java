@@ -1,7 +1,10 @@
 package state;
+
 import pet.Pet;
+
 import java.lang.*;
 import java.awt.*;
+
 public class Charge extends PropState{
     private String petName;
     private int ChargeSpeed = 40;

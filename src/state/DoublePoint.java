@@ -1,7 +1,10 @@
 package state;
+
 import pet.Pet;
+
 import java.lang.*;
 import java.awt.*;
+
 public class DoublePoint extends PropState{
     private String petName;
     public DoublePoint(String petName) {

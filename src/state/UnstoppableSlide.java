@@ -1,7 +1,10 @@
 package state;
+
 import pet.Pet;
+
 import java.lang.*;
 import java.awt.*;
+
 public class UnstoppableSlide extends State implements Unstoppable {
     private int slideRemainTime;
     private String petName;
@@ -21,7 +24,6 @@ public class UnstoppableSlide extends State implements Unstoppable {
 	remainTime--;
 	if(slideRemainTime >= 35 && remainTime > 0){
 	    s.decreaseLocationY(s.getSlideY());
-	    //        s.setLocation(new Point( s.getLocation().x , s.normalY - s.getVy()));
 	    return new UnstoppableRun(remainTime, s,this.petName);
 	}
 	else if(slideRemainTime >= 35){

@@ -1,8 +1,11 @@
 package state;
+
 import pet.Pet;
+import views.GameView;
+
 import java.lang.*;
 import java.awt.*;
-import views.GameView;
+
 public class RunToEnd extends State{
     private int check = 0;
     private String petName;

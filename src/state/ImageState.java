@@ -1,12 +1,13 @@
 package state;
 
+import utils.ImageStateUtils;
+
 import java.awt.*;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 import java.lang.*;
-import utils.ImageStateUtils;
+import javax.imageio.ImageIO;
 
 /**
  * @author - Leyna

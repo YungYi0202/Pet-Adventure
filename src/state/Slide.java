@@ -1,7 +1,10 @@
 package state;
+
 import pet.Pet;
+
 import java.lang.*;
 import java.awt.*;
+
 public class Slide extends State {
     private int remainTime;
     private String petName;

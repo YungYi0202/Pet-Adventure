@@ -1,7 +1,10 @@
 package state;
+
 import pet.Pet;
+
 import java.lang.*;
 import java.awt.*;
+
 public class Stop extends State implements Unstoppable {
     private String petName;
     public Stop(Pet s, State nowstate,String petName) {
@@ -11,7 +14,7 @@ public class Stop extends State implements Unstoppable {
 	s.setVy(0);
 	this.petName = petName;
 	this.is = new ImageStop(this.petName);
-	remainTime = 60;    //??
+	remainTime = 60;
     }
     public int getRemainTime() {
 	return remainTime;

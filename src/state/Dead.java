@@ -1,6 +1,9 @@
 package state;
+
 import pet.Pet;
+
 import java.lang.*;
+
 public class Dead extends State {
     private String petName;
     public Dead(String petName) {

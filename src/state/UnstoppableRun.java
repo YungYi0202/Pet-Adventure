@@ -1,7 +1,8 @@
 package state;
+
 import pet.Pet;
+
 public class UnstoppableRun extends State implements Unstoppable {
-    //private int remainTime;
 	private String petName;
     public UnstoppableRun(int n,Pet s,String petName) {
 	if(s.getState() instanceof Slide){
