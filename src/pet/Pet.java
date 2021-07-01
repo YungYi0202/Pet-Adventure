@@ -178,7 +178,7 @@ public class Pet extends HealthPointSprite {
     }
     public void useProp(){
         // revise 
-        if(this.nowPropState == null && propList.size() > 0 && !(this.nowstate instanceof RunToEnd)){
+        if(propList.size() > 0 && !(this.nowstate instanceof RunToEnd)){
             AudioPlayer.playSounds(AUDIO_USEPROP);
             String nowProp = propList.get(0);
             propList.remove(0);
