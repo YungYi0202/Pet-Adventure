@@ -3,23 +3,23 @@ package objects;
 import state.Stop;
 import state.Unstoppable;
 import state.Dead;
-import model.Prop;
-import utils.ImageStateUtils;
-import java.awt.*;
-import java.lang.*;
-import model.Sprite;
-import java.awt.image.BufferedImage;
-import pet.Pet;
-import state.ImageState;
 import state.ImageOwner;
+import state.ImageState;
+import model.Prop;
+import pet.Pet;
+import utils.ImageStateUtils;
+import model.Sprite;
+
+import java.lang.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 /**
  * @author - Yung-Yi Chen
  */
 
 public class Owner extends Sprite{
-    //TODO: 等陳奕瑄給圖
     private ImageState is;
-    //    private BufferedImage image = null;
     public Owner(){
 	is = new ImageOwner();
         int width = is.getImage().getWidth();

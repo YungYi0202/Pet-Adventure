@@ -8,8 +8,8 @@ import model.Sprite;
 import java.awt.image.BufferedImage;
 import pet.Pet;
 import state.DoublePoint;
+
 public class DoubleCan extends Prop {
-    //private int chargeRemainTime;
     private BufferedImage image;
     public DoubleCan(){
         this.image = ImageStateUtils.getImage("assets/can/can_3.png"); 

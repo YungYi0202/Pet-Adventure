@@ -4,23 +4,22 @@ import state.Stop;
 import state.Unstoppable;
 import state.Dead;
 import model.Prop;
+import model.Sprite;
+import pet.Pet;
 import utils.ImageStateUtils;
+
 import java.awt.*;
 import java.lang.*;
-import model.Sprite;
 import java.awt.image.BufferedImage;
-import pet.Pet;
 
 /**
  * @author - Yung-Yi Chen
  */
 
 public class Hydrant extends Prop{
-    //TODO: 等陳奕瑄給圖
     private BufferedImage image = null;
     private int hpDamage = 125;
     public Hydrant(){
-        //this.image = new ImageStateUtils().getImage("assets/hydrant/hydrant.png");
         this.image = ImageStateUtils.getImage("assets/hydrant/hydrant.png");
         int width = image.getWidth();
         int height = image.getHeight();
@@ -40,20 +39,9 @@ public class Hydrant extends Prop{
             if(!(pet.getNowPropState() instanceof Unstoppable)){
                 pet.costHp(hpDamage);
             }
-            //TODO: 確認彭光湞有寫對應的State 
             if(!(pet.getState() instanceof Dead)){
                 pet.setState(new Stop(pet,pet.getState(),pet.petName)); 
             }
         }
     }
-
-    /*
-    public int getScore(){return 0;}
-    public int getHpDamage(){return 50;}
-    public State getStateEffect(Sprite collideSprite){
-        //TODO: 等彭光湞寫對應的State
-        return null;
-    }
-    public boolean canBeStoredInPropBox(){return false;}
-    */
 }
