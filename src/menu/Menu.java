@@ -51,14 +51,14 @@ public class Menu{
         //System.out.printf("%d, %d\n", petMenu.getPreferredSize().width, petMenu.getPreferredSize().height);
         //petMenu.setPreferredSize(new Dimension(150, 100));
         
-        petMenu.setBounds(margin,580,petMenu.getPreferredSize().width, petMenu.getPreferredSize().height); 
+        petMenu.setBounds(margin,550,petMenu.getPreferredSize().width, petMenu.getPreferredSize().height); 
         //petMenu.setFont(new Font("Utopia", Font.BOLD, 40));
 
         playButton.setFocusable(false);
         playButton.setUI(new StyledButtonUI(255,182,25));
         playButton.addActionListener(new PlayButtonListener(this));
         //playButton.setPreferredSize(new Dimension(200, 100));
-        playButton.setBounds(400, 550, 200, 100);
+        playButton.setBounds(400, 510, 200, 100);
         playButton.setFont(new Font("Utopia", Font.BOLD, 40));
 
         levelMenu.setSelectedIndex(defaultLevelIndex);
@@ -67,7 +67,7 @@ public class Menu{
         levelMenu.setFocusable(false);
         // levelMenu.setBounds(GameView.WIDTH - margin - levelMenu.getPreferredSize().width, 580, levelMenu.getPreferredSize().width, levelMenu.getPreferredSize().height);
         int tmp = GameView.WIDTH - margin - levelMenu.getPreferredSize().width;
-        levelMenu.setBounds(tmp, 580, levelMenu.getPreferredSize().width, levelMenu.getPreferredSize().height);
+        levelMenu.setBounds(tmp, 550, levelMenu.getPreferredSize().width, levelMenu.getPreferredSize().height);
         //levelMenu.setPreferredSize(new Dimension(200, 100));
         //levelMenu.setFont(new Font("Utopia", Font.BOLD, 40));
 

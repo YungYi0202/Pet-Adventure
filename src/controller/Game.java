@@ -16,11 +16,6 @@ public class Game extends GameLoop {
 
     private World world;
 
-    // public Game(World world, Pet p1) {
-    //     this.p1 = p1;
-    //     this.world = world;
-    // }
-
     public void newStart(){
         //Menu.loadingPopup();
         Menu menu = this.getMenu();
