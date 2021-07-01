@@ -119,19 +119,19 @@
 
 - 遊戲畫面
 
-   ![](https://i.imgur.com/PdiSlPk.png =600x)
+   ![](https://i.imgur.com/PdiSlPk.png)
 
 - 暫停
 
-  ![](https://i.imgur.com/re8CCvm.png =600x)
+  ![](https://i.imgur.com/re8CCvm.png)
 
 - 失敗
 
-   ![](https://i.imgur.com/y8wYt5U.png =600x)
+   ![](https://i.imgur.com/y8wYt5U.png)
 
 - 找到小主人了！
 
- ![](https://i.imgur.com/0pshVLm.png =600x)
+ ![](https://i.imgur.com/0pshVLm.png)
 
 ## Music Resource (All Free)
 * Game Music:
