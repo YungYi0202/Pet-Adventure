@@ -298,7 +298,7 @@ public class Pet extends HealthPointSprite {
                 Prop = new ImageShield(this.petName,true);
             }
             if(Prop != null){
-                Rectangle image_range = new Rectangle( GameView.WIDTH/7 + 100*i, GameView.HEIGHT/10, 70, 40);
+                Rectangle image_range = new Rectangle( GameView.WIDTH/12 + 100*i, GameView.HEIGHT/10, 70, 40);
                 BufferedImage image_prop = Prop.getImage();
                 g.drawImage(image_prop, image_range.x, image_range.y, image_range.width, image_range.height, null);
             }
