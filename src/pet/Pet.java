@@ -72,6 +72,9 @@ public class Pet extends HealthPointSprite {
     }
     
     /// 取用任何 pet 資訊的地方 (給別人用的)
+    public void setGravity(int amount){
+        this.gravity = amount;
+    }
     public int getSlideY(){
         return this.slideDecreaseY;
     }
@@ -168,7 +171,7 @@ public class Pet extends HealthPointSprite {
     ///////
 
     public boolean toEnd(){
-        if(getLocation().x >= GameView.WIDTH/10*7){ 
+        if(getLocation().x >= GameView.WIDTH/2){ 
             return true;
         }
         return false;
