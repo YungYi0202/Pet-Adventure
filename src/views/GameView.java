@@ -184,11 +184,10 @@ public class GameView extends JFrame {
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.            
         }   
         @Override
-        public void renderResultPage(int time, World world){
+        public void renderResultPage(int time){
             state = STATE.RESULT;
             resultPageHasRendered = false;
             resultPageCountDownTime = time;
-            this.world = world;
             repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while. 
         }
 

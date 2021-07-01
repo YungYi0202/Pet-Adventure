@@ -141,7 +141,4 @@ public abstract class Sprite {
                 offset.height + location.y), bodysize);
     }
 
-    public boolean isAlive() {
-        return world != null;
-    }
 }

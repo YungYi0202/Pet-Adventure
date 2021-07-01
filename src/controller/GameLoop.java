@@ -11,9 +11,7 @@ import media.AudioPlayer;
 public abstract class GameLoop {
     //Test game: running = menuHasRendered = true
     //Test menu: running = menuHasRendered = false
-    //private boolean running = true;
     private View view;
-    
     public Thread gameThread;
     private boolean menuHasRendered = false;
     private boolean pauseMenuHasRendered = false;
@@ -75,7 +73,7 @@ public abstract class GameLoop {
                     break;
                 case RESULT:
                     if(resultTimeCount % 67 == 0){
-                        view.renderResultPage( 5 - resultTimeCount/67, getWorld());
+                        view.renderResultPage( 5 - resultTimeCount/67);
                     }
                     resultTimeCount++;
                     if(resultTimeCount >= 335){
@@ -154,7 +152,7 @@ public abstract class GameLoop {
         void renderMenu();
         void renderPauseMenu();
         void renderTutorialPage(int time, World world);
-        void renderResultPage(int time, World world);
+        void renderResultPage(int time);
     }
 
     public boolean stateIsGAME(){return state==STATE.GAME;}
