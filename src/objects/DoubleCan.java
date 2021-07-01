@@ -13,7 +13,7 @@ public class ChargeCan extends Prop{
     private BufferedImage image;
     public ChargeCan(){
         //this.image = new ImageStateUtils().getImage("assets/candy/candy.png"); // 待改
-        this.image = ImageStateUtils.getImage("assets/can/can_1.png"); // 待改
+        this.image = ImageStateUtils.getImage("assets/can/can_3.png"); // 待改
         //this.chargeRemainTime = 200; // 可改成用傳入的
         int width = image.getWidth();
         int height = image.getHeight();
@@ -28,7 +28,7 @@ public class ChargeCan extends Prop{
     public void collideWith(Sprite sprite){
         if(sprite instanceof Pet){
 	    Pet p = (Pet) sprite;
-        p.addProps("ChargeCan");
+        p.addProps("DoublePoint");
         world.removeSprite(this);
         }
     }

@@ -294,15 +294,15 @@ public class Pet extends HealthPointSprite {
                 Prop = new ImageCharge(this.petName,true);
             }
             else if(propList.get(i).equals("DoublePoint")){
-                //
+                Prop = new ImageDoublePoint(this.petName,true);
             }
             if(Prop != null){
                 Rectangle image_range = new Rectangle( GameView.WIDTH/7 + 100*i, GameView.HEIGHT/10, 70, 40);
-                //Rectangle(GameView.WIDTH/9 , GameView.HEIGHT/16, GameView.WIDTH/5*2, 20);
                 BufferedImage image_prop = Prop.getImage();
                 g.drawImage(image_prop, image_range.x, image_range.y, image_range.width, image_range.height, null);
             }
         }
+        
         // score render
         if(scoreRenderRemainTime > 0){
             g.setFont(fnt0);

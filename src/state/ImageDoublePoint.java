@@ -13,14 +13,14 @@ import utils.ImageStateUtils;
  * @author - Leyna
  */
  
-public class ImageCharge extends ImageState{
-    public ImageCharge(String petName , boolean proplist){
+public class ImageDoublePoint extends ImageState{
+    public ImageDoublePoint(String petName , boolean proplist){
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         String path = "";
         if(proplist == true){
-            path = "assets/can/can_1.png";
+            path = "assets/can/can_3.png";
         }
         else{
             path = "assets/unstop/unstop.png";
