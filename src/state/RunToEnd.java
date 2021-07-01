@@ -21,7 +21,7 @@ public class RunToEnd extends State{
     public State getNext(Pet s) {
         
     remainTime--;
-    if(s.getLocation().x < GameView.WIDTH/10*7-50){
+    if(s.getLocation().x < GameView.WIDTH/13*7-10){
         is.update();
         s.increaseLocationX(s.getNormalSpeed());
     }
@@ -32,7 +32,7 @@ public class RunToEnd extends State{
         s.setGravity(2);
     }
     
-    if(s.getLocation().x >= GameView.WIDTH/10*7-50 && this.is instanceof ImageEnd && this.check == 0){
+    if(s.getLocation().x >= GameView.WIDTH/13*7-10 && this.is instanceof ImageEnd && this.check == 0){
         this.check = 1;
         remainTime = 60;
         s.setGravity(0);
