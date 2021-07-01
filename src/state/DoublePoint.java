@@ -12,10 +12,10 @@ public class DoublePoint extends PropState{
     @Override
     public PropState getNext(Pet s) {
 	//is.update();
-    remainTime--;
+	remainTime--;
 	if(remainTime <= 0){
-        return null;
-    }
+	    return null;
+	}
     //s.setNowSpeed(ChargeSpeed);
 	return this;
     }
