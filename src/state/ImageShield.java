@@ -9,18 +9,15 @@ import java.util.Iterator;
 
 import utils.ImageStateUtils;
 
-/**
- * @author - Leyna
- */
  
-public class ImageDoublePoint extends ImageState{
-    public ImageDoublePoint(String petName , boolean proplist){
+public class ImageShield extends ImageState{
+    public ImageShield(String petName , boolean proplist){
         this.totalDuration = 0;
         this.defaultAnimLength = defaultAnimLength;
         frames = new ArrayList<ImageFrame>();
         String path = "";
         if(proplist == true){
-            path = "assets/can/can_3.png";
+            path = "assets/can/can_2.png";
         }
         else{
             path = "assets/unstop/unstop.png"; //?

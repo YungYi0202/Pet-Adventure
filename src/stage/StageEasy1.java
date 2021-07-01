@@ -48,7 +48,7 @@ public class StageEasy1 extends Stage{
 
         }
 	    // 測試加到 2 樓, Peng
-        //addSprite( 3000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
+        addSprite( 3000 , (int)(GameView.HEIGHT * 0.5) , new Hydrant());
         addSprite( 1000 , this.getSecondFloorY() , new SecondFloor(1));
         addSprite( 1800 , this.getSecondFloorY() , new SecondFloor(2));
         addSprite( 2600 , this.getSecondFloorY() , new SecondFloor(3));
