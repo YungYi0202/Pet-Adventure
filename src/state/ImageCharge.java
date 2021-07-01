@@ -22,7 +22,7 @@ public class ImageCharge extends ImageState{
             //String path = "assets/"+ petName +"/jump/"+ petName +"_" + i + ".png";
         String path = "";
         if(proplist == true){
-            path = "src/can/can_1.png";
+            path = "assets/can/can_1.png";
         }
         else{
             path = "assets/unstop/unstop.png";
