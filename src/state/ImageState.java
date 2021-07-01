@@ -45,7 +45,6 @@ public abstract class ImageState{
 	// Updates the animation state by a give amount of time.
 	// The frames are updated accordingly to the internal timer of this animation state.
     public void update() {
-        // System.out.println(animTime + " " + totalDuration);
         if (frames.size() > 1) { // must have at least 2 frames to animate
             ++animTime; // animation state time increase here
             if (animTime >= totalDuration) { //reset animation state

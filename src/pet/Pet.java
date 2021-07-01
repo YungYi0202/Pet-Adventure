@@ -315,7 +315,6 @@ public class Pet extends HealthPointSprite {
 
     @Override
     public void collideWith(Sprite sprite){
-        //System.out.println("dealllllling");
         return;
     }
     @Override

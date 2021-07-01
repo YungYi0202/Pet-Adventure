@@ -87,7 +87,6 @@ public class GameView extends JFrame {
                     }
                 }
                 else if(game.stateIsTUTORIAL()){
-                    //System.out.printf("keyPressed: stateIsPAUSE\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.resume();
@@ -95,7 +94,6 @@ public class GameView extends JFrame {
                     }
                 }
                 else if(game.stateIsRESULT()){
-                    //System.out.printf("keyPressed: stateIsPAUSE\n");
                     switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_S:
                         game.exit();

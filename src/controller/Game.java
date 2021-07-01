@@ -23,8 +23,6 @@ public class Game extends GameLoop {
         Pet pet1 = new Pet(500,40,menu.getSelectedPet());
         this.p1 = pet1;
         this.world = new World(new PetCollisionHandler(), stage, pet1);
-        System.out.printf("Game: world exists\n");
-        
         resumeWithTutorial();
     }
 

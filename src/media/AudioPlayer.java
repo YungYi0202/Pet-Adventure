@@ -51,7 +51,6 @@ public class AudioPlayer {
                     gameClip.loop(Clip.LOOP_CONTINUOUSLY);
                     break;
                 case Game.AUDIO_MENU:
-                    System.out.printf("playSounds: MENU\n");
                     menuClip = AudioSystem.getClip();
                     menuClip.open(AudioSystem.getAudioInputStream(sounds.get(audioName)));
                     menuClip.setMicrosecondPosition(menuClipTimePosition);
@@ -78,7 +77,6 @@ public class AudioPlayer {
                     gameClip.stop();
                     break;
                 case Game.AUDIO_MENU:
-                    System.out.printf("pauseSounds: MENU\n");
                     menuClipTimePosition = menuClip.getMicrosecondPosition();
                     menuClip.stop();
                     break;
@@ -98,7 +96,6 @@ public class AudioPlayer {
                     gameClip.stop();
                     break;
                 case Game.AUDIO_MENU:
-                    System.out.printf("stopSounds: MENU\n");
                     menuClipTimePosition = 0;
                     menuClip.stop();
                     break;
