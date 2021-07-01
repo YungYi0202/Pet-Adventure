@@ -11,11 +11,17 @@ import java.awt.image.BufferedImage;
 
 
 public class StageHard extends Stage{
+    private static final int LENGTH = 42;
     private void addHydrantPattern(int pos) {
 	addSpriteToFirstFloor(pos, new Hydrant());
 	addSprite(pos - 250 + 30, getFirstFloorY() - 300, new Candy());
 	addSprite(pos       + 30, getFirstFloorY() - 380, new Candy());
 	addSprite(pos + 250 + 30, getFirstFloorY() - 300, new Candy());
+    }
+    private void addMiddlePattern(int pos) {
+	addSpriteToFirstFloor(pos, new Hydrant());
+	addSprite(pos + 20, getSecondFloorY() - 360, new Bird());
+	addSprite(pos + 30, getFirstFloorY() - 380, new Candy());
     }
     private void addSecondFloor(int start, int count) {
 	addSprite(start, getSecondFloorY(), new SecondFloor(1));
@@ -26,25 +32,20 @@ public class StageHard extends Stage{
     
     public StageHard(){
         setSpeed(25);
-        //TODO: 把該有的Sprite加進去
 	
 	addFarground(0, 0, new Farground("assets/farground/farground_2.png"));
+	addFarground(25000, 0, new Farground("assets/farground/farground_2.png"));
 	
-        //serialAlphabet的用法
         SerialAlphabet serial = new SerialAlphabet("F", "O", "O1", "P");
         addSprite(serial.absLocation, serial);
 	
 	Bird b = new Bird();
-	//addSprite((i+1) * 1000, getFirstFloorY() - b.getBodySize().height - 120, b);
-	/*
-	addSpriteToFirstFloor(4500, serial.get(0));
-        addSpriteToSecondFloor(8000, serial.get(1));
-        addSpriteToSecondFloor(12000, serial.get(2));
-        addSpriteToFirstFloor(15500, serial.get(3));
-	*/
 
-	for (int i = 0; i < 60; ++i) 
+	for (int i = 0; i < LENGTH; ++i) 
 	    addSprite(i * 1000, getFirstFloorY(), new Ground());
+
+	for (int i = 0; i < 3; ++i)
+	    addSpriteToFirstFloor(1200 + 200 * i, new Candy());	
 	addHydrantPattern(2000);
 	for (int i = 0; i < 3; ++i)
 	    addSpriteToFirstFloor(2400 + 200 * i, new Candy());
@@ -52,6 +53,8 @@ public class StageHard extends Stage{
 	addSprite(4200, getFirstFloorY(), new Hole(2));
 	addSprite(5000, getFirstFloorY(), new Hole(3));
 	addSecondFloor(3700, 2);
+	for (int i = 0; i < 5; ++i)
+	    addSpriteToSecondFloor(4500 + 200 * i, new Candy());
 
 	addSpriteToFirstFloor(7000, new DoubleCan());
 	for (int i = 0; i < 8; ++i)
@@ -61,6 +64,9 @@ public class StageHard extends Stage{
 	addSpriteToFirstFloor(6400, new Candy());
 			      
 	addSecondFloor(6600, 4);
+	for (int i = 1; i < 8; ++i)
+	    addSpriteToSecondFloor(7000 + 200 * i, new Candy());
+	
 	addSprite(8400, getSecondFloorY() - b.getBodySize().height - 120, new Bird());
 	addSprite(8600, getSecondFloorY() - b.getBodySize().height - 180, new Bird());
 	addSprite(8800, getSecondFloorY() - b.getBodySize().height - 240, new Bird());
@@ -75,13 +81,66 @@ public class StageHard extends Stage{
 	addSpriteToSecondFloor(11800, new ChargeCan());
 	addSprite(15000, getSecondFloorY() - 380, serial.get(1));
 
-	addSpriteToFirstFloor(17000, new Hydrant());
-	addSprite(17020, getSecondFloorY() - 360, new Bird());
+	addMiddlePattern(17000);
 	addSprite(17800, getFirstFloorY() - b.getBodySize().height - 120, new Bird());
 	addSprite(18000, getFirstFloorY() - b.getBodySize().height - 180, new Bird());
 	addSprite(18200, getFirstFloorY() - b.getBodySize().height - 240, new Bird());
+	addMiddlePattern(19200);
+	addSecondFloor(20500, 2);
+	addSpriteToFirstFloor(20800, new ShieldCan());
+	addSprite(21400, getFirstFloorY(), new Hole(1));
+	addSprite(21600, getFirstFloorY(), new Hole(2));
+	addSprite(22400, getFirstFloorY(), new Hole(2));
+	addSprite(23200, getFirstFloorY(), new Hole(2));
+	addSprite(24000, getFirstFloorY(), new Hole(3));
+	addSprite(21550, getSecondFloorY() - 300, new Candy());
+	addSprite(21800, getSecondFloorY() - 380, new Candy());
+	addSprite(22050, getSecondFloorY() - 300, new Candy());
+	addSprite(22550, getSecondFloorY() - 300, new Candy());
+	addSprite(22800, getSecondFloorY() - 380, new Candy());
+	addSprite(23050, getSecondFloorY() - 300, new Candy());
+	addSecondFloor(23100, 2);
+
+	addSprite(24000, getSecondFloorY() - b.getBodySize().height - 120, new Bird());
+	addSprite(24200, getSecondFloorY() - b.getBodySize().height - 180, new Bird());
+	addSprite(24400, getSecondFloorY() - b.getBodySize().height - 240, new Bird());
+
+	addHydrantPattern(25400);
+	addSpriteToFirstFloor(25900, new Candy());
+	addHydrantPattern(26400);
+	addSecondFloor(27200, 4);
+	addSprite(27800, getFirstFloorY() - b.getBodySize().height - 120, new Bird());
+	addSprite(28100, getFirstFloorY() - b.getBodySize().height - 120, new Bird());
+	addSpriteToFirstFloor(28400, serial.get(2));
+	addSprite(28800, getFirstFloorY(), new Hole(1));
+	addSprite(29000, getFirstFloorY(), new Hole(2));
+	addSprite(29800, getFirstFloorY(), new Hole(3));
+	for (int i = 0; i < 6; ++i)
+	    addSpriteToSecondFloor(29000 + 200 * i, new Candy());
+
+	addSpriteToFirstFloor(32000, new ShieldCan());
+	for (int i = 0; i < 11; ++i)
+	    if (i == 5)
+		addSpriteToFirstFloor(32400 + 200 * i, new Bird());
+	    else
+		addSpriteToFirstFloor(32400 + 200 * i, new Candy());
+	addMiddlePattern(34400);
+	addSecondFloor(35600, 2);
+	addSpriteToFirstFloor(35500, new Hydrant());
+	addSpriteToFirstFloor(36000, new DoubleCan());
+	addSpriteToFirstFloor(36500, serial.get(3));
+	for (int i = 0; i < 5; ++i)
+	    addSpriteToSecondFloor(36800 + 200 * i, new Candy());
+	
+	
+	for (int i = 0; i < 10; ++i)
+	    addSpriteToFirstFloor(39000 + 200 * i, new Candy());
+
+	addSpriteToFirstFloor(41700, new Owner());
+	    
+	
         // Leyna
-        setBackground( ImageStateUtils.getImage("assets/background/background_1.png") );
+        setBackground( ImageStateUtils.getImage("assets/background/background_2.png") );
         // Cathy
         sortByX();
         

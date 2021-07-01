@@ -80,7 +80,7 @@ public class StageEasy extends Stage{
 	addSprite(16000, this.getSecondFloorY(), new SecondFloor(2));
 	addSprite(17000, this.getSecondFloorY(), new SecondFloor(3));
 
-	addSpriteToFirstFloor(21500, new Owner());
+	addSpriteToFirstFloor(21700, new Owner());
         for(int i = 0 ; i < 22; i++){
 	    addSprite(i * 1000 , this.getFirstFloorY() , new Ground());
         }

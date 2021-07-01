@@ -20,7 +20,7 @@ public class Bird extends Prop{
     //TODO: 等陳奕瑄給圖
     private ImageState is;
     //    private BufferedImage image = null;
-    private int hpDamage = 50;
+    private int hpDamage = 180;
     public Bird(){
 	is = new ImageBird();
 	//  this.image = ImageStateUtils.getImage("assets/bird/bird_1.png");
