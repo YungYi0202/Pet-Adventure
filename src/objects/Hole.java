@@ -10,23 +10,18 @@ import java.lang.*;
 // author = qpoiPeng
 public class Hole extends Sprite {
     private BufferedImage image;
+    private int type;
     private static int cur = -1;
     public Hole(int n) {
 	this.image = ImageStateUtils.getImage("assets/hole/hole_" + n + ".png");
-	if (n == 1)
-	    setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension((int)(image.getWidth() * 0.5), 0),
-		     new Dimension((int)(image.getWidth() * 0.5), image.getHeight()));	
-	else if (n == 2)
-	    setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0),
-		     new Dimension(0, 0));	
-	else if (n == 3)
-	    setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0),
-		     new Dimension((int)(image.getWidth() * 0.5), image.getHeight()));	
+	type = n;
+	setShape(new Dimension(image.getWidth(), image.getHeight()), new Dimension(0, 0),
+		 new Dimension(image.getWidth(), image.getHeight()));	
     }
     @Override
     public void collideWith(Sprite s) {
 	Pet p = null;
-	if (s instanceof Pet) {
+	if (s instanceof Pet && this.type == 2) {
 	    p = (Pet) s;
 	    if (cur == -1)
 		cur = 0;
