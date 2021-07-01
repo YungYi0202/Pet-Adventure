@@ -20,7 +20,11 @@ public class TutorialPage{
     private JLabel restTime = new JLabel("Close in 5 seconds", SwingConstants.CENTER);
     private JLabel line1 = new JLabel("* Press UP to jump", SwingConstants.LEFT);
     private JLabel line2 = new JLabel("* Press DOWN to slide", SwingConstants.LEFT);
-    private JLabel line3 = new JLabel("* Press S to pause the game", SwingConstants.LEFT);
+    private JLabel line3 = new JLabel("* Press LEFT to use prop", SwingConstants.LEFT);
+    private JLabel line4 = new JLabel("* Press S to pause the game", SwingConstants.LEFT);
+
+    // private JPanel loadingWindow = new JPanel();
+
     
     public TutorialPage(Game game, JPanel panel){
         this.game = game;
@@ -31,7 +35,7 @@ public class TutorialPage{
         title.setFont(new Font("Utopia", Font.BOLD, 50));
 
         restTime.setFocusable(false);
-        restTime.setBounds(250, 370, 500, 100);
+        restTime.setBounds(250, 380, 500, 100);
         restTime.setFont(new Font("Utopia", Font.BOLD, 30));
         
 
@@ -42,16 +46,20 @@ public class TutorialPage{
         skipButton.setFont(new Font("Utopia", Font.BOLD, 40));
 
         line1.setFocusable(false);
-        line1.setBounds(250, 220, 500, 50);
+        line1.setBounds(250, 200, 500, 50);
         line1.setFont(new Font("Utopia", Font.BOLD, 30));
 
         line2.setFocusable(false);
-        line2.setBounds(250, 270, 500, 50);
+        line2.setBounds(250, 250, 500, 50);
         line2.setFont(new Font("Utopia", Font.BOLD, 30));
 
         line3.setFocusable(false);
-        line3.setBounds(250, 320, 500, 50);
+        line3.setBounds(250, 300, 500, 50);
         line3.setFont(new Font("Utopia", Font.BOLD, 30));
+
+        line4.setFocusable(false);
+        line4.setBounds(250, 350, 500, 50);
+        line4.setFont(new Font("Utopia", Font.BOLD, 30));
 
     }
 
@@ -63,6 +71,7 @@ public class TutorialPage{
         panel.add(line1);
         panel.add(line2);
         panel.add(line3);
+        panel.add(line4);
         
     }
     public void removeFromPanel(){
@@ -72,6 +81,7 @@ public class TutorialPage{
         panel.remove(line1);
         panel.remove(line2);
         panel.remove(line3);
+        panel.remove(line4);
     }
     
     public void gameResume(){
