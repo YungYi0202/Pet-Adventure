@@ -6,6 +6,7 @@ import model.World;
 import menu.Menu;
 import stage.StageManager;
 import model.Stage;
+
 /**
  * @author - Yung-Yi Chen
  */
@@ -17,10 +18,8 @@ public class Game extends GameLoop {
     private World world;
 
     public void newStart(){
-        //Menu.loadingPopup();
         Menu menu = this.getMenu();
         Stage stage = StageManager.getStage( menu.getSelectedLevel() );
-        //TODO:設定寵物是狗還是貓
         Pet pet1 = new Pet(500,40,menu.getSelectedPet());
         this.p1 = pet1;
         this.world = new World(new PetCollisionHandler(), stage, pet1);
@@ -39,14 +38,12 @@ public class Game extends GameLoop {
         getPlayer(playerNumber).slide();
     }
 
-    //TODO: 使用道具 
     public void usePropPet(int playerNumber){
         getPlayer(playerNumber).useProp();
     }
 
     public Pet getPlayer(int playerNumber) {
         return p1;
-        //return playerNumber == 1 ? p1 : p2;
     }
 
     @Override

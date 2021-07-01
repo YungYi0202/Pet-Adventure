@@ -14,14 +14,13 @@ import javax.imageio.ImageIO;
 public class ImageStateUtils {
 	
 	static public BufferedImage getImage(String path) {
-		BufferedImage img = null;
+		BufferedImage image = null;
 		try {
-			//img = ImageIO.read(getClass().getResource(path));
-			img = ImageIO.read(new File(path));
+			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return img;
+		return image;
 	}
 
 	static public BufferedImage resize(BufferedImage image, double rate){
@@ -35,7 +34,6 @@ public class ImageStateUtils {
 	static public BufferedImage opacity(BufferedImage image, float opacity){
 		BufferedImage opacityImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
 		Graphics2D graphics2D = opacityImage.createGraphics();
-		// float opacity = 0.5f;
 		graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
     	graphics2D.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
     	graphics2D.dispose();

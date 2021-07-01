@@ -1,7 +1,8 @@
 package model;
 
-import java.awt.*;
 import state.State;
+
+import java.awt.*;
 
 /**
  * @author - Yung-Yi Chen

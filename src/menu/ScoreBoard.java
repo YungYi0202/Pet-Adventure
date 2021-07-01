@@ -1,13 +1,11 @@
 package menu;
 
 import controller.Game;
+import views.GameView;
 
 import java.awt.*;
 import java.awt.event.*;
-import views.GameView;
 import javax.swing.*;
-//import javax.swing.plaf.multi.MultiComboBoxUI;
-//import javax.swing.JOptionPane;
 
 /**
  * @author - Yung-Yi Chen

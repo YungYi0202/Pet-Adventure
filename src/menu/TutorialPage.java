@@ -1,13 +1,11 @@
 package menu;
 
 import controller.Game;
+import views.GameView;
 
 import java.awt.*;
 import java.awt.event.*;
-import views.GameView;
 import javax.swing.*;
-//import javax.swing.plaf.multi.MultiComboBoxUI;
-//import javax.swing.JOptionPane;
 
 /**
  * @author - Yung-Yi Chen
@@ -26,6 +24,7 @@ public class TutorialPage{
     private JLabel line4 = new JLabel("* Press S to pause the game", SwingConstants.LEFT);
 
     // private JPanel loadingWindow = new JPanel();
+
     
     public TutorialPage(Game game, JPanel panel){
         this.game = game;

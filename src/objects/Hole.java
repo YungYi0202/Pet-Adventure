@@ -1,13 +1,18 @@
 package objects;
+
 import model.Sprite;
 import state.*;
-import java.awt.*;
 import utils.ImageStateUtils;
-import java.awt.image.BufferedImage;
 import pet.Pet;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.lang.*;
 
-// author = qpoiPeng
+/**
+ * @author - qpoiPeng
+ */
+
 public class Hole extends Sprite {
     private BufferedImage image;
     private int type;

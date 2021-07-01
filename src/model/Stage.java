@@ -1,8 +1,7 @@
 package model;
 
-//原本取名為Map，想想覺得還要記錄道具等等東西，所以叫關卡Stage
+import views.GameView;
 
-//複製world的import，可改
 import java.awt.*;
 import java.util.Collections;
 import java.util.List;
@@ -12,9 +11,6 @@ import java.lang.Math.*;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
-
-import views.GameView;
-
 
 /**
  * @author - Yung-Yi Chen
@@ -39,7 +35,6 @@ public abstract class Stage {
         this.speed = speed;
     }
     
-    //public Image getBackground(){return this.background;}
     public void backgroundRender(Graphics g){
         g.drawImage(this.background, 0, 0, GameView.WIDTH, GameView.HEIGHT, null);
     }
@@ -59,7 +54,6 @@ public abstract class Stage {
     //呼叫時要直接new 一個 sprite
     public void addSprite(int x, int y, Sprite sprite){
         addSprite(new Point(x,y), sprite);
-        // positionList.add( new Position(x, y, sprite) );
     }
     //最後都會進來這個
     public void addSprite(Point posi, Sprite sprite){
@@ -71,12 +65,10 @@ public abstract class Stage {
 
     public void addSpriteToFirstFloor(int x, Sprite sprite){
         addSprite(new Point(x, getFirstFloorY() - sprite.getBodySize().height), sprite);
-        // positionList.add( new Position(x, getFirstFloorY() - sprite.getBodySize().height , sprite) );
     }
 
     public void addSpriteToSecondFloor(int x, Sprite sprite){
         addSprite(new Point(x, getSecondFloorY() - sprite.getBodySize().height), sprite);
-        // positionList.add( new Position(x, getSecondFloorY() - sprite.getBodySize().height , sprite) );
     }
 
     List<Sprite> getNewSprites(int cur_abs_x){
@@ -91,9 +83,6 @@ public abstract class Stage {
             newSprites.add(s);
             index++;
         }
-        // if(newSprites.size() > 0){
-        //     System.out.printf("getNewSprites: sprites list size = %d\n", newSprites.size());
-        // }
 
         return newSprites;
     }

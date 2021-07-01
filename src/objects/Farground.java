@@ -1,12 +1,18 @@
 package objects;
+
 import model.Sprite;
 import state.*;
-import java.awt.*;
-import utils.ImageStateUtils;
-import java.awt.image.BufferedImage;
 import pet.Pet;
+import utils.ImageStateUtils;
+
+import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.lang.*;
-// author = qpoiPeng
+
+/**
+ * @author - qpoiPeng
+ */
+ 
 public class Farground extends Sprite {
     private BufferedImage image;
     // 透過路徑決定要用哪張

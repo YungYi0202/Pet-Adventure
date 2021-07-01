@@ -12,15 +12,12 @@ import model.SpriteShape;
 public abstract class Sprite {
     protected World world;
     protected Point location = new Point();
-    //private Point normalLocation = new Point(); 
     public int normalY;
     protected SpriteShape shape = new SpriteShape(new Dimension(), new Dimension(), new Dimension() ); 
 
     public abstract void update();
 
     public abstract void render(Graphics g);
-
-    //public abstract void onDamaged(Rectangle damageArea, int damage);
 
     //陳咏誼加的，讓PetCollisionHandler可以用
     public abstract void collideWith(Sprite sprite);
@@ -34,17 +31,14 @@ public abstract class Sprite {
     public void setWorld(World world) {
         this.world = world;
     }
-    /*public Point getNormalLocation(){
-        //this.location.move(this.normalLocation.x, this.normalLocation.y);
-        return this.normalLocation;
-    }*/
+
     public void setnormalY(){
         this.normalY = this.location.y;
     }
     public void backToNormalLocation(){
         this.location.move(this.location.x, this.normalY);
-        //return normalLocation;
     }
+
     public Point getLocation() {
         return location;
     }
@@ -52,26 +46,19 @@ public abstract class Sprite {
     //從Stage用getNewSprites加進world之後會被設定好
     public void setLocation(Point location) {
         this.location = location;
-        //this.normalY = location.y;
     }
     public void increaseLocationX(int x){
         this.location.move(this.location.x + x, this.location.y);
     }
     public void decreaseLocationX(int x){
-        //System.out.printf("Before: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
         this.location.move(this.location.x - x, this.location.y);
-        //System.out.printf("After: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
     }
     /// 楊鈞安 adding 
     public void increaseLocationY(int y){
-        //System.out.printf("Before: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
         this.location.move(this.location.x, this.location.y + y);
-        //System.out.printf("After: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
     }
     public void decreaseLocationY(int y){
-        //System.out.printf("Before: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
         this.location.move(this.location.x, this.location.y - y);
-        //System.out.printf("After: Ground Location: (x: %d, y: %d) speed:%d\n", location.x, location.y, x);
     }
 
     public int getX() {
@@ -112,31 +99,7 @@ public abstract class Sprite {
         return getArea(getBodyOffset(), getBodySize());
     }
     
-    // 楊鈞安 2021/06/13 目前不需要用到
-    // public int getbody_right(){
-    //     bodyoffset = getBodyOffset();
-    //     bodysize = getBodySize();
-    //     return bodyoffset.width + location.x + bodysize.width;
-    // }
-    // public int getbody_bottom(){
-    //     bodyoffset = getBodyOffset();
-    //     bodysize = getBodySize();
-    //     return location.y + bodyoffset.height + bodysize.height;
-    // }
-    // public int getbody_head(){
-    //     bodyoffset = getBodyOffset();
-    //     bodysize = getBodySize();
-    //     return location.y + bodyoffset.height;
-    // }
-    // public int getbody_left(){
-    //     bodyoffset = getBodyOffset();
-    //     bodysize = getBodySize();
-    //     return location.x + bodyoffset.width;
-    // }
-
     public Rectangle getArea(Dimension offset, Dimension bodysize) {
-        //TODO: 還沒看懂，要請楊鈞安確認
-
         return new Rectangle(new Point(offset.width + location.x,  
                 offset.height + location.y), bodysize);
     }
