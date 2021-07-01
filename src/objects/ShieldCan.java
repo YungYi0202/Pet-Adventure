@@ -7,13 +7,13 @@ import java.lang.*;
 import model.Sprite;
 import java.awt.image.BufferedImage;
 import pet.Pet;
-import state.Charge;
-public class ChargeCan extends Prop{
+import state.Shield;
+public class ShieldCan extends Prop{
     //private int chargeRemainTime;
     private BufferedImage image;
-    public ChargeCan(){
+    public ShieldCan(){
         //this.image = new ImageStateUtils().getImage("assets/candy/candy.png"); // 待改
-        this.image = ImageStateUtils.getImage("assets/can/can_1.png"); // 待改
+        this.image = ImageStateUtils.getImage("assets/can/can_2.png"); // 待改
         //this.chargeRemainTime = 200; // 可改成用傳入的
         int width = image.getWidth();
         int height = image.getHeight();
@@ -28,7 +28,7 @@ public class ChargeCan extends Prop{
     public void collideWith(Sprite sprite){
         if(sprite instanceof Pet){
 	    Pet p = (Pet) sprite;
-        p.addProps("ChargeCan");
+        p.addProps("Shield");
         world.removeSprite(this);
         }
     }

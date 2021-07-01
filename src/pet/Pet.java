@@ -72,6 +72,9 @@ public class Pet extends HealthPointSprite {
     }
     
     /// 取用任何 pet 資訊的地方 (給別人用的)
+    public void setGravity(int amount){
+        this.gravity = amount;
+    }
     public int getSlideY(){
         return this.slideDecreaseY;
     }
@@ -168,7 +171,7 @@ public class Pet extends HealthPointSprite {
     ///////
 
     public boolean toEnd(){
-        if(getLocation().x >= GameView.WIDTH/10*7){ 
+        if(getLocation().x >= GameView.WIDTH/2){ 
             return true;
         }
         return false;
@@ -189,9 +192,9 @@ public class Pet extends HealthPointSprite {
             if(nowProp.equals("DoublePoint")){
                 this.nowPropState = new DoublePoint(this.petName);
             }
-            /*if(nowProp.equals("Shield")){
+            if(nowProp.equals("Shield")){
                 this.nowPropState = new Shield(this.petName);
-            }*/
+            }
         }
     }
     public void jump(){  
@@ -222,7 +225,7 @@ public class Pet extends HealthPointSprite {
     public void update(){ 
         if(this.nowstate instanceof RunToEnd){
             if(this.nowstate.getImageState() instanceof ImageEnd && this.endJump == 0){
-                this.nowVy = -jump_velocity;
+                this.nowVy = -jump_velocity/2;
                 this.endJump = 1;
             }
             Vy_update();
@@ -249,7 +252,13 @@ public class Pet extends HealthPointSprite {
             this.nowstate = controller.update(this,this.nowstate); 
             this.increaseLocationY(this.nowVy);
             this.nowSpeed = controller.update_speed(this,this.normalSpeed);
-            this.nowPropState = controller.propStateUpdate(this,this.nowPropState);
+            if(this.nowstate instanceof Stop && this.nowPropState instanceof Shield){
+                this.nowPropState = null;
+            }
+            else{
+                this.nowPropState = controller.propStateUpdate(this,this.nowPropState);
+            }
+            
         }
     }
 
@@ -257,14 +266,6 @@ public class Pet extends HealthPointSprite {
     public void render(Graphics g){
 
         super.render(g); // healthbar render
-
-        ///// score render
-        // Font fnt0 = new Font("ariel", Font.BOLD, 30);
-        // g.setFont(fnt0);
-        // g.setColor(Color.black); 
-        // String show_score = "score: " + String.valueOf(this.score);
-        // g.drawString(show_score, (GameView.WIDTH/10*7)+50, GameView.HEIGHT/12);
-
         // draw pet
         Rectangle range = this.getRange();
         this.image = this.nowstate.getImage();
@@ -291,15 +292,18 @@ public class Pet extends HealthPointSprite {
                 Prop = new ImageCharge(this.petName,true);
             }
             else if(propList.get(i).equals("DoublePoint")){
-                //
+                Prop = new ImageDoublePoint(this.petName,true);
+            }
+            else if(propList.get(i).equals("Shield")){
+                Prop = new ImageShield(this.petName,true);
             }
             if(Prop != null){
                 Rectangle image_range = new Rectangle( GameView.WIDTH/7 + 100*i, GameView.HEIGHT/10, 70, 40);
-                //Rectangle(GameView.WIDTH/9 , GameView.HEIGHT/16, GameView.WIDTH/5*2, 20);
                 BufferedImage image_prop = Prop.getImage();
                 g.drawImage(image_prop, image_range.x, image_range.y, image_range.width, image_range.height, null);
             }
         }
+
         // score render
         if(scoreRenderRemainTime > 0){
             g.setFont(fnt0);
@@ -311,6 +315,7 @@ public class Pet extends HealthPointSprite {
 
     @Override
     public void collideWith(Sprite sprite){
+        //System.out.println("dealllllling");
         return;
     }
     @Override
@@ -332,3 +337,9 @@ public class Pet extends HealthPointSprite {
 ** body_offset = 身體的左上角
 ** body_size = 身體的長寬範圍
 */
+///// score render
+        // Font fnt0 = new Font("ariel", Font.BOLD, 30);
+        // g.setFont(fnt0);
+        // g.setColor(Color.black); 
+        // String show_score = "score: " + String.valueOf(this.score);
+        // g.drawString(show_score, (GameView.WIDTH/10*7)+50, GameView.HEIGHT/12);
