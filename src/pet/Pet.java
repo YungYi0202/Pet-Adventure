@@ -1,4 +1,5 @@
 package pet;
+
 import state.*;
 import state.State;
 import state.PropState;
@@ -7,23 +8,24 @@ import model.Sprite;
 import model.HealthPointSprite;
 import model.SpriteShape; 
 import model.World;
-import java.awt.*;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
 import utils.ImageStateUtils;
-import java.awt.image.BufferedImage;
-import java.lang.*;
-import java.util.*;
 import views.GameView;
 import state.ImageCharge;
 import media.AudioPlayer;
 import menu.Menu;
-//還有其他要import的記得import
 
-//楊鈞安
+import java.awt.*;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
+import java.awt.image.BufferedImage;
+import java.lang.*;
+import java.util.*;
+
+/**
+ * @author - Andy young 
+ */
 
 public class Pet extends HealthPointSprite {
-    //private int time_tick = 0;
     private int score = 0;
     private int damage = 100;
     private int Pet_HP;
@@ -167,7 +169,6 @@ public class Pet extends HealthPointSprite {
     public PropState getNowPropState(){
         return this.nowPropState;
     }
-    ///////
 
     public boolean toEnd(){
         if(getLocation().x >= GameView.WIDTH/2-70){ 
@@ -330,15 +331,3 @@ public class Pet extends HealthPointSprite {
         return shape.bodySize;
     }
 }
-
-/* shape = (size , body_offset, body_size) 
-** size = 圖片的大小
-** body_offset = 身體的左上角
-** body_size = 身體的長寬範圍
-*/
-///// score render
-        // Font fnt0 = new Font("ariel", Font.BOLD, 30);
-        // g.setFont(fnt0);
-        // g.setColor(Color.black); 
-        // String show_score = "score: " + String.valueOf(this.score);
-        // g.drawString(show_score, (GameView.WIDTH/10*7)+50, GameView.HEIGHT/12);
