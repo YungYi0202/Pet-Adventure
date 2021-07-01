@@ -30,12 +30,12 @@ public class StageEasy extends Stage{
 	addFarground(0, 0, new Farground("assets/farground/farground_1.png"));
 	
         //serialAlphabet的用法
-        SerialAlphabet serial = new SerialAlphabet("F", "O", "O1", "P");
+        SerialAlphabet serial = new SerialAlphabet("P", "E", "T");
         addSprite(serial.absLocation, serial);
-	addSpriteToFirstFloor(4500, serial.get(0));
+		addSpriteToFirstFloor(4500, serial.get(0));
         addSpriteToSecondFloor(8000, serial.get(1));
-        addSpriteToSecondFloor(12000, serial.get(2));
-        addSpriteToFirstFloor(15500, serial.get(3));
+        addSpriteToSecondFloor(15500, serial.get(2));
+        // addSpriteToFirstFloor(15500, serial.get(3));
 	
 
 	addSprite(1330, this.getFirstFloorY() - 300, new Candy());
