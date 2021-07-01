@@ -252,7 +252,13 @@ public class Pet extends HealthPointSprite {
             this.nowstate = controller.update(this,this.nowstate); 
             this.increaseLocationY(this.nowVy);
             this.nowSpeed = controller.update_speed(this,this.normalSpeed);
-            this.nowPropState = controller.propStateUpdate(this,this.nowPropState);
+            if(this.nowstate instanceof Stop && this.nowPropState instanceof Shield){
+                this.nowPropState = null;
+            }
+            else{
+                this.nowPropState = controller.propStateUpdate(this,this.nowPropState);
+            }
+            
         }
     }
 

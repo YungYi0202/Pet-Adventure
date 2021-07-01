@@ -23,7 +23,7 @@ public class ImageDoublePoint extends ImageState{
             path = "assets/can/can_3.png";
         }
         else{
-            path = "assets/unstop/unstop.png"; //?
+            path = "assets/skill/skill_3.png"; 
         }
         frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
     }

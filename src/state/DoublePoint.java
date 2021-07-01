@@ -24,6 +24,6 @@ public class DoublePoint extends PropState{
     @Override
     public Rectangle getPropRange(Pet s){
         //return null;
-        return new Rectangle( s.getX()+30, s.getY()-20, (int)s.getRange().getWidth()/2, (int)s.getRange().getHeight()/3*2);
+        return new Rectangle( s.getX()+60, s.getY()-20, (int)s.getRange().getWidth()/4, (int)s.getRange().getHeight()/3);
     }
 }

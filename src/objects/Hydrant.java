@@ -37,8 +37,10 @@ public class Hydrant extends Prop{
         if(sprite instanceof Pet ){
             Pet pet = (Pet)sprite;
             if( pet.getState() instanceof Unstoppable) return;
-            pet.costHp(hpDamage);
-            //TODO: 確認彭光湞有寫對應的State
+            if(!(pet.getNowPropState() instanceof Unstoppable)){
+                pet.costHp(hpDamage);
+            }
+            //TODO: 確認彭光湞有寫對應的State 
             if(!(pet.getState() instanceof Dead)){
                 pet.setState(new Stop(pet,pet.getState(),pet.petName)); 
             }

@@ -20,7 +20,7 @@ public class ImageShield extends ImageState{
             path = "assets/can/can_2.png";
         }
         else{
-            path = "assets/unstop/unstop.png"; //?
+            path = "assets/skill/skill_2.png"; //?
         }
         frames.add(new ImageFrame(new ImageStateUtils().getImage(path), 1));
     }
