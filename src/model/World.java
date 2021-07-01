@@ -1,16 +1,17 @@
 package model;
 
+import pet.Pet;
+import state.RunToEnd;
+import objects.Ground;
+import views.GameView;
+
 import java.awt.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import pet.Pet;
-import state.RunToEnd;
+
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
-import objects.Ground;
-
-import views.GameView;
 
 /**
  * @author - Yung-Yi Chen
@@ -21,10 +22,9 @@ public class World {
     private final List<Sprite> fargrounds = new CopyOnWriteArrayList<Sprite>();
     private final CollisionHandler collisionHandler;
     
-    //以下是陳咏誼加的，可改
+    //陳咏誼
     private Stage stage;
     private int cur_abs_x = GameView.WIDTH;
-    //TODO:根據stage 設定結束
     private int end_abs_x;
     private List<Pet> players = new CopyOnWriteArrayList<Pet>();
     private Boolean gameOver = false;
@@ -36,14 +36,12 @@ public class World {
         for(Sprite player: players){
             player.setLocation(new Point( (int)(GameView.WIDTH * 0.1), stage.getFirstFloorY() - player.getBodySize().height ));
         }
-        //addSprites(players);
         this.end_abs_x = stage.getEndAbsX();
         setPlayers(players);
         addSprites(stage.getNewSprites(cur_abs_x));
 	
 	    addFargrounds(stage.getNewFargrounds(cur_abs_x));  // Peng
 	
-	    //System.out.printf("World: sprites list size = %d\n", sprites.size());
         // 1P掌握視窗速度
         this.players.get(0).setSpeed(this.stage.getSpeed());
     }
@@ -74,7 +72,6 @@ public class World {
             return;
         }
         if(cur_abs_x + GameView.WIDTH >= end_abs_x){
-            //TODO: 楊鈞安要改，到結尾
             if( !(players.get(0).getState() instanceof RunToEnd)){
                 players.get(0).setNowSpeed(0);
                 players.get(0).runToEnd();
@@ -104,7 +101,6 @@ public class World {
         }
         
         //Collision Detection
-        //不確定有沒有錯
         for(Pet from: players){
             Rectangle body = from.getBody();
             for (Sprite to : sprites) { 
@@ -166,8 +162,6 @@ public class World {
         return sprites;
     }
 
-    // Actually, directly couple your model with the class "java.awt.Graphics" is not a good design
-    // If you want to decouple them, create an interface that encapsulates the variation of the Graphics.
     public void render(Graphics g) {
         stage.backgroundRender(g);
         //Peng

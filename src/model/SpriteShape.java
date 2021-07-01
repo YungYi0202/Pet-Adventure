@@ -3,8 +3,9 @@ package model;
 import java.awt.*;
 
 /**
- * @author - johnny850807@gmail.com (Waterball)
+ * @author - Yung-Yi Chen, Andy Young
  */
+
 public class SpriteShape {
     public Dimension size;
     public Dimension bodyOffset;

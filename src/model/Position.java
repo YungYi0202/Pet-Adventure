@@ -1,9 +1,11 @@
 package model;
+
 import java.awt.Point;
 
 /**
  * @author - Yung-Yi Chen
  */
+
 public class Position {
     public Position(int x, int y, Sprite sprite){
         this.abs_posi = new Point(x, y);
