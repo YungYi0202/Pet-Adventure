@@ -6,13 +6,12 @@ import model.HealthPointSprite;
 import model.World;
 import model.Stage;
 import views.GameView;
+import media.AudioPlayer;
+import stage.StageEasy1;
 
 import java.awt.*;
 import java.io.File;
 
-import media.AudioPlayer;
-
-import stage.StageEasy1;
 
 /**
  * @author - Yung-Yi Chen
